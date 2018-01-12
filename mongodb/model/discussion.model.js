@@ -1,10 +1,11 @@
 var mongoose = require('mongoose')
 
 var DiscussionSchema = new mongoose.Schema({
-  discussionId: {
+  //使用ObjectId
+  /*discussionId: {
     type: String,
     unique: true
-  },
+  },*/
   //创建时间
   pubTime: {
     type: String,

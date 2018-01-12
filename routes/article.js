@@ -3,13 +3,11 @@
  */
 
 //连接数据库
-// import {db} from '../mongodb/config/mongoose'
 require('../mongodb/config/mongoose')
 
 var express = require('express');
 var router = express.Router();
 var fs = require('fs')
-// db()
 
 var Article = require('../mongodb/model/article.model'),
     Comment = require('../mongodb/model/comment.model')
@@ -40,7 +38,7 @@ router.get('/recommend_articles', function(req, res, next) {
         .sort( {buildTime: -1} ) // 降序排列获取最新的
         .limit(size)
         .exec( (err, articles) => {
-          _helpSendArticle(res, err, articles)
+          _helpSendArticle(res, err, articles,size)
         })
   }else{
     //上拉加载刷新
@@ -49,7 +47,7 @@ router.get('/recommend_articles', function(req, res, next) {
     }).sort( {buildTime: -1} )
         .limit(size)
         .exec( (err, articles) => {
-          _helpSendArticle(res, err, articles)
+          _helpSendArticle(res, err, articles, size)
         })
   }
 })
@@ -162,7 +160,7 @@ router.get('/all_comment', function(req, res, next){
       .sort( {pubTime: -1})
       .limit(size)
       .exec( (err, comments) => {
-        _helpSendComment(res, err, comments)
+        _helpSendComment(res, err, comments, size)
       })
 
 
@@ -170,7 +168,7 @@ router.get('/all_comment', function(req, res, next){
 
 
 //辅助函数
-function _helpSendArticle(res, err ,articles){
+function _helpSendArticle(res, err ,articles, size){
   if(err){
     //TODO: 错误处理
     return res.send({
@@ -179,7 +177,7 @@ function _helpSendArticle(res, err ,articles){
     })
   }else{
     var more = true;
-    if(!articles || articles.length === 0 || articles.length < 10)
+    if(!articles || articles.length === 0 || articles.length < size)
       more = false
     res.send({
       more: more,
@@ -189,7 +187,7 @@ function _helpSendArticle(res, err ,articles){
   }
 }
 
-function _helpSendComment(res, err ,comments){
+function _helpSendComment(res, err ,comments, size){
   if(err){
     //TODO: 错误处理
     return res.send({
@@ -198,7 +196,7 @@ function _helpSendComment(res, err ,comments){
     })
   }else{
     var more = true;
-    if(!comments || comments.length === 0 || comments.length < 10)
+    if(!comments || comments.length === 0 || comments.length < size)
       more = false
     res.send({
       more: more,
