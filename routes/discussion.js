@@ -94,12 +94,12 @@ router.post('/write_discussion', function (req, res, next) {
    - type: 0 //0代表自己发布，1代表评论别人的
    - toDiscussionId: //如果是1的话就需要这个字段
  */
-router.get('/write_comment', function (req, res, next) {
+router.post('/write_comment', function (req, res, next) {
   var content = req.body.content,
       toDiscussionId = req.body.toDiscussionId;
 
-  content = '2'
-  toDiscussionId = '5a5aec26e302961f7c2ad391'
+  /*content = '2'
+  toDiscussionId = '5a5aec26e302961f7c2ad391'*/
 
   var discussion = new Discussion({
     author: '5a43938e51fb4902b066150e',
