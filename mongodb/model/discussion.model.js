@@ -7,7 +7,7 @@ var DiscussionSchema = new mongoose.Schema({
     unique: true
   },*/
   //创建时间
-  pubTime: {
+  buildTime: {
     type: String,
     default: Date.now()
   },
@@ -32,7 +32,7 @@ var DiscussionSchema = new mongoose.Schema({
     default: ''
   },
   //评论此发言的评论
-  replyDiscussion: [{
+  replyComment: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Discussion'
   }],

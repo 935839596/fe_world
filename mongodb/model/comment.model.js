@@ -12,7 +12,7 @@ var CommentSchema = new mongoose.Schema({
     ref: 'User'
   },
   //创建时间
-  pubTime: {
+  buildTime: {
     type: String,
     default: Date.now()
   },

@@ -38,7 +38,7 @@ router.get('/recommend_articles', function(req, res, next) {
         .sort( {buildTime: -1} ) // 降序排列获取最新的
         .limit(size)
         .exec( (err, articles) => {
-          _helpSendArticle(res, err, articles,size)
+          _helpSendList(res, err, articles,size)
         })
   }else{
     //上拉加载刷新
@@ -47,7 +47,7 @@ router.get('/recommend_articles', function(req, res, next) {
     }).sort( {buildTime: -1} )
         .limit(size)
         .exec( (err, articles) => {
-          _helpSendArticle(res, err, articles, size)
+          _helpSendList(res, err, articles, size)
         })
   }
 })
@@ -144,7 +144,7 @@ router.post('/write_comment', function(req, res, next){
 */
 router.get('/all_comment', function(req, res, next){
   var id = req.param('id'),
-      last_date = req.param('date') || '',
+      last_date = req.param('last_date') || '',
       size = req.param('size') || 5
 
   var condition = { toArticleId: id};
@@ -157,10 +157,10 @@ router.get('/all_comment', function(req, res, next){
   }
 
   Comment.find(condition)
-      .sort( {pubTime: -1})
+      .sort( {buildTime: -1})
       .limit(size)
       .exec( (err, comments) => {
-        _helpSendComment(res, err, comments, size)
+        _helpSendList(res, err, comments, size)
       })
 
 
@@ -168,26 +168,8 @@ router.get('/all_comment', function(req, res, next){
 
 
 //辅助函数
-function _helpSendArticle(res, err ,articles, size){
-  if(err){
-    //TODO: 错误处理
-    return res.send({
-      ret: 1,
-      message: '网络故障'
-    })
-  }else{
-    var more = true;
-    if(!articles || articles.length === 0 || articles.length < size)
-      more = false
-    res.send({
-      more: more,
-      last_date: more? articles[articles.length-1].buildTime : '',
-      article_list: articles
-    })
-  }
-}
 
-function _helpSendComment(res, err ,comments, size){
+function _helpSendList(res, err ,list, size){
   if(err){
     //TODO: 错误处理
     return res.send({
@@ -196,12 +178,16 @@ function _helpSendComment(res, err ,comments, size){
     })
   }else{
     var more = true;
-    if(!comments || comments.length === 0 || comments.length < size)
+    if(!list || list.length === 0 || list.length < size)
       more = false
     res.send({
-      more: more,
-      last_date: more? comments[comments.length-1].buildTime : '',
-      comment_list: comments
+      ret: 0,
+      message: '',
+      data: {
+        more: more,
+        last_date: more? list[list.length-1].buildTime : '',
+        list: comments
+      }
     })
   }
 }
@@ -234,8 +220,6 @@ function _helpLikeOrNot(res, type, id){
       }
     })
 }
-
-
 
 
 module.exports = router;
