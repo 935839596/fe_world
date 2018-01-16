@@ -165,7 +165,6 @@ router.get('/all_discussion_comment', function (req, res, next) {
     sort: {'buildTime': -1},
     limit: size
   }
-  console.log(condition)
   Discussion.findOne({ _id: discussionId })
       .populate({
         path: 'replyComment',
@@ -174,6 +173,19 @@ router.get('/all_discussion_comment', function (req, res, next) {
       }).exec( (err, discussions) => {
         _helpSendList(res, err, discussions.replyComment, size)
       })
+})
+
+/*
+  点赞
+- url: /discussion/like
+- method: post
+- params:
+  - discussionId
+ */
+router.get('/discussion/like', function(req, res, next){
+  var discussionid = req.body.discussionId
+
+
 })
 
 function _helpSendList(res, err, list, size){
