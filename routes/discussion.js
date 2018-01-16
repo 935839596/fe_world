@@ -182,10 +182,21 @@ router.get('/all_discussion_comment', function (req, res, next) {
 - params:
   - discussionId
  */
-router.get('/discussion/like', function(req, res, next){
+router.post('/like', function(req, res, next){
   var discussionid = req.body.discussionId
+  _helpLikeOrNot(res, 1, discussionid)
+})
 
-
+/*
+ 点赞
+ - url: /discussion/dislike
+ - method: post
+ - params:
+ - discussionId
+ */
+router.post('/dislike', function(req, res, next){
+  var discussionid = req.body.discussionId
+  _helpLikeOrNot(res, -1, discussionid)
 })
 
 function _helpSendList(res, err, list, size){
@@ -206,6 +217,30 @@ function _helpSendList(res, err, list, size){
       }
     })
   }
+}
+
+//点赞辅助函数
+function _helpLikeOrNot(res, type, id){
+  var message, inc;
+  if(type == 1){
+    //表示点赞
+    inc = 1
+    message = '成功点赞'
+  }else{
+    //取消点赞
+    inc = -1
+    message = '成功取消点赞'
+  }
+  Discussion.update( {_id: id }, {$inc: {"meta.likeCount": inc}}, function(err, raw){
+    if(err) {
+
+    }else{
+      res.send({
+        ret: 0,
+        message: message
+      })
+    }
+  })
 }
 
 module.exports = router;
