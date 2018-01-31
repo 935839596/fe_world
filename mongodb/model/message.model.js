@@ -40,7 +40,7 @@ var MessageSchema = new mongoose.Schema({
     ref: [Comment],
   },
   read: {
-    type: boolean,
+    type: Boolean,
     default: false
   }
 })

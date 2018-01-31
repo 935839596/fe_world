@@ -10,7 +10,10 @@ var router = express.Router();
 var fs = require('fs')
 
 var Article = require('../mongodb/model/article.model'),
-    Comment = require('../mongodb/model/comment.model')
+    Comment = require('../mongodb/model/comment.model'),
+    User = require('../mongodb/model/user.model');
+
+var defaultSize = require('./config').defaultSize
 
 //获取推荐文章
 // url: /article/recommend_articles
@@ -24,12 +27,12 @@ router.get('/recommend_articles', function(req, res, next) {
 
 
 //获取全部文章
-// - url： /article/all_article
+// - url： /article/all_articles
 // method： get
 // params： size, last_date
-router.get('/recommend_articles', function(req, res, next) {
+router.get('/all_articles', function(req, res, next) {
   //查询数据库获取全部文章
-  var size = req.param('size') || 10,
+  var size = req.param('size') || defaultSize,
       last_date = req.param('last_date') || '';
 
   if(!last_date){
@@ -58,7 +61,7 @@ router.get('/recommend_articles', function(req, res, next) {
 // params:id
 router.get('/article_detail', function(req, res, next){
   var id = req.param('id');
-  Article.findOne( {id: id } )
+  Article.findOne( {_id: id } )
       .exec( (err, article) => {
         if(err){
           _dealWithError
@@ -77,8 +80,8 @@ router.get('/article_detail', function(req, res, next){
 // method: get
 // params: id
 router.get('/like', function(req, res, next){
-  var id = req.param('id')
-  _helpLikeOrNot(res, 1, id)
+  var id = req.query.id
+  _helpLikeOrNot(req, res, 1, id)
 })
 
 //给文章取消点赞
@@ -86,8 +89,8 @@ router.get('/like', function(req, res, next){
 // method: get
 // params: id
 router.get('/dislike', function(req, res, next){
-  var id = req.param('id')
-  _helpLikeOrNot(res, -1, id)
+  var id = req.query.id
+  _helpLikeOrNot(req, res, -1, id)
 })
 
 //评论文章
@@ -95,39 +98,47 @@ router.get('/dislike', function(req, res, next){
 // method: post
 // params: _id, content, uid
 router.post('/write_comment', function(req, res, next){
-  var id = req.body.id,
-      content = req.body.content,
-      uid = req.body._id;
-  /*id = '5a3cccdb6fb9a04500034053'
-  content = '你真棒'
-  uid = '5a43938e51fb4902b0661510'*/
-
-  //写入评论
-  var comment = {
-    author: uid,
-    content: content,
-    toArticleId: id
-  }
-  comment = new Comment(comment)
-  comment.save(function (err, comment) {
-    if(err){
-      //TODO:错误处理
-      return
+  getUser(req.session.loginUser).then( user => {
+    if(!user){
+      return res.send({
+        ret: -1,
+        message: '请先登录'
+      })
     }
-    Article.update({
-      id: id
-    }, {
-        $push: {
-          comment: comment._id
-        }
-    }, (err) => {
+    var id = req.body.id,
+        content = req.body.content,
+        uid = user._id;
+    /*id = '5a3cccdb6fb9a04500034053'
+     content = '你真棒'
+     uid = '5a43938e51fb4902b0661510'*/
+
+    //写入评论
+    var comment = {
+      author: uid,
+      content: content,
+      toArticleId: id
+    }
+    comment = new Comment(comment)
+    comment.save(function (err, comment) {
       if(err){
         //TODO:错误处理
         return
       }
-      res.send({
-        ret: 0,
-        message: '评论成功'
+      Article.update({
+        _id: id
+      }, {
+        $push: {
+          comment: comment._id
+        }
+      }, (err) => {
+        if(err){
+          //TODO:错误处理
+          return
+        }
+        res.send({
+          ret: 0,
+          message: '评论成功'
+        })
       })
     })
   })
@@ -145,7 +156,7 @@ router.post('/write_comment', function(req, res, next){
 router.get('/all_comment', function(req, res, next){
   var id = req.param('id'),
       last_date = req.param('last_date') || '',
-      size = req.param('size') || 5
+      size = req.param('size') || defaultSize
 
   var condition = { toArticleId: id};
   if(last_date){
@@ -182,11 +193,11 @@ function _helpSendList(res, err ,list, size){
       more = false
     res.send({
       ret: 0,
-      message: '',
+      message: 'success',
       data: {
         more: more,
         last_date: more? list[list.length-1].buildTime : '',
-        list: comments
+        list: list
       }
     })
   }
@@ -198,28 +209,62 @@ function _dealWithError(){
 }
 
 //点赞辅助函数
-function _helpLikeOrNot(res, type, id){
-    var message, inc;
-    if(type == 1){
-      //表示点赞
-      inc = 1
-      message = '成功点赞'
-    }else{
-      //取消点赞
-      inc = -1
-      message = '成功取消点赞'
-    }
-    Article.update( {id: id }, {$inc: {"meta.likeCount": inc}}, function(err, raw){
-      if(err) {
-
-      }else{
-        res.send({
-          ret: 0,
-          message: message
-        })
+function _helpLikeOrNot(req, res, type, id){
+  var message, inc, option;
+  if(type == 1){
+    //表示点赞
+    inc = 1
+    message = '成功点赞'
+    option = {
+      $push: {
+        loveArticle: id
       }
-    })
+    }
+  }else{
+    //取消点赞
+    inc = -1
+    message = '成功取消点赞'
+    option = {
+      $pull: {
+        loveArticle: id
+      }
+    }
+  }
+  User.findOneAndUpdate(
+      {'username': req.session.loginUser},
+      option
+      ).exec(function(err, user){
+        console.log(err)
+        if(!user){
+          return res.send({
+            ret: -1,
+            message: '请先登录'
+          })
+        }
+        Article.update( {_id: id }, {$inc: {"meta.likeCount": inc}}, function(err, raw){
+          if(err) {
+            res.send({
+              ret: 1,
+              message: err
+            })
+          }else{
+            res.send({
+              ret: 0,
+              message: message
+            })
+          }
+        })
+  })
+
+
 }
 
+function getUser(username){
+  return new Promise(function(resolve,reject){
+    User.find({'username': username}, function(err, user){
+      resolve(user);
+    })
+  })
+}
 
 module.exports = router;

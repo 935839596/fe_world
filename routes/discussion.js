@@ -7,6 +7,8 @@ var fs = require('fs')
 
 var Discussion = require('../mongodb/model/discussion.model')
 
+var defaultSize = require('./config').defaultSize
+
 /*
   获取讨论列表
   - url: /discussion/all_discussion
@@ -16,7 +18,7 @@ var Discussion = require('../mongodb/model/discussion.model')
     - size: 10
  */
 router.get('/all_discussion', function (req, res, next) {
-  var size = req.param('size') || 10,
+  var size = req.param('size') || defaultSize,
       last_date = req.param('last_date') || '';
 
   var condition = {};
@@ -151,7 +153,7 @@ router.post('/write_comment', function (req, res, next) {
 router.get('/all_discussion_comment', function (req, res, next) {
   var discussionId = req.param('discussionId'),
       last_date = req.param('last_date') || '',
-      size = req.param('size') || 2;
+      size = req.param('size') || defaultSize;
 
   var condition = {};
   if(last_date){
@@ -188,7 +190,7 @@ router.post('/like', function(req, res, next){
 })
 
 /*
- 点赞
+ 取消点赞
  - url: /discussion/dislike
  - method: post
  - params:
