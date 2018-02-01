@@ -18,17 +18,22 @@ var User = require('../mongodb/model/user.model'),
  - url: /common/get_user
  - method: get
  - params:
-   - uid
+   - id
  */
 router.get('/get_user', function(req, res, next){
   var id = req.query.id;
   User.findOne({'_id': id})
       .exec(function(err, user){
+        var following = false;
+        if(user.followees.indexOf(req.session.loginUserId)>=0){
+          following = true;
+        }
         return res.send({
           ret: 0,
           message: 'ok',
           data: {
-            user: user
+            user: user,
+            following: following
           }
         })
       })
@@ -39,7 +44,7 @@ router.get('/get_user', function(req, res, next){
  - url: /common/user_articles
  - method: get
  - params:
-   - uid
+   - id
    - last_date: date,
    - size: 10
  */
@@ -70,7 +75,7 @@ router.get('/user_articles', function (req, res, next) {
  - url: /common/like_articles
  - method: get
  - params
-   - uid
+   - id
    - last_date: date,
    - size: 10
  */
@@ -108,7 +113,7 @@ router.get('/like_articles', function(req, res, next){
  - url: /common/interest
  - method: get
  - prams
-    uid
+    id
  */
 router.get('/interest', function (req, res, next) {
   User.findOne({'_id': req.query.id}, function(err, user){
@@ -120,6 +125,115 @@ router.get('/interest', function (req, res, next) {
   })
 })
 
+/*
+ 关注用户
+ - url: /common/add_follow_user
+ - method: get
+ - params:
+  - id
+ */
+router.get('/add_follow_user', function(req, res, next){
+  var id = req.query.id;
+  if(!req.session.loginUser){
+    return res.send({
+      ret: -1,
+      message: '请先登录'
+    })
+  }
+  _helpFollowOrNot(req, res, 1, id)
+})
+
+/*
+ 取消关注用户
+ - url: /common/cancel_follow_user
+ - method: get
+ - params:
+ - id
+ */
+router.get('/cancel_follow_user', function(req, res, next){
+  var id = req.query.id;
+  if(!req.session.loginUser){
+    return res.send({
+      ret: -1,
+      message: '请先登录'
+    })
+  }
+  _helpFollowOrNot(req, res, -1, id)
+})
+
+/*
+ 查看关注的人
+ - url: /common/followees
+ - method: get
+ - params:
+   - id
+ */
+router.get('/followees', function(req, res, next) {
+  var id = req.query.id;
+  User.findOne({'_id': id})
+      .populate({
+        path: 'followees'
+      }).exec( (err, user) => {
+        if(err){
+          return res.send({
+            ret: 1,
+            message: '查询失败，请重试'
+          })
+        }
+        res.send({
+          ret: 0,
+          message: 'ok',
+          list: user.followees
+        })
+      })
+})
+
+/*
+ 查看粉丝
+ - url: /common/followers
+ - method: get
+ - params:
+ - id
+ */
+router.get('/followers', function(req, res, next) {
+  var id = req.query.id;
+  User.findOne({'_id': id})
+      .populate({
+        path: 'followers'
+      }).exec( (err, user) => {
+        if(err){
+          return res.send({
+            ret: 1,
+            message: '查询失败，请重试'
+          })
+        }
+        res.send({
+          ret: 0,
+          message: 'ok',
+          list: user.followers
+        })
+      })
+})
+
+/*
+ 查看全部标签
+ - url: /common/all_tags
+ - method: get
+ */
+router.get('/all_tags', function(req, res, next){
+  res.send({
+    ret: 0,
+    message: 'ok',
+    list: [
+        'vue',
+        'angular',
+        'html',
+        'node',
+        'less',
+        'css'
+    ]
+  })
+})
 
 
 //辅助函数
@@ -146,6 +260,8 @@ function _helpSendList(res, err ,list, size){
   }
 }
 
+
+
 function getUser(req, res){
   return new Promise(function(resolve,reject){
     User.findOne({'username': req.session.loginUser}, function(err, user){
@@ -158,6 +274,72 @@ function getUser(req, res){
       resolve(user);
     })
   })
+}
+
+function _helpFollowOrNot(req, res, type, id){
+  var message, inc,
+      option1 = {},  //关注方;
+      option2 = {} //被关注方
+  if(type == 1){
+    //表示关注
+    inc = 1
+    message = '关注成功'
+    option1 = Object.assign(option1, {
+      $push: {
+        followees: id
+      }
+    })
+    option2 = Object.assign(option2, {
+      $push: {
+        followers: req.session.loginUserId
+      }
+    })
+  }else {
+    //取消关注
+    inc = -1
+    message = '取消关注成功'
+    option1 = Object.assign(option1, {
+      $pull: {
+        followees: id
+      }
+    })
+    option2 = Object.assign(option2, {
+      $pull: {
+        followers: req.session.loginUserId
+      }
+    })
+  }
+  option1 = Object.assign(option1, {
+    $inc: { 'meta.followeesCount': inc}
+  })
+  option2 = Object.assign(option2, {
+    $inc: { 'meta.followersCount': inc}
+  })
+
+  User.update( {_id: req.session.loginUserId}, option1, function(err){
+    if(err){
+      return res.send({
+        ret: 1,
+        message: '关注失败，请重试'
+      })
+    }else{
+      User.update({_id: id}, option2, function(err){
+        if(err){
+          return res.send({
+            ret: 1,
+            message: '关注失败，请重试'
+          })
+        }else{
+          return res.send({
+            ret: 0,
+            message: message
+          })
+        }
+      })
+    }
+
+  })
+
 }
 
 module.exports = router;

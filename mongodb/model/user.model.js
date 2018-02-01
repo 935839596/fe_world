@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 var md5 = require('md5')
 var password = md5('123456')
 
-var Article = require('./article.model')
+var Article = require('./article.model'),
+    User = require('./user.model')
 
 var UserSchema = new mongoose.Schema({
   uid: {
@@ -27,14 +28,16 @@ var UserSchema = new mongoose.Schema({
     type: String,
     default: 'https://suibian.com'
   },
-  followees: {
-    type: Array,
-    default: []
-  },
-  followers: {
-    type: Array,
-    default: []
-  },
+  //关注的人
+  followees: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  //粉丝
+  followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   article:{
     type: Array,
     default: []

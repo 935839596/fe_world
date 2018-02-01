@@ -243,7 +243,7 @@ function _helpLikeOrNot(req, res, type, id){
         }
         Article.update( {_id: id }, {$inc: {"meta.likeCount": inc}}, function(err, raw){
           if(err) {
-            res.send({
+             return res.send({
               ret: 1,
               message: err
             })

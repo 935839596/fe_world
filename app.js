@@ -69,6 +69,7 @@ app.post('/register', function(req, res, next){
       }
 
       req.session.loginUser = user.username;
+      req.session.loginUserId = user._id;
       return res.send({
         ret: 0,
         message: '登录成功'
@@ -104,6 +105,7 @@ app.get('/login', function(req, res, next){
       }
 
       req.session.loginUser = user.username;
+      req.session.loginUserId = user._id;
       return res.send({
         ret: 0,
         message: '登录成功'

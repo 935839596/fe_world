@@ -19,7 +19,8 @@ router.get('/', function(req, res, next) {
 router.get('/me', function(req, res, next){
   return res.send({
     ret: 0,
-    username: req.session.loginUser
+    username: req.session.loginUser,
+    userId: req.session.loginUserId
   })
 })
 
