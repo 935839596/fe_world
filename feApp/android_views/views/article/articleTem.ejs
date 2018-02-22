@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://192.168.1.103:3000/stylesheets/style.css">
+    <link rel="stylesheet" href="http://192.168.1.103:3000/stylesheets/app.css">
+</head>
+<body>
+<div id="juejin" data-v-6ede48a3="">
+
+    <div data-v-3f216172=""  id="articleDetail" data-v-13f76525="" data-v-6ede48a3="" class="view-container">
+        <main data-v-3f216172="" class="container main-container">
+            <div data-v-13f76525="" data-v-3f216172="" class="root-view-bg"></div>
+            <div data-v-13f76525="" data-v-3f216172="" class="view column-view">
+                <div data-v-13f76525="" data-v-3f216172="" class="columen-view-main">
+                    <div data-v-13f76525="" data-v-3f216172="" class="container entry-view">
+                        <!--题目与作者信息-->
+                        <h1 data-v-13f76525="" data-v-3f216172="" class="post-title"><%=data.title%></h1>
+                        <div data-v-13f76525="" data-v-3f216172="" class="post-info-mobile">
+                            <div data-v-13f76525="" data-v-3f216172="" class="action create-at-action"><%=data.buildTime%></div>
+                            <a data-v-13f76525="" href="/user/5875dfc7a22b9d0058a96d06" target="_blank" rel="" class="action text-a" data-v-3f216172=""><%=data.author.username%></a>
+                        </div>
+                        <!--题目与作者信息-->
+
+                        <!--文章内容-->
+                        <div data-v-13f76525="" data-v-3f216172="" class="post-content-container">
+                            <div data-v-13f76525="" data-v-3f216172="" class="entry-content post-content juejin-image-viewer__container">
+                                <%-data.content%>
+                            </div>
+                        </div>
+                    </div><!---->
+                </div><!---->
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="http://192.168.1.103:3000/javascripts/jquery-3.2.1.min.js"></script>
+<script src="http://192.168.1.103:3000/javascripts/jquery.lazyload.min.js"></script>
+
+
+<script>
+
+
+  $("img.lazyload").lazyload({
+      "data_attribute": 'src'
+    })
+
+  window.onload = function () {
+    console.log(123)
+    document.addEventListener('message', function (e) {
+      document.getElementById('data').innerHTML = 555555555555;
+    });
+    window.addEventListener('message', function (e) {
+      document.getElementById('data').innerHTML = 555555;
+    });
+
+
+//    window.postMessage(1523)
+  }
+
+</script>
+
+</body>
+</html>
