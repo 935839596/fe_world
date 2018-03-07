@@ -14,7 +14,7 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const ip = 'http://192.168.1.103:3000'
+const ip = require('../common/config').ip
 
 class ArticleItem extends  React.PureComponent {
   constructor(props) {
@@ -24,7 +24,6 @@ class ArticleItem extends  React.PureComponent {
       like: this.props.article.like
     }
     if(!this.props.article.author){
-      // console.log(12545555555555555555555555555555)
       this.setState({
         article: Object.assign(this.state.article, {
           author: {
@@ -34,7 +33,6 @@ class ArticleItem extends  React.PureComponent {
         })
       })
 
-      // console.log('modify', this.props.article)
 
     }
   }
@@ -79,9 +77,13 @@ class ArticleItem extends  React.PureComponent {
     })
   }
 
+  _comment(_id){
+    console.log('lin',_id)
+    this.props.navigation.navigate('ArticleComment', {'articleId': _id})
+  }
+
   _readArticle(_id) {
     console.log('articleId ' + _id)
-    console.log('detail '+ this.props.navigation)
     this.props.navigation.navigate('Detail', {'articleId': _id})
   }
 
@@ -135,6 +137,7 @@ class ArticleItem extends  React.PureComponent {
               name="comment"
               size={13}
               color="#cccccc"
+              onPress = {this._comment.bind(this, this.state.article._id)}
             />
             <Text style= {styles.comment}>{this.state.article.comment.length}</Text>
           </View>

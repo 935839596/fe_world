@@ -47,6 +47,10 @@ var DiscussionSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     }]
+  },
+  imageCache: {
+    type: Array,
+    default: []
   }
 })
 

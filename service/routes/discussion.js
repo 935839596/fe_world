@@ -44,7 +44,7 @@ router.get('/all_discussion', function (req, res, next) {
         }
 
         if(user){
-          discussions.map( discussion => {
+         discussions =  discussions.map( discussion => {
             if(discussion.meta.likeUser.indexOf(user._id) >= 0){
               return Object.assign(discussion._doc, {
                 like: true

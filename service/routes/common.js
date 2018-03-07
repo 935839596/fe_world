@@ -170,22 +170,41 @@ router.get('/cancel_follow_user', function(req, res, next){
  */
 router.get('/followees', function(req, res, next) {
   var id = req.query.id;
-  User.findOne({'_id': id})
+  getUser(req, res).then( loginUser => {
+    User.findOne({'_id': id})
       .populate({
         path: 'followees'
       }).exec( (err, user) => {
-        if(err){
-          return res.send({
-            ret: 1,
-            message: '查询失败，请重试'
-          })
-        }
-        res.send({
-          ret: 0,
-          message: 'ok',
-          list: user.followees
+      if(err){
+        return res.send({
+          ret: 1,
+          message: '查询失败，请重试'
         })
+      }
+
+      if(loginUser) {
+        var userFollowees = user.followees.map( followee => {
+          if(loginUser.followees.indexOf(followee._id) >= 0) {
+            return Object.assign( followee._doc, {
+              following: true
+            })
+          }else {
+            var newUser = Object.assign( followee._doc, {
+              following: false
+            })
+            return newUser
+          }
+        })
+      }else{
+        var userFollowees = user.followees;
+      }
+      res.send({
+        ret: 0,
+        message: 'ok',
+        list: userFollowees
       })
+    })
+  })
 })
 
 /*
@@ -193,26 +212,45 @@ router.get('/followees', function(req, res, next) {
  - url: /common/followers
  - method: get
  - params:
- - id
+  - id
  */
 router.get('/followers', function(req, res, next) {
-  var id = req.query.id;
-  User.findOne({'_id': id})
+  var id = req.query.id
+  getUser(req, res).then( loginUser => {
+    User.findOne({'_id': id})
       .populate({
         path: 'followers'
       }).exec( (err, user) => {
-        if(err){
-          return res.send({
-            ret: 1,
-            message: '查询失败，请重试'
-          })
-        }
-        res.send({
-          ret: 0,
-          message: 'ok',
-          list: user.followers
+      if(err){
+        return res.send({
+          ret: 1,
+          message: '查询失败，请重试'
         })
+      }
+
+      if(loginUser) {
+        var userFollowers = user.followers.map( follower => {
+          if(loginUser.followees.indexOf(follower._id) >= 0) {
+            return Object.assign( follower._doc, {
+              following: true
+            })
+          }else {
+            var newUser = Object.assign( follower._doc, {
+              following: false
+            })
+            return newUser
+          }
+        })
+      }else{
+        var userFollowers = user.followers;
+      }
+      res.send({
+        ret: 0,
+        message: 'ok',
+        list: userFollowers
       })
+    })
+  })
 })
 
 /*

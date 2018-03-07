@@ -16,7 +16,7 @@ var CommentSchema = new mongoose.Schema({
     type: String,
     default: Date.now()
   },
-  //评论的种类，0代表自己发布（即评论文章的），1代表评论别人的评论
+  //评论的种类，0代表评论文章的，1代表评论别人的评论, 2代表回复别人的评论
   type: {
     type: Number,
     default: '0'
@@ -30,16 +30,23 @@ var CommentSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  //如果是2，则不为空（对二级评论的回复）
+  toSecCommentId: {
+
+  },
+
   //内容
   content: {
     type: String,
     default: ''
   },
   //评论此发言的评论
+  //废弃2018.3.6
   replyComment: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Comment'
   }],
+
   meta: {
     likeCount: {
       type: Number,

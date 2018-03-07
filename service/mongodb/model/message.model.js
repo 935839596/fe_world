@@ -28,7 +28,7 @@ var MessageSchema = new mongoose.Schema({
   },
   //消息对应的文章（评论、讨论）id
   article: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types .ObjectId,
     ref: [Article],
   },
   discussion: {

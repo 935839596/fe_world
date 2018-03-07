@@ -34,8 +34,8 @@ router.get('/all_articles', function(req, res, next) {
   console.log(req.session.loginUser)
   getUser(req.session.loginUser).then( user => {
     //查询数据库获取全部文章
-    var size = req.param('size') || defaultSize,
-      last_date = req.param('last_date') || '';
+    var size = req.query.size || defaultSize,
+      last_date = req.query.last_date || '';
 
     console.log(last_date)
     if(!last_date || last_date === 'undefined'){
@@ -152,6 +152,32 @@ router.get('/dislike', function(req, res, next){
   _helpLikeOrNot(req, res, -1, id)
 })
 
+
+
+/*
+ 给评论点赞
+ - url: /article/comment_like
+ - method: post
+ - params:
+    - id
+ */
+router.post('/like', function(req, res, next){
+  var commentId = req.body.id
+  _commentHelpLikeOrNot(req, res, 1, commentId)
+})
+
+/*
+ 给评论取消点赞
+ - url: /article/comment_dislike
+ - method: post
+ - params:
+    - id
+ */
+router.post('/dislike', function(req, res, next){
+  var commentId = req.body.id
+  _commentHelpLikeOrNot(req, res, -1, commentId)
+})
+
 //评论文章
 // url: /article/write_comment
 // method: post
@@ -164,8 +190,11 @@ router.post('/write_comment', function(req, res, next){
         message: '请先登录'
       })
     }
-    var id = req.body.id,
+    var articleId = req.body.articleId,
+        toCommentId = req.body.toCommentId,
+        toSecCommentId = req.body.toSecCommentId,
         content = req.body.content,
+        type = req.body.type,
         uid = user._id;
     /*id = '5a3cccdb6fb9a04500034053'
      content = '你真棒'
@@ -175,7 +204,17 @@ router.post('/write_comment', function(req, res, next){
     var comment = {
       author: uid,
       content: content,
-      toArticleId: id
+      toArticleId: articleId
+    }
+    if(type === 1){
+      Object.assign(comment, {
+        toCommentId: toCommentId
+      })
+    }else if(type === 2){
+      Object.assign(comment, {
+        toCommentId: toCommentId,
+        toSecCommentId: toSecCommentId
+      })
     }
     comment = new Comment(comment)
     comment.save(function (err, comment) {
@@ -213,25 +252,100 @@ router.post('/write_comment', function(req, res, next){
    - size: 10
 */
 router.get('/all_comment', function(req, res, next){
-  var id = req.param('id'),
+  getUser(req.session.loginUser).then( user => {
+    var id = req.param('id'),
       last_date = req.param('last_date') || '',
       size = req.param('size') || defaultSize
 
-  var condition = { toArticleId: id};
-  if(last_date){
-    Object.assign(condition, {
-      buildTime: {
-        $lt: last_date
-      }
-    })
-  }
+    var condition = { toArticleId: id, type: 0};
+    if(last_date){
+      Object.assign(condition, {
+        buildTime: {
+          $lt: last_date
+        }
+      })
+    }
 
-  Comment.find(condition)
+    Comment.find(condition)
       .sort( {buildTime: -1})
-      .limit(size)
+      // .limit(size)
       .exec( (err, comments) => {
+        if(err){
+          return res.send({
+            code: 1,
+            message: ''
+          })
+        }
+
+        if(user){
+          comments = comments.map( comment => {
+            if(comment.meta.likeUser.indexOf(user._id) >= 0){
+              return Object.assign(comment._doc, {
+                like: true
+              })
+            }else{
+              return Object.assign(comment._doc, {
+                like: false
+              })
+            }
+          })
+        }
+
         _helpSendList(res, err, comments, size)
       })
+  })
+})
+
+/*
+ 获取二级评论
+ - url: /article/sec_comment
+ - method: get
+ - params:
+   - id //一级评论的id
+ */
+router.get('/sec_comment', function(req, res, next){
+  getUser(req.session.loginUser).then( user => {
+    var id = req.param('id'),
+      last_date = req.param('last_date') || '',
+      size = req.param('size') || defaultSize
+
+    var condition = { toCommentId: id, type: 1};
+    if(last_date){
+      Object.assign(condition, {
+        buildTime: {
+          $lt: last_date
+        }
+      })
+    }
+
+    Comment.find(condition)
+      .sort( {buildTime: -1})
+      // .limit(size)
+      .exec( (err, comments) => {
+        if(err){
+          return res.send({
+            code: 1,
+            message: ''
+          })
+        }
+
+        if(user){
+          comments = comments.map( comment => {
+            if(comment.meta.likeUser.indexOf(user._id) >= 0){
+              return Object.assign(comment._doc, {
+                like: true
+              })
+            }else{
+              return Object.assign(comment._doc, {
+                like: false
+              })
+            }
+          })
+        }
+
+        _helpSendList(res, err, comments, size)
+      })
+  })
 
 
 })
@@ -315,7 +429,43 @@ function _helpLikeOrNot(req, res, type, id){
         })
   })
 
+}
 
+
+//评论点赞辅助函数
+function _commentHelpLikeOrNot(req, res, type, id){
+  var message, inc, option = {};
+  if(type == 1){
+    //表示点赞
+    inc = 1
+    message = '成功点赞'
+    option = Object.assign(option, {
+      $push: {
+        'meta.likeUser': req.session.loginUserId
+      }
+    })
+  }else{
+    //取消点赞
+    inc = -1
+    message = '成功取消点赞'
+    option = Object.assign(option, {
+      $pull: {
+        'meta.likeUser': req.session.loginUserId
+      }
+    })
+  }
+  option = Object.assign(option,{$inc: {"meta.likeCount": inc}})
+
+  Comment.update( {_id: id }, option , function(err, raw){
+    if(err) {
+
+    }else{
+      res.send({
+        ret: 0,
+        message: message
+      })
+    }
+  })
 }
 
 function getUser(username){

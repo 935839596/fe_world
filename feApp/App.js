@@ -15,19 +15,20 @@ import {
 
 import TabNavigator from 'react-native-tab-navigator';
 import Home from './android_views/home/home'
+import Discussion from './android_views/discussion/discussion'
+import My from './android_views/my/my'
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'home',
+      selectedTab: 'my',
       tabBarHeight: 50
     };
   }
 
   //navigation路由变化监听函数
   handleNavigationStateChange(prevState, newState){
-    // console.log(newState)
     if(newState && newState.routes.length === 1){
       this._handleTabBar(true)
     }else{
@@ -64,8 +65,7 @@ export default class App extends Component {
                   selectedTab: 'discussion'
                 });
               }}>
-            {<Text>saf</Text>}
-
+            {this._renderView()}
           </TabNavigator.Item>
           <TabNavigator.Item
               title="我的"
@@ -77,7 +77,7 @@ export default class App extends Component {
                   selectedTab: 'my'
                 });
               }}>
-            {<Text>saf</Text>}
+            {this._renderView()}
           </TabNavigator.Item>
         </TabNavigator>
     );
@@ -98,16 +98,37 @@ export default class App extends Component {
             tabBar: {
               hide: () => this._handleTabBar(false),
               show: () => this._handleTabBar(true)
+            },
+            goToHome(){
+              this.setState({
+
+              })
             }
           }}
           onNavigationStateChange={this.handleNavigationStateChange.bind(this)}
         />;
         break;
       case 'discussion':
-        view = 讨论区;
+        view = <Discussion
+          screenProps={{
+            tabBar: {
+              hide: () => this._handleTabBar(false),
+              show: () => this._handleTabBar(true)
+            }
+          }}
+          onNavigationStateChange={this.handleNavigationStateChange.bind(this)}
+        />;
         break;
       case 'my':
-        view = <View>我的</View>
+        view = <My
+          screenProps={{
+            tabBar: {
+              hide: () => this._handleTabBar(false),
+              show: () => this._handleTabBar(true)
+            }
+          }}
+          onNavigationStateChange={this.handleNavigationStateChange.bind(this)}
+        />;
         break;
       default :
         view = <View>首页</View>;

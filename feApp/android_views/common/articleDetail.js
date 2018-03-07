@@ -9,12 +9,13 @@ import {
   StyleSheet,
   Text,
   View,
-  WebView
+  WebView,
+  TouchableHighlight
 } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
 
-const ip = 'http://192.168.1.103:3000'
+const ip = require('./config').ip
 
 
 class ArticleDetail extends Component {
@@ -22,8 +23,7 @@ class ArticleDetail extends Component {
     super(props);
     this.state = {
       articleId: this.props.navigation.state.params.articleId,
-      url: null,
-      navigation: this.props.navigation
+      url: null
     }
     // this.props.screenProps.tabBar.hide()
     fetch(ip + '/article/articleHTML?id=' + this.state.articleId)
@@ -55,9 +55,13 @@ class ArticleDetail extends Component {
     this.props.navigation.navigate('UserProfile')
   }
 
+  _goToComment(){
+    this.props.navigation.navigate('ArticleComment', {'articleId': this.state.articleId})
+  }
+
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, position: 'relative'}}>
         <WebView
           ref={webview => { this.webview = webview; }}
           // source = {require('../views/article/articleTem.html')}
@@ -67,22 +71,32 @@ class ArticleDetail extends Component {
             flex: 1
           }}
         />
+        <TouchableHighlight
+          style={styles.commentBtn}
+          onPress={this._goToComment.bind(this)}
+        >
+          <Text style={{color: 'white'}}>
+            评价
+          </Text>
+        </TouchableHighlight>
       </View>
     )
   }
 }
 var Dimensions = require('Dimensions');
-/*const styles = StyleSheet.create({
-  detail: {
-    'zIndex': 100000000,
-    'backgroundColor': 'red',
-    'elevation': 1000000000,
-    'height': Dimensions.get('window').height  + 50000,
-    'width': Dimensions.get('window').width,
-    overflow: 'scroll'
-
-
+const styles = StyleSheet.create({
+  commentBtn: {
+    backgroundColor: '#1d82fe',
+    position: 'absolute',
+    right: 20,
+    bottom: 20,
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'white'
   }
-})*/
+})
 
 export default ArticleDetail;

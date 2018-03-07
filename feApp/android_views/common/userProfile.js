@@ -9,7 +9,6 @@ import {
   StyleSheet,
   Text,
   View,
-  WebView,
   TouchableHighlight,
   Image
 } from 'react-native';
@@ -20,6 +19,13 @@ class UserProfile extends Component {
   constructor(props) {
     super(props)
     // this.props.screenProps.tabBar.hide()
+    this.state = {}
+  }
+
+  _showFolloees() {
+    console.log(123555)
+    //过去需要参数，是关注的人还是粉丝，还有好看的用户id
+    this.props.navigation.navigate('UserList')
   }
 
   render() {
@@ -44,17 +50,30 @@ class UserProfile extends Component {
               <Text style= {style.operation}>
                 关注:152
               </Text>
-              <Text style= {style.operation}>
+              <Text style= {style.operation}
+                    onPress = {this._showFolloees.bind(this)}
+              >
                 粉丝:152
               </Text>
-              <Text style= {style.focus}>
-                <Icon
-                  name="plus"
-                  color="green"
-                  size={12}
-                />
-                关注
-              </Text>
+                {this.state.following ?
+                  <Text style = {style.following}>
+                    <Icon
+                      name="check"
+                      color="white"
+                      size={12}
+                    />
+                    已关注
+                  </Text>
+                  :
+                  <Text style = {style.notFollow}>
+                    <Icon
+                      name="plus"
+                      color="green"
+                      size={12}
+                    />
+                    关注
+                  </Text>
+                }
           </View>
         </View>
 
@@ -166,14 +185,10 @@ const style = StyleSheet.create({
     fontSize: 17,
     color: 'black',
     fontWeight: 'bold',
-    // height: 35,
-    // lineHeight: 35
   },
   textItem2: {
     fontSize: 15,
     color: 'black',
-    // height: 35,
-    // lineHeight: 35
   },
   operationWrapper: {
     height: 30,
@@ -189,16 +204,30 @@ const style = StyleSheet.create({
     lineHeight: 30,
     textAlign: 'center'
   },
-  focus: {
+  following: {
+    position: 'absolute',
+    right: 5,
+    borderColor: 'green',
+    backgroundColor: 'green',
+    borderWidth: 1,
+    width: 60,
+    height: 23,
+    lineHeight: 23,
+    color:'white',
+    textAlign: 'center',
+    fontSize: 12
+  },
+  notFollow: {
     position: 'absolute',
     right: 5,
     borderColor: 'green',
     borderWidth: 1,
-    width: 50,
-    height: 28,
-    lineHeight: 28,
+    width: 60,
+    height: 23,
+    lineHeight: 23,
     color:'green',
     textAlign: 'center',
+    fontSize: 12
   },
 
   itemWrapper: {

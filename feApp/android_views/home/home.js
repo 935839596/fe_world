@@ -14,9 +14,14 @@ import { StackNavigator } from 'react-navigation';
 
 import ArticleList from '../base/articleList'
 import ArticleDetail from '../common/articleDetail'
+import ArticleComment from '../common/articleComment'
 import UserProfile from '../common/userProfile'
+import UserList from '../common/userList'
+import SecondCommentList from '../base/secondCommentList'
 
-const ip = 'http://192.168.1.103:3000'
+
+const ip = require('../common/config').ip
+console.log('gg', ip)
 
  class Home extends Component {
   constructor(props) {
@@ -30,6 +35,7 @@ const ip = 'http://192.168.1.103:3000'
       more: true
     }
     var website = this.state.url
+    console.log(website)
     fetch(website, {
       method: 'GET',
       headers: {
@@ -206,6 +212,30 @@ export default StackNavigator(
       screen: UserProfile,
       navigationOptions: {
         headerTitle: '个人资料',
+        headerStyle: headerStyle,
+        headerTitleStyle: headerTitleStyle
+      }
+    },
+    UserList: {
+      screen: UserList,
+      navigationOptions: {
+        headerTitle: '关注的用户',
+        headerStyle: headerStyle,
+        headerTitleStyle: headerTitleStyle
+      }
+    },
+    ArticleComment: {
+      screen: ArticleComment,
+      navigationOptions: {
+        headerTitle: '发表评论',
+        headerStyle: headerStyle,
+        headerTitleStyle: headerTitleStyle
+      }
+    },
+    SecondCommentList: {
+      screen: SecondCommentList,
+      navigationOptions: {
+        headerTitle: '回复评论',
         headerStyle: headerStyle,
         headerTitleStyle: headerTitleStyle
       }

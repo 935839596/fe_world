@@ -93,12 +93,9 @@ app.post('/register', function(req, res, next){
 })
 
 /*登录*/
-app.get('/login', function(req, res, next){
-  /*var username = req.body.username,
-      password = md5(req.body.password);*/
-
-  var username = req.param('username'),
-      password = md5(req.param('password'));
+app.post('/login', function(req, res, next){
+  var username = req.body.username,
+      password = md5(req.body.password);
 
   User.findOne({'username': username, 'password': password}, function(err, user){
     if(!user){
