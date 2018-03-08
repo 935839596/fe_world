@@ -26,7 +26,7 @@ var UserSchema = new mongoose.Schema({
   },
   avatarLarge: {
     type: String,
-    default: 'https://suibian.com'
+    default: ''
   },
   //关注的人
   followees: [{

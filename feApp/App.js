@@ -22,7 +22,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'my',
+      selectedTab: 'home',
       tabBarHeight: 50
     };
   }
@@ -83,6 +83,13 @@ export default class App extends Component {
     );
   }
 
+  _goToHome(){
+    console.log('go to home')
+    this.setState({
+      selectedTab: 'home'
+    })
+  }
+
   _handleTabBar(state) {
     this.setState({
       tabBarHeight: state ? 49 : 0
@@ -99,10 +106,8 @@ export default class App extends Component {
               hide: () => this._handleTabBar(false),
               show: () => this._handleTabBar(true)
             },
-            goToHome(){
-              this.setState({
-
-              })
+            goToHome: () => {
+              this._goToHome.bind(this)
             }
           }}
           onNavigationStateChange={this.handleNavigationStateChange.bind(this)}
@@ -114,6 +119,9 @@ export default class App extends Component {
             tabBar: {
               hide: () => this._handleTabBar(false),
               show: () => this._handleTabBar(true)
+            },
+            goToHome: ()=>{
+              this._goToHome.bind(this)
             }
           }}
           onNavigationStateChange={this.handleNavigationStateChange.bind(this)}
@@ -125,6 +133,9 @@ export default class App extends Component {
             tabBar: {
               hide: () => this._handleTabBar(false),
               show: () => this._handleTabBar(true)
+            },
+            goToHome: () => {
+              this._goToHome()
             }
           }}
           onNavigationStateChange={this.handleNavigationStateChange.bind(this)}

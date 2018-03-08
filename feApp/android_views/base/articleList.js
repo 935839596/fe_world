@@ -21,7 +21,11 @@ class ArticleItem extends  React.PureComponent {
     super(props)
     this.state = {
       article: this.props.article,
-      like: this.props.article.like
+      like: this.props.article.like,
+      allCommentCount: 0,
+      likeCount: this.props.article.meta.likeCount
+      /*likeCount: this.props.article.meta.likeCount,
+      commentCount: this.props.article.comment.length*/
     }
     if(!this.props.article.author){
       this.setState({
@@ -32,9 +36,24 @@ class ArticleItem extends  React.PureComponent {
           }
         })
       })
-
-
     }
+
+    this._getAllCommentCount()
+  }
+
+  _getAllCommentCount(){
+    var articleId = this.state.article._id;
+    var url = ip + '/article/all_comment_count?id=' + articleId
+
+    fetch(url)
+      .then(res => res.json())
+      .then( data => {
+        if(data.ret == 0){
+          this.setState({
+            allCommentCount: parseInt(data.data)
+          })
+        }
+      })
   }
 
   _onPress = () => {
@@ -42,8 +61,9 @@ class ArticleItem extends  React.PureComponent {
   }
 
   _like() {
-    var website = ip + (this.state.like? '/article/dislike' : '/article/like') + '?id=' + this.state.article._id
-    fetch(website)
+    var url = ip + (this.state.like? '/article/dislike' : '/article/like') + '?id=' + this.state.article._id,
+      inc = this.state.like?-1:1
+    fetch(url)
       .then( res => res.json())
       .then( data => {
         console.log(data)
@@ -52,23 +72,21 @@ class ArticleItem extends  React.PureComponent {
             '提示',
             data.message,
             [
-              {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
               {text: 'OK', onPress: () => console.log('OK Pressed')},
             ],
             { cancelable: false }
           )
           this.setState({
-            like: !this.state.like
+            like: !this.state.like,
+            likeCount: this.state.likeCount + inc
           })
         }else{
           Alert.alert(
             '警告',
             data.message,
             [
-              {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
               {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-              {text: 'OK', onPress: () => console.log('OK Pressed')},
+              {text: '马上登陆', onPress: () => console.log('OK Pressed')},
             ],
             { cancelable: false }
           )
@@ -99,9 +117,9 @@ class ArticleItem extends  React.PureComponent {
           <View style={[styles.authorInfo, styles.header]}>
             <View style = {[{marginRight: 5}]}>
               <Image style={styles.portrait}
-                      source={require('../../resource/image/mying.png')}
+                      //source={require('../../resource/image/mying.png')}
                      onPress={this._showUser.bind(this)}
-                // source={{uri: this.state.article.author.avatarLarge}}
+                    source={{uri: this.state.article.author.avatarLarge}}
               />
             </View>
             <Text style = {[styles.height, {color: '#000000'}]}
@@ -123,23 +141,23 @@ class ArticleItem extends  React.PureComponent {
         <View style = {styles.footer}>
           <View style = {styles.handleBox}>
             <Icon
-              name="heart"
-              size={10}
-              color={this.state.like?'{color:"red"}':'{color: "#cccccc"}'}
+              name={this.state.like?'thumbs-up':'thumbs-o-up'}
+              size={15}
+              color='orange'
               onPress={this._like.bind(this)}
             />
             <Text style= {styles.like}>
-              {this.state.article.meta.likeCount}
+              {this.state.likeCount}
               </Text>
           </View>
           <View style = {styles.handleBox}>
             <Icon
-              name="comment"
-              size={13}
-              color="#cccccc"
+              name="comments-o"
+              color="orange"
+              size={15}
               onPress = {this._comment.bind(this, this.state.article._id)}
             />
-            <Text style= {styles.comment}>{this.state.article.comment.length}</Text>
+            <Text style= {styles.comment}>{this.state.allCommentCount}</Text>
           </View>
         </View>
       </View>

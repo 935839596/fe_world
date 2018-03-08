@@ -30,7 +30,8 @@ class ModalComponent extends Component {
       sendable: false,
 
       //发送需要的信息
-      sendInfo: {}
+      sendInfo: this.props.sendInfo
+
     }
   }
 
@@ -55,8 +56,6 @@ class ModalComponent extends Component {
   }
 
   _send() {
-    var content = this.state.content;
-
     if(this.state.sending || !this.state.sendable) return;
 
     //发送
@@ -64,7 +63,40 @@ class ModalComponent extends Component {
       sending: true
     })
 
+
     console.log(this.state.sendInfo)
+
+    fetch(this.state.sendInfo.url,{
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        type: this.state.sendInfo.type,
+        content: this.state.content,
+        articleId: this.state.sendInfo.articleId,
+        discussionId: this.state.sendInfo.discussionId,
+        toCommentId: this.state.sendInfo.toCommentId,
+        toSecCommentId: this.state.sendInfo.toSecCommentId,
+      })
+    }).then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if(data.ret === 0){
+          this.setState({
+            sending: false,
+            sendable: false,
+            content: ''
+          })
+          this._closeModal();
+        }else{
+          this.setState({
+            sending: false,
+            sendable: true,
+          })
+        }
+      })
 
     //TODO:发送完毕还原状态，并隐藏modal
   }

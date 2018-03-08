@@ -31,13 +31,11 @@ router.get('/recommend_articles', function(req, res, next) {
 // method： get
 // params： size, last_date
 router.get('/all_articles', function(req, res, next) {
-  console.log(req.session.loginUser)
   getUser(req.session.loginUser).then( user => {
     //查询数据库获取全部文章
     var size = req.query.size || defaultSize,
       last_date = req.query.last_date || '';
 
-    console.log(last_date)
     if(!last_date || last_date === 'undefined'){
       //直接查询
       console.log('here')
@@ -50,7 +48,6 @@ router.get('/all_articles', function(req, res, next) {
         .exec( (err, articles) => {
           if(user){
             articles = articles.map( article => {
-              console.log(article)
               if(user.loveArticle.indexOf(article._id) >= 0){
                 return Object.assign(article._doc, {
                   like: true
@@ -157,31 +154,39 @@ router.get('/dislike', function(req, res, next){
 /*
  给评论点赞
  - url: /article/comment_like
- - method: post
- - params:
+ - method: get
+- params:
     - id
  */
-router.post('/like', function(req, res, next){
-  var commentId = req.body.id
+router.get('/comment_like', function(req, res, next){
+  var commentId = req.query.id
   _commentHelpLikeOrNot(req, res, 1, commentId)
 })
 
 /*
  给评论取消点赞
  - url: /article/comment_dislike
- - method: post
+ - method: get
  - params:
     - id
  */
-router.post('/dislike', function(req, res, next){
-  var commentId = req.body.id
+router.get('/comment_dislike', function(req, res, next){
+  var commentId = req.query.id
   _commentHelpLikeOrNot(req, res, -1, commentId)
 })
 
-//评论文章
-// url: /article/write_comment
-// method: post
-// params: _id, content, uid
+/*评论文章
+url: /article/write_comment
+method: post
+params:
+  articleId,
+ toCommentId,
+ toSecCommentId,
+ type
+  content,
+
+*/
+
 router.post('/write_comment', function(req, res, next){
   getUser(req.session.loginUser).then( user => {
     if(!user){
@@ -196,15 +201,16 @@ router.post('/write_comment', function(req, res, next){
         content = req.body.content,
         type = req.body.type,
         uid = user._id;
-    /*id = '5a3cccdb6fb9a04500034053'
-     content = '你真棒'
-     uid = '5a43938e51fb4902b0661510'*/
+
+    console.log(articleId, toCommentId, toSecCommentId, content, type ,uid)
 
     //写入评论
     var comment = {
       author: uid,
       content: content,
-      toArticleId: articleId
+      toArticleId: articleId,
+      buildTime: Date.now(),
+      type: type
     }
     if(type === 1){
       Object.assign(comment, {
@@ -223,7 +229,7 @@ router.post('/write_comment', function(req, res, next){
         return
       }
       Article.update({
-        _id: id
+        _id: articleId
       }, {
         $push: {
           comment: comment._id
@@ -269,6 +275,9 @@ router.get('/all_comment', function(req, res, next){
     Comment.find(condition)
       .sort( {buildTime: -1})
       // .limit(size)
+      .populate({
+        path: 'author'
+      })
       .exec( (err, comments) => {
         if(err){
           return res.send({
@@ -309,7 +318,7 @@ router.get('/sec_comment', function(req, res, next){
       last_date = req.param('last_date') || '',
       size = req.param('size') || defaultSize
 
-    var condition = { toCommentId: id, type: 1};
+    var condition = { toCommentId: id};
     if(last_date){
       Object.assign(condition, {
         buildTime: {
@@ -321,6 +330,9 @@ router.get('/sec_comment', function(req, res, next){
     Comment.find(condition)
       .sort( {buildTime: -1})
       // .limit(size)
+      .populate({
+        path: 'author'
+      })
       .exec( (err, comments) => {
         if(err){
           return res.send({
@@ -348,6 +360,52 @@ router.get('/sec_comment', function(req, res, next){
   })
 
 
+})
+
+
+/*
+  获取全部评论数
+   url: /article/all_comment_count
+   method: get
+   params:
+     id: 文章id
+ */
+router.get('/all_comment_count', function(req, res, next){
+  Comment.find({
+    toArticleId: req.query.id
+  }).exec( (err, comments) => {
+    if(err){
+      return
+    }
+    console.log('count', comments.length)
+    res.send({
+      ret: 0,
+      data: comments.length
+    })
+  })
+})
+
+/*
+  获取详细评论
+  url: /article/comment_detail
+  method: get
+  params:
+    id: 评论id
+ */
+router.get('/comment_detail', function(req, res, next){
+  Comment.findOne({
+    _id: req.query.id
+  }).populate({
+    path: 'author'
+  })
+    .exec( (err, comment) => {
+      if(err) return
+
+      res.send({
+        ret: 0,
+        data: comment
+      })
+    })
 })
 
 
@@ -434,37 +492,46 @@ function _helpLikeOrNot(req, res, type, id){
 
 //评论点赞辅助函数
 function _commentHelpLikeOrNot(req, res, type, id){
-  var message, inc, option = {};
-  if(type == 1){
-    //表示点赞
-    inc = 1
-    message = '成功点赞'
-    option = Object.assign(option, {
-      $push: {
-        'meta.likeUser': req.session.loginUserId
-      }
-    })
-  }else{
-    //取消点赞
-    inc = -1
-    message = '成功取消点赞'
-    option = Object.assign(option, {
-      $pull: {
-        'meta.likeUser': req.session.loginUserId
-      }
-    })
-  }
-  option = Object.assign(option,{$inc: {"meta.likeCount": inc}})
-
-  Comment.update( {_id: id }, option , function(err, raw){
-    if(err) {
-
-    }else{
-      res.send({
-        ret: 0,
-        message: message
+  getUser(req.session.loginUser).then(user => {
+    if(!user){
+      return res.send({
+        ret: -1,
+        message: '请先登录'
       })
     }
+
+    var message, inc, option = {};
+    if(type == 1){
+      //表示点赞
+      inc = 1
+      message = '成功点赞'
+      option = Object.assign(option, {
+        $push: {
+          'meta.likeUser': user._id
+        }
+      })
+    }else{
+      //取消点赞
+      inc = -1
+      message = '成功取消点赞'
+      option = Object.assign(option, {
+        $pull: {
+          'meta.likeUser': user._id
+        }
+      })
+    }
+    option = Object.assign(option,{$inc: {"meta.likeCount": inc}})
+
+    Comment.update( {_id: id }, option , function(err, raw){
+      if(err) {
+
+      }else{
+        res.send({
+          ret: 0,
+          message: message
+        })
+      }
+    })
   })
 }
 

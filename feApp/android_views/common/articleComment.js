@@ -25,11 +25,16 @@ class ArticleComment extends Component {
       articleId: this.props.navigation.state.params.articleId,
       article: {},
       meta: '',
+      commentList: [],
+
+      allCommentCount: 0,
 
 
       articleModalVisible: false,
       placeholder: '发表评论',
-      sendInfo: {}, //指的是要发送到后台需要的各种信息
+      sendInfo: {
+        articleId: this.props.navigation.state.params.articleId,
+      }, //指的是要发送到后台需要的各种信息
 
       //发送框中的信息
       content: '',
@@ -45,6 +50,10 @@ class ArticleComment extends Component {
             meta: data.data.meta.likeCount+'人喜欢-'+data.data.author.username+'-'+this._formateTime(data.data.buildTime)
           })
       })
+
+
+   this._getComment();
+
   }
 
   _formateTime(timeStamp) {
@@ -62,10 +71,48 @@ class ArticleComment extends Component {
 
     //发送
     this.setState({
-      sending: true
+     sending: true
     })
 
-    console.log(content)
+    fetch(ip + '/article/write_comment', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        type: 0,
+        content: this.state.content,
+        articleId: this.state.sendInfo.articleId,
+        toCommentId: this.state.sendInfo.toCommentId,
+        toSecCommentId: this.state.sendInfo.toSecCommentId,
+      })
+    }).then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if(data.ret === 0){
+          this.setState({
+            sending: false,
+            sendable: false,
+            content: ''
+          })
+          this._getComment()
+        }
+      })
+  }
+
+  //获取评论
+  _getComment(){
+    fetch(ip + '/article/all_comment?id=' + this.state.articleId)
+      .then(res => res.json())
+      .then( data => {
+        console.log('like??',data)
+        if(data.ret == 0){
+          this.setState({
+            commentList: data.data.list
+          })
+        }
+      })
   }
 
   render() {
@@ -81,6 +128,8 @@ class ArticleComment extends Component {
         </View>
         <CommentList
           navigation = {this.props.navigation}
+          commentList = {this.state.commentList}
+          articleId = {this.state.articleId}
         />
         <View style={styles.commentView}>
           <TextInput

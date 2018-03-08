@@ -30,7 +30,7 @@ var CommentSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  //如果是2，则不为空（对二级评论的回复）
+  //如果是2，则不为空（对一级评论的回复）
   toSecCommentId: {
 
   },

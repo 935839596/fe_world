@@ -19,62 +19,157 @@ import {
 import CommentModal from './commentModal'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+const ip = require('../common/config').ip
+
 class SecondCommentItem extends Component {
   constructor(props){
     super(props)
     this.state = {
-      secComment: this.props.secComment
+      secComment: this.props.secComment,
+      articleId: this.props.articleId,
+      discussionId: this.props.discussionId,
+
+      like: this.props.secComment.like,
+      likeCount: this.props.secComment.meta.likeCount,
+
+
+      //回复的人
+      replyToUser: ''
+    }
+    this._getCommentDetail()
+
+  }
+
+  _getCommentDetail(){
+    var url=''
+    if(this.state.articleId){
+      url = ip + '/article/comment_detail?id='+this.state.secComment.toSecCommentId
+    }else{
+
+    }
+    if(this.state.secComment.type == 2) {
+      console.log('in')
+      fetch(url)
+        .then(res=> res.json())
+        .then(data => {
+          console.log(data)
+          if(data.ret == 0){
+            this.setState({
+              replyToUser: data.data.author.username
+            })
+            console.log(this.state.replyToUser)
+          }
+        })
     }
   }
 
   _showModal(username, userId) {
-    this.props.showModal(username, userId, this.props.articleId, this.state.secComment._id)
+    this.props.showModal(username, userId, this.props.articleId, this.state.secComment._id, this.props.discussionId)
   }
 
   _like(){
+    var url;
+    if(this.props.articleId){
+      url = ip + (this.state.like? '/article/comment_dislike' : '/article/comment_like') + '?id=' + this.state.secComment._id
+    }else{
 
+    }
+    var inc = this.state.like?-1:1
+    fetch(url)
+      .then( res => res.json())
+      .then( data => {
+        console.log(data)
+        if(data.ret===0){
+          Alert.alert(
+            '提示',
+            data.message,
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+          )
+          this.setState({
+            like: !this.state.like,
+            likeCount: this.state.likeCount + inc
+          })
+        }else{
+          Alert.alert(
+            '警告',
+            data.message,
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: '马上登陆', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+          )
+        }
+      })
   }
+
+  _formateTime() {
+    var date = new Date(parseInt(this.state.secComment.buildTime))
+    return this._formateTwo((date.getMonth()+1)) + '-' +
+      this._formateTwo(date.getDate()) + ' '+
+      this._formateTwo(date.getHours()) + ':'+
+      this._formateTwo(date.getMinutes())
+  }
+
+  _formateTwo(num){
+    return num<10?'0'+num:num
+  }
+
 
   render() {
     return (
       <View>
         <TouchableOpacity
-          onPress = {this._showModal.bind(this, 'alin', '1524582')}
+          onPress = {this._showModal.bind(this, this.state.secComment.author.username, this.state.secComment.author._id)}
         >
           <View style = {[styles.commentItem, styles.secondCommentItem]}>
             <View style = {styles.left}>
               <Image
-                source= {require('../../resource/image/mying.png')}
-                style = {styles.userProtrait}
+                source= {
+                  this.state.secComment.author.avatarLarge?
+                    {uri: this.state.secComment.author.avatarLarge}
+                    :
+                    require('../../resource/image/mying.png')
+                }style = {styles.userProtrait}
               />
             </View>
             <View style = {styles.right}>
               <View style = {styles.top}>
-                <Text style = {styles.username}>圈圈圆圆圈圈</Text>
+                <Text style = {styles.username}>{this.state.secComment.author.username}</Text>
                 <View style = {styles.operation}>
                   <Text style = {styles.iconWrapper}>
                     <Icon
-                      name="comments"
+                      name="comments-o"
+                      color="orange"
                       size={15}
                       style={ styles.icon }
-                      onPress = {this._showModal.bind(this, 'alin', '1524582')}
+                      onPress = {this._showModal.bind(this, this.state.secComment.author.username, this.state.secComment.author._id)}
                     />
                   </Text>
                   <Text style = {styles.iconWrapper}>
                     <Icon
-                      name={this.state.like?'thumbs-o-up':'thumbs-o-up'}
+                      name={this.state.like?'thumbs-up':'thumbs-o-up'}
                       size={15}
                       color='orange'
                       onPress={this._like.bind(this)}
                       style={ styles.icon }
-                    /> 0
+                    /> {this.state.likeCount}
                   </Text>
 
                 </View>
                 <View>
-                  <Text style = {[styles.time, {color: '#999', fontSize: 10}]}>2-23 13:31</Text>
+                  <Text style = {[styles.time, {color: '#999', fontSize: 10}]}>
+                    {this._formateTime()}
+                  </Text>
                 </View>
-                <Text style = {styles.commentContent}>哈哈哈哈这个真的好好笑啊啊啊
+                <Text style = {styles.commentContent}>
+                  {
+                    this.state.replyToUser? '回复@'+this.state.replyToUser+':  ': ''
+                  }
+                  {this.state.secComment.content}
                 </Text>
               </View>
 
@@ -91,8 +186,8 @@ class SecondCommentList extends Component {
   constructor(props){
     super(props)
     this.state = {
-      comment: {},
-
+      comment: this.props.navigation.state.params.comment,
+      secCommentList: [],
 
       //评论
       content: '',
@@ -102,13 +197,70 @@ class SecondCommentList extends Component {
       //评论的modal
       modalVisible: false,
       placeholder: '',
-      sendInfo: {}
+      sendInfo: {},
+
+      like: this.props.navigation.state.params.comment.like,
+      likeCount: this.props.navigation.state.params.comment.meta.likeCount
     }
+
+    console.log('传过来的一级comment', this.props.navigation.state.params.comment.like )
+
+    this._getSecComment()
   }
 
 
   _send(){
+    if(this.state.sending || !this.state.sendable) return;
 
+    //发送
+    this.setState({
+      sending: true
+    })
+
+    fetch(ip + '/article/write_comment', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        type: 1,
+        content: this.state.content,
+        articleId: this.props.navigation.state.params.articleId,
+        toCommentId: this.state.comment._id,
+      })
+    }).then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if(data.ret === 0){
+          this.setState({
+            sending: false,
+            sendable: false,
+            content: ''
+          })
+          this._getSecComment()
+        }else{
+          this.setState({
+            sending: false,
+            sendable: true
+          })
+        }
+      })
+  }
+
+  _getSecComment(){
+    fetch(ip + '/article/sec_comment?id='+ this.state.comment._id)
+      .then(res => res.json())
+      .then(data => {
+        if(data.ret === 0){
+          this.setState({
+            secCommentList: data.data.list
+          })
+          console.log(this.state.secCommentList)
+        }else{
+
+        }
+      })
   }
 
   _renderItem = ({item}) => (
@@ -116,18 +268,27 @@ class SecondCommentList extends Component {
       secComment = {item}
       navigation = {this.props.navigation}
       showModal = {this.showModal.bind(this)}
-      articleId = 'asdfasfasdfdasdfasddfasdf'
+      articleId = {this.props.navigation.state.params.articleId}
+      discussionId = {this.props.navigation.state.params.discussionId}
     />
   )
 
-  showModal(username, userId, articleId, SecCommentId) {
+  showModal(username, userId, articleId, SecCommentId, discussionId) {
+    var url = ''
+    if(articleId){
+      url = ip + '/article/write_comment'
+    }else{
+
+    }
     var sendInfo = {
       username: username,
       userId: userId,
       type: 2,
-      toArticleId: articleId,
+      articleId: articleId,
+      toDiscussionId: discussionId,
       toCommentId: this.state.comment._id,
-      toSecCommentId: SecCommentId
+      toSecCommentId: SecCommentId,
+      url: url
     }
     this.setState({
       modalVisible: true,
@@ -137,14 +298,64 @@ class SecondCommentList extends Component {
   }
 
   _like(){
+    var url;
+    if(this.props.navigation.state.params.articleId){
+      url = ip + (this.state.like? '/article/comment_dislike' : '/article/comment_like') + '?id=' + this.state.comment._id
+    }else{
 
+    }
+    var inc = this.state.like?-1:1
+    fetch(url)
+      .then( res => res.json())
+      .then( data => {
+        console.log(data)
+        if(data.ret===0){
+          Alert.alert(
+            '提示',
+            data.message,
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+          )
+          this.setState({
+            like: !this.state.like,
+            likeCount: this.state.likeCount + inc
+          })
+        }else{
+          Alert.alert(
+            '警告',
+            data.message,
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: '马上登陆', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+          )
+        }
+      })
   }
 
   closeModal(){
     this.setState({
       modalVisible: false
     })
+    this._getSecComment()
   }
+
+  _formateTime() {
+    var date = new Date(parseInt(this.state.comment.buildTime))
+    return this._formateTwo((date.getMonth()+1)) + '-' +
+      this._formateTwo(date.getDate()) + ' '+
+      this._formateTwo(date.getHours()) + ':'+
+      this._formateTwo(date.getMinutes())
+  }
+
+  _formateTwo(num){
+    return num<10?'0'+num:num
+  }
+
+  _keyExtractor = (item, index) => item._id;
 
   render() {
     return (
@@ -154,49 +365,47 @@ class SecondCommentList extends Component {
         <View style = {styles.commentItem}>
           <View style = {styles.left}>
             <Image
-              source= {require('../../resource/image/mying.png')}
+              source= {
+                this.state.comment.author.avatarLarge?
+                  {uri: this.state.comment.author.avatarLarge}
+                  :
+                  require('../../resource/image/mying.png')
+              }
               style = {styles.userProtrait}
             />
           </View>
           <View style = {styles.right}>
             <View style = {styles.top}>
-              <Text style = {styles.username}>清心寡欲的圈圈</Text>
-              <Text style = {styles.commentContent}>hhhhhh你好逗啊
+              <Text style = {styles.username}>{this.state.comment.author.username}</Text>
+              <Text style = {styles.commentContent}>
+                {this.state.comment.content}
               </Text>
             </View>
             <View style = {styles. bottom}>
               <View>
-                <Text style = {styles.time}>2-23 13:31</Text>
+                <Text style = {styles.time}>{this._formateTime()}</Text>
               </View>
-              <View style = {styles.operation}>
-                <Text style = {styles.iconWrapper}>
-                  <Icon
-                    name="comments"
-                    size={15}
-                    style={ styles.icon }
-                    onPress = {this.showModal.bind(this, 'alin', '1524582')}
-                  />
-                </Text>
-                <Text style = {styles.iconWrapper}>
-                  <Icon
-                    name="heart"
-                    size={15}
-                    color={this.state.like?'{color:"red"}':'{color: "#cccccc"}'}
-                    onPress={this._like.bind(this)}
-                    style={ styles.icon }
-                  /> 0
-                </Text>
 
-              </View>
             </View>
           </View>
         </View>
 
-        <FlatList
-          data = { [{a:1}, {b:1}, {c: 1},{a:1}, {b:1}, {c: 1},{a:1}, {b:1}, {c: 1}]}
-          renderItem = {this._renderItem}
-          style = {{flex: 1, marginBottom: 5}}
-        />
+        {
+          this.state.secCommentList.length>0?
+            <FlatList
+              data = {this.state.secCommentList}
+              renderItem = {this._renderItem}
+              style = {{flex: 1, marginBottom: 5}}
+              keyExtractor={this._keyExtractor}
+            />
+            :
+            <Text
+              style = {{color: 'white',flex: 1, textAlign: 'center', marginTop: 15}}
+            >
+              ------ 暂无回复 ------
+            </Text>
+
+        }
 
         <View style={styles.commentView}>
           <TextInput

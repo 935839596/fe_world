@@ -18,11 +18,17 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import CommentModal from './commentModal'
 
+const ip = require('../common/config').ip
+
 class CommentItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
       comment: this.props.comment,
+      secCommentList: [],
+
+      like: this.props.comment.like,
+      likeCount: this.props.comment.meta.likeCount,
 
       //modal
       modalVisible: false,
@@ -30,77 +36,158 @@ class CommentItem extends Component {
       placeholder: '评论@深度覅及阿斯蒂芬',
       //发送按钮
       sending: false,
-      sendable: false
+      sendable: false,
+
     }
+
+    this._getSecComment();
+
+  }
+
+  _getSecComment(){
+    fetch(ip + '/article/sec_comment?id='+ this.state.comment._id)
+      .then(res => res.json())
+      .then(data => {
+        if(data.ret === 0){
+          this.setState({
+            secCommentList: data.data.list
+          })
+        }else{
+
+        }
+      })
   }
 
   _showModal(username, userId) {
-    this.props.showModal(username, userId, this.props.articleId, this.state.comment._id)
+    this.props.showModal(username, userId, this.props.articleId, this.state.comment._id,this.props.discussionId)
   }
 
+  //刷新回复的列表
+  componentWillReceiveProps(nextProps) {
+    this._getSecComment();
+  }
 
   _like(){
+    var url;
+    if(this.props.articleId){
+      url = ip + (this.state.like? '/article/comment_dislike' : '/article/comment_like') + '?id=' + this.state.comment._id
+    }else{
 
+    }
+    var inc = this.state.like?-1:1
+    fetch(url)
+      .then( res => res.json())
+      .then( data => {
+        console.log(data)
+        if(data.ret===0){
+          Alert.alert(
+            '提示',
+            data.message,
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+          )
+          this.setState({
+            like: !this.state.like,
+            likeCount: this.state.likeCount + inc
+          })
+          var newComment = Object.assign(this.state.comment, {
+            like: this.state.like,
+            meta:{
+              likeCount: this.state.likeCount
+            }
+          })
+          this.setState({
+            comment: newComment
+          })
+        }else{
+          Alert.alert(
+            '警告',
+            data.message,
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: '马上登陆', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+          )
+        }
+      })
   }
 
-  _goToSecondComment() {
-    console.log(this.props)
-    this.props.navigation.navigate('SecondCommentList')
+  _formateTime() {
+    var date = new Date(parseInt(this.state.comment.buildTime))
+    return this._formateTwo((date.getMonth()+1)) + '-' +
+      this._formateTwo(date.getDate()) + ' '+
+      this._formateTwo(date.getHours()) + ':'+
+      this._formateTwo(date.getMinutes())
+  }
+
+  _formateTwo(num){
+    return num<10?'0'+num:num
   }
 
   render() {
     return(
-      <View>
-        <TouchableHighlight
-          onPress = {() => {this.props.navigation.navigate('SecondCommentList')}}
-          activeOpacity={0.7}
-          underlayColor='grey'
-        >
-          <View style = {styles.commentItem}>
-            <View style = {styles.left}>
-              <Image
-                source= {require('../../resource/image/mying.png')}
-                style = {styles.userProtrait}
-              />
-            </View>
-            <View style = {styles.right}>
-              <View style = {styles.top}>
-                <Text style = {styles.username}>清心寡欲的圈圈</Text>
-                <Text style = {styles.commentContent}>
-                  hhhhhh你好逗啊
-                </Text>
-                <Text style = {styles.more}>
+      <View style = {styles.commentItem}>
+        <View style = {styles.left}>
+          <Image
+            source= {
+              this.state.comment.author.avatarLarge?
+                {uri: this.state.comment.author.avatarLarge}
+                :
+                require('../../resource/image/mying.png')
+            }
+            style = {styles.userProtrait}
+          />
+        </View>
+        <View style = {styles.right}>
+          <View style = {styles.top}>
+            <Text style = {styles.username}>{this.state.comment.author.username}</Text>
+            <Text style = {styles.commentContent}>
+              {this.state.comment.content}
+            </Text>
+            {
+              this.state.secCommentList.length>0?
+                <Text style = {[styles.more]}
+                      onPress={()=>this.props.navigation.navigate('SecondCommentList', {articleId: this.props.articleId, discussionId: this.props.discussionId ,comment: this.state.comment})}
+                >
                   查看更多回复>>
                 </Text>
-              </View>
-              <View style = {styles. bottom}>
-                <View>
-                  <Text style = {styles.time}>2-23 13:31</Text>
-                </View>
-                <View style = {styles.operation}>
-                  <Text style = {styles.iconWrapper}>
-                    <Icon
-                      name="comments"
-                      size={15}
-                      style={ styles.icon }
-                      onPress = {this._showModal.bind(this,'alin', '1524582')}
-                    />
-                  </Text>
-                  <Text style = {styles.iconWrapper}>
-                    <Icon
-                      name="heart"
-                      size={15}
-                      color={this.state.like?'{color:"red"}':'{color: "#cccccc"}'}
-                      onPress={this._like.bind(this)}
-                      style={ styles.icon }
-                    /> 0
-                  </Text>
+                :
+                <Text></Text>
+            }
 
-                </View>
-              </View>
+
+
+          </View>
+          <View style = {styles. bottom}>
+            <View>
+              <Text style = {styles.time}>{this._formateTime()}</Text>
+            </View>
+            <View style = {styles.operation}>
+              <Text style = {styles.iconWrapper}>
+                <Icon
+                  name="comments-o"
+                  color="orange"
+                  size={15}
+                  style={ styles.icon }
+                  onPress = {this._showModal.bind(this,this.state.comment.author.username, this.state.comment.author._id)}
+                />
+              </Text>
+              <Text style = {styles.iconWrapper}>
+                <Icon
+                  size={15}
+                  name={this.state.like?'thumbs-up':'thumbs-o-up'}
+                  color='orange'
+                  onPress={this._like.bind(this)}
+                  style={ styles.icon }
+                /> {this.state.likeCount}
+              </Text>
+
             </View>
           </View>
-        </TouchableHighlight>
+        </View>
       </View>
     )
   }
@@ -113,18 +200,21 @@ class CommentList extends Component {
       commentList: this.props.commentList,
       modalVisible: false,
       placeholder: '',
-      sendInfo: {}
+      sendInfo: {},
+      allCommentCount: 0,
     }
+    this._getAllCommentCount()
   }
 
-  showModal(username, userId, articleId, commentId) {
-    console.log('传过来的username', username)
+  showModal(username, userId, articleId, commentId, discussionId) {
     var sendInfo = {
       username: username,
       userId: userId,
       type: 1,
-      toArticleId: articleId,
-      toCommentId: commentId
+      articleId: articleId,
+      toDiscussionId: discussionId,
+      toCommentId: commentId,
+      url: ip + '/article/write_comment',
     }
     this.setState({
       modalVisible: true,
@@ -142,6 +232,34 @@ class CommentList extends Component {
 
   closeModal() {
     this._setModalVisible(false)
+    this.setState({
+      commentList: this.props.commentList,
+    })
+  }
+
+  _getAllCommentCount(){
+    var articleId = this.props.articleId;
+    if(articleId){
+      var url = ip + '/article/all_comment_count?id=' + articleId
+    }else{
+
+    }
+    fetch(url)
+      .then(res => res.json())
+      .then( data => {
+        if(data.ret == 0){
+          this.setState({
+            allCommentCount: parseInt(data.data)
+          })
+        }
+      })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      commentList: nextProps.commentList
+    })
+    this._getAllCommentCount()
   }
 
   _renderItem = ({item}) => (
@@ -149,22 +267,33 @@ class CommentList extends Component {
       comment = {item}
       navigation = {this.props.navigation}
       showModal = {this.showModal.bind(this)}
-      articleId = 'asdfasfasdfdasdfasddfasdf'
+      articleId = {this.props.articleId}
     />
   )
 
+  _keyExtractor = (item, index) => item._id;
 
   render() {
     return (
       <View style={{flex: 1, marginBottom: 5}}>
         <View style={styles.commentNumber}>
-          <Text style={{color: 'black'}}>评论 100</Text>
+          <Text style={{color: 'black'}}>评论 {this.state.allCommentCount}</Text>
         </View>
-        <FlatList
-          data = {[{a:1}, {b: 1}, {c: 1},{a:1},{b: 1},{b: 1}]}
-          renderItem = {this._renderItem}
-          style = {{backgroundColor: '#ffffff'}}
-        />
+        {
+          this.state.commentList.length !== 0 ?
+            <FlatList
+              data = {this.state.commentList}
+              renderItem = {this._renderItem}
+              style = {{backgroundColor: '#ffffff'}}
+              keyExtractor={this._keyExtractor}
+            />
+          :
+            <Text
+              style = {{backgroundColor: '#ffffff',flex: 1, textAlign: 'center', marginTop: 15}}
+            >
+             ------ 暂无评论 ------
+            </Text>
+        }
         <CommentModal
           modalVisible= {this.state.modalVisible}
           placeholder = {this.state.placeholder}
@@ -254,8 +383,11 @@ const styles = StyleSheet.create({
     height: 25,
     justifyContent: 'flex-end',
     color: 'black'
-  }
+  },
 
+  hide: {
+    height: 0
+  }
 
 })
 

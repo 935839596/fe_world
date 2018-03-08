@@ -34,7 +34,6 @@ class Login extends Component{
     this.setState({
       logining: true
     })
-
     var url = ip +'/login'
     fetch(url,{
       method: 'POST',
@@ -52,7 +51,7 @@ class Login extends Component{
         console.log(data)
         if(data.ret === 0){
           this.props.navigation.popToTop();
-          console.log(this.props.navigation)
+          this.props.screenProps.goToHome();
         }else{
           Alert.alert(
             '提示',
