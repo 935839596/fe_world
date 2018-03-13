@@ -17,7 +17,10 @@ import ArticleDetail from '../common/articleDetail'
 import ArticleComment from '../common/articleComment'
 import UserProfile from '../common/userProfile'
 import UserList from '../common/userList'
+import Login from '../common/login'
 import SecondCommentList from '../base/secondCommentList'
+import LoveArticle from '../common/loveArticle'
+import OriginalArticle from '../common/originalArticle'
 
 
 const ip = require('../common/config').ip
@@ -26,7 +29,6 @@ console.log('gg', ip)
  class Home extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props)
     this.state = {
       choose: 0,
       url: ip + '/article/all_articles',
@@ -34,8 +36,20 @@ console.log('gg', ip)
       articleList: [],
       more: true
     }
+    this.refresh()
+  }
+
+   onFocus(){
+    console.log('focus in home')
+     this.refresh()
+   }
+
+   componentDidMount() {
+     this.props['screenProps'].navigationEvents.addListener(`onFocus:Home`, this.onFocus.bind(this))
+   }
+
+  refresh(){
     var website = this.state.url
-    console.log(website)
     fetch(website, {
       method: 'GET',
       headers: {
@@ -43,16 +57,31 @@ console.log('gg', ip)
       }
     }).then( res => res.json())
       .then( data => {
-        console.log('test', data.data)
-        this.setState({
-          articleList: data.data.list,
-          last_date: data.data.last_date,
-          more: data.data.more,
-          loading: false
-        })
-      })
+        if(data.ret === 0){
+          this.setState({
+            articleList: data.data.list,
+            last_date: data.data.last_date,
+            more: data.data.more,
+            loading: false
+          })
+        }else{
+          this.setState({
+            loading: false
+          })
+          Alert.alert(
+            '警告',
+            '加载失败，请重试',
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: '刷新', onPress: ()=>{
+                this.refresh();
+              }}
+            ],
+            { cancelable: false }
+          )
+        }
 
-    console.log('constructor')
+      })
   }
 
   _loadData(type){
@@ -98,19 +127,10 @@ console.log('gg', ip)
       })
   }
 
-  componentWillMount(){
-    // this.props.screenProps.tabBar.show()
-    console.log('will mount')
-  }
-   componentWillUnmount(){
-    console.log(123)
-   }
 
-   componentDidMount() {
-     console.log('did mount')
-   }
 
-  render() {
+
+   render() {
     var _this = this;
 
     //点击修改样式
@@ -140,11 +160,12 @@ console.log('gg', ip)
               全部
             </Text>
           </View>
-          <View>
+          <View style={{flex: 1}}>
             <ArticleList
               articleList={this.state.articleList}
               loadMoreData={this._loadMoreData.bind(this)}
               navigation = {this.props.navigation}
+              refresh = {this.refresh.bind(this)}
             />
           </View>
         </View>
@@ -156,6 +177,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#cccccc',
     flexDirection: 'row',
+    height: 50,
+    lineHeight: 50,
+    backgroundColor:"#eee"
     // marginTop: 10,
   },
   itemBar: {
@@ -165,7 +189,8 @@ const styles = StyleSheet.create({
     width: 70,
     paddingBottom: 2,
     marginBottom: 0,
-    fontSize: 17,
+    fontSize: 18,
+    textAlignVertical: 'center'
   },
   choose: {
     color: 'blue',
@@ -176,8 +201,8 @@ const styles = StyleSheet.create({
 
 var headerStyle = {
   fontSize: 18,
-  height: 30,
-  lineHeight: 30,
+  height: 50,
+  lineHeight: 50,
   fontWeight: 0,
   textAlign: 'center',
   justifyItems: 'center',
@@ -186,9 +211,9 @@ var headerStyle = {
 },
   headerTitleStyle= {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 18,
     marginHorizontal: 0
-  }
+  };
 export default StackNavigator(
   {
     Home: {
@@ -239,7 +264,32 @@ export default StackNavigator(
         headerStyle: headerStyle,
         headerTitleStyle: headerTitleStyle
       }
-    }
+    },
+    Login: {
+      screen: Login,
+      navigationOptions: {
+        headerTitle: '登录',
+        headerStyle: headerStyle,
+        headerTitleStyle: headerTitleStyle
+
+      }
+    },
+    LoveArticle: {
+      screen: LoveArticle,
+      navigationOptions: {
+        // headerTitle: '个人资料',
+        headerStyle: headerStyle,
+        headerTitleStyle: headerTitleStyle
+      }
+    },
+    OriginalArticle: {
+      screen: OriginalArticle,
+      navigationOptions: {
+        headerTitle: '个人资料',
+        headerStyle: headerStyle,
+        headerTitleStyle: headerTitleStyle
+      }
+    },
   },
   {
     initialRouteName: 'Home'

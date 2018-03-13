@@ -9,7 +9,8 @@ import {
   View,
   Image,
   FlatList,
-  Alert
+  Alert,
+  TouchableOpacity
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -23,9 +24,10 @@ class ArticleItem extends  React.PureComponent {
       article: this.props.article,
       like: this.props.article.like,
       allCommentCount: 0,
-      likeCount: this.props.article.meta.likeCount
-      /*likeCount: this.props.article.meta.likeCount,
-      commentCount: this.props.article.comment.length*/
+      likeCount: this.props.article.meta.likeCount,
+
+      refresh: this.props.refresh
+
     }
     if(!this.props.article.author){
       this.setState({
@@ -39,6 +41,15 @@ class ArticleItem extends  React.PureComponent {
     }
 
     this._getAllCommentCount()
+  }
+
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      article: nextProps.article,
+      like: nextProps.article.like,
+      likeCount: nextProps.article.meta.likeCount,
+    })
   }
 
   _getAllCommentCount(){
@@ -56,9 +67,6 @@ class ArticleItem extends  React.PureComponent {
       })
   }
 
-  _onPress = () => {
-
-  }
 
   _like() {
     var url = ip + (this.state.like? '/article/dislike' : '/article/like') + '?id=' + this.state.article._id,
@@ -68,14 +76,6 @@ class ArticleItem extends  React.PureComponent {
       .then( data => {
         console.log(data)
         if(data.ret===0){
-          Alert.alert(
-            '提示',
-            data.message,
-            [
-              {text: 'OK', onPress: () => console.log('OK Pressed')},
-            ],
-            { cancelable: false }
-          )
           this.setState({
             like: !this.state.like,
             likeCount: this.state.likeCount + inc
@@ -86,18 +86,17 @@ class ArticleItem extends  React.PureComponent {
             data.message,
             [
               {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-              {text: '马上登陆', onPress: () => console.log('OK Pressed')},
+              {text: '马上登录', onPress: ()=>{this.props.navigation.navigate('Login')}}
             ],
             { cancelable: false }
           )
         }
-
     })
   }
 
   _comment(_id){
     console.log('lin',_id)
-    this.props.navigation.navigate('ArticleComment', {'articleId': _id})
+    this.props.navigation.navigate('ArticleComment', {'articleId': _id, articleListRefresh: this.props.refresh})
   }
 
   _readArticle(_id) {
@@ -106,7 +105,7 @@ class ArticleItem extends  React.PureComponent {
   }
 
   _showUser(){
-    this.props.navigation.navigate('UserProfile')
+    this.props.navigation.navigate('UserProfile',{userId: this.state.article.author._id})
   }
 
   render() {
@@ -116,11 +115,17 @@ class ArticleItem extends  React.PureComponent {
         <View style = {styles.header}>
           <View style={[styles.authorInfo, styles.header]}>
             <View style = {[{marginRight: 5}]}>
+              <TouchableOpacity
+                onPress= {() => {
+                  this.props.navigation.navigate('UserProfile',{userId: this.state.article.author._id})
+                }}
+              >
               <Image style={styles.portrait}
                       //source={require('../../resource/image/mying.png')}
                      onPress={this._showUser.bind(this)}
                     source={{uri: this.state.article.author.avatarLarge}}
               />
+              </TouchableOpacity>
             </View>
             <Text style = {[styles.height, {color: '#000000'}]}
                   onPress={this._showUser.bind(this)}
@@ -143,7 +148,7 @@ class ArticleItem extends  React.PureComponent {
             <Icon
               name={this.state.like?'thumbs-up':'thumbs-o-up'}
               size={15}
-              color='orange'
+              color='#388bec'
               onPress={this._like.bind(this)}
             />
             <Text style= {styles.like}>
@@ -153,7 +158,7 @@ class ArticleItem extends  React.PureComponent {
           <View style = {styles.handleBox}>
             <Icon
               name="comments-o"
-              color="orange"
+              color="#388bec"
               size={15}
               onPress = {this._comment.bind(this, this.state.article._id)}
             />
@@ -174,10 +179,15 @@ class ArticleList extends  React.PureComponent {
     }
   };
 
+  _refresh(){
+    this.props.refresh()
+  }
+
   _renderItem = ({item}) => (
     <ArticleItem
       article = {item}
       navigation = {this.props.navigation}
+      refresh = {this._refresh.bind(this)}
     />
   );
 
@@ -194,17 +204,32 @@ class ArticleList extends  React.PureComponent {
     this.setState({
       articleList: nextProps.articleList
     })
-     // console.log(this.state.articleList)
   }
+
 
   render(){
     return (
-      <FlatList
-        data={this.state.articleList}
-        renderItem = {this._renderItem}
-        onEndReachedThreshold={0.1}
-        onEndReached = {this._loadMoreData.bind(this)}
-      />
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
+        {
+          this.state.articleList.length>0?
+            <FlatList
+              data={this.state.articleList}
+              renderItem = {this._renderItem}
+              onEndReachedThreshold={0.1}
+              onEndReached = {this._loadMoreData.bind(this)}
+              onRefresh={this._refresh.bind(this)}
+              refreshing={false}
+            />
+            :
+            <Text style={{
+              height: 30,
+              lineHeight: 30,
+              alignSelf:'center'
+            }}>暂无文章</Text>
+        }
+      </View>
+
+
     )
 
   }

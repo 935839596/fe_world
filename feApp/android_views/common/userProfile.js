@@ -10,134 +10,231 @@ import {
   Text,
   View,
   TouchableHighlight,
-  Image
+  Image,
+  Alert,
+  TouchableOpacity
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+const ip = require('../common/config').ip
+
 
 class UserProfile extends Component {
   constructor(props) {
     super(props)
     // this.props.screenProps.tabBar.hide()
-    this.state = {}
+    this.state = {
+      user: {},
+      userId: this.props.navigation.state.params.userId,
+      following: false,
+      flag: false,
+      self: false,
+      fansCount: 0
+    }
+    this._refresh()
   }
 
-  _showFolloees() {
-    console.log(123555)
+  componentDidMount() {
+    this.props['screenProps'].navigationEvents.addListener(`onFocus:UserProfile`, this._refresh.bind(this))
+  }
+
+  _refresh(){
+    console.log(this.state)
+   fetch(ip + '/common/get_user?id=' + this.state.userId)
+     .then(res=>res.json())
+     .then(data => {
+       this.setState({
+         user: data.data.user,
+         following: data.data.following,
+         self: data.data.self,
+         flag: true,
+         fansCount: data.data.user.followers.length
+       })
+     })
+  }
+
+  _showFollowees() {
     //过去需要参数，是关注的人还是粉丝，还有好看的用户id
-    this.props.navigation.navigate('UserList')
+    this.props.navigation.navigate('UserList', {url: ip + '/common/followees', userId: this.state.user._id, title: '他的关注'})
+  }
+
+  _showFollowers() {
+    console.log('fans')
+    this.props.navigation.navigate('UserList', {url: ip + '/common/followers', userId: this.state.user._id, title: '他的粉丝'})
+  }
+
+  _getMeta(){
+    var company = this.state.user.company,
+      intro = this.state.user.intro;
+    var result ='' ;
+    if(intro){
+      result += intro;
+      result = company?result+' @ '+company : result
+    }else{
+      result = company?company: ''
+    }
+    return result
+  }
+
+  _follow(){
+    console.log('follow')
+
+    var url = ip + (this.state.following? '/common/move_follow_user' : '/common/add_follow_user') + '?id=' + this.state.user._id,
+      inc = this.state.following? -1 : 1
+
+    fetch(url)
+      .then( res => res.json())
+      .then( data => {
+        console.log(123)
+        if(data.ret===0){
+          this.setState({
+            following: !this.state.following,
+            fansCount: this.state.fansCount + inc
+          })
+        }else{
+          Alert.alert(
+            '警告',
+            data.message,
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: '马上登录', onPress: ()=>{this.props.navigation.navigate('Login')}}
+            ],
+            { cancelable: false }
+          )
+        }
+      })
+
   }
 
   render() {
     return (
-      <View style={style.wrapper}>
-        <View style= {style.infoWrapper}>
-          <View style={style.userInfo}>
-            <View style= {style.right}>
-            <Image
-              source= {require('../../resource/image/mying.png')}
-              style = {style.userProtrait}
-            />
-            </View>
-            <View style = {style.left}>
-              <View style= {style.text}>
-                <Text style= {style.textItem1}>往下邀约熊</Text>
-                <Text style= {style.textItem2}>写代码的 @ ad sad </Text>
+      <View style={{flex: 1}}>
+        {
+          this.state.flag == true?
+            <View style={style.wrapper}>
+              <View style= {style.infoWrapper}>
+                <View style={style.userInfo}>
+                  <View style= {style.right}>
+                    <Image
+                      source= {
+                        this.state.user.avatarLarge?
+                          {uri: this.state.user.avatarLarge}:
+                          require('../../resource/image/mying.png')
+                      }
+                      style = {style.userProtrait}
+                    />
+                  </View>
+                  <View style = {style.left}>
+                    <View style= {style.text}>
+                      <Text style= {style.textItem1}>{this.state.user.username}</Text>
+                      <Text style= {style.textItem2}>{this._getMeta()}</Text>
+                    </View>
+                  </View>
+                </View>
+                <View style= {style.operationWrapper}>
+                  <Text style= {style.operation}
+                        onPress={this._showFollowees.bind(this)}
+                  >
+                    关注:{this.state.user.followees.length}
+                  </Text>
+                  <Text style= {style.operation}
+                        onPress = {this._showFollowers.bind(this)}
+                  >
+                    粉丝:{this.state.user.followers.length}
+                  </Text>
+                  {
+                    !this.state.self ?
+                      this.state.following ?
+                        <Text
+                          style = {style.following}
+                          onPress={this._follow.bind(this)}
+                        >
+                          <Icon
+                            name="check"
+                            color="white"
+                            size={12}
+                          />
+                          已关注
+                        </Text>
+                        :
+                        <Text
+                          style = {style.notFollow}
+                          onPress={this._follow.bind(this)}
+                        >
+                          <Icon
+                            name="plus"
+                            color="green"
+                            size={12}
+                          />
+                          关注
+                        </Text>
+                      :
+                      <Text></Text>
+                  }
+
+                </View>
               </View>
+
+              <View style = {style.itemWrapper}>
+                <View style= {style.item}>
+                  <TouchableOpacity
+                    style = {style.touch}
+                    onPress={()=>{
+                      this.props.navigation.navigate('OriginalArticle',{userId: this.state.user._id, title: '他原创的文章'})
+                    }}
+                  >
+                    <Text>原创文章</Text>
+                  </TouchableOpacity>
+                  <Text style = {style.number}>
+                    {this.state.user.article.length}
+                  </Text>
+                  <Icon
+                    name="angle-right"
+                    size={20}
+                    style={ style.arrow }
+                  />
+                </View>
+                <View style= {style.item}>
+                  <TouchableOpacity
+                    style = {style.touch}
+                    onPress={()=>{
+                      this.props.navigation.navigate('LoveArticle',{userId: this.state.user._id, title: '他赞过的文章'})
+                    }}
+                  >
+                    <Text>喜欢的文章</Text>
+                  </TouchableOpacity>
+                  <Text style = {style.number}>
+                    {this.state.user.loveArticle.length}
+                  </Text>
+                  <Icon
+                    name="angle-right"
+                    size={20}
+                    style={ style.arrow }
+                  />
+                </View>
+              </View>
+
+              <View style= {style.itemWrapper}>
+                <View style= {style.item}>
+                  <TouchableHighlight style = {style.touch}>
+                    <Text>关注的标签</Text>
+                  </TouchableHighlight>
+                  <Text style = {style.number}>
+                    {this.state.user.tag.length + this.state.user.interest.length}
+                  </Text>
+                  <Icon
+                    name="angle-right"
+                    size={20}
+                    style={ style.arrow }
+                  />
+                </View>
+              </View>
+
             </View>
-          </View>
-          <View style= {style.operationWrapper}>
-              <Text style= {style.operation}>
-                关注:152
-              </Text>
-              <Text style= {style.operation}
-                    onPress = {this._showFolloees.bind(this)}
-              >
-                粉丝:152
-              </Text>
-                {this.state.following ?
-                  <Text style = {style.following}>
-                    <Icon
-                      name="check"
-                      color="white"
-                      size={12}
-                    />
-                    已关注
-                  </Text>
-                  :
-                  <Text style = {style.notFollow}>
-                    <Icon
-                      name="plus"
-                      color="green"
-                      size={12}
-                    />
-                    关注
-                  </Text>
-                }
-          </View>
-        </View>
-
-        <View style= {style.itemWrapper}>
-          <View style= {style.item}>
-            <TouchableHighlight style = {style.touch}>
-              <Text>动态</Text>
-            </TouchableHighlight>
-            <Text style = {style.number}>
-              15
-            </Text>
-            <Icon
-              name="angle-right"
-              size={20}
-              style={ style.arrow }
-            />
-          </View>
-        </View>
-
-        <View style = {style.itemWrapper}>
-          <View style= {style.item}>
-            <TouchableHighlight style = {style.touch}>
-              <Text>原创文章</Text>
-            </TouchableHighlight>
-            <Text style = {style.number}>
-              155
-            </Text>
-            <Icon
-              name="angle-right"
-              size={20}
-              style={ style.arrow }
-            />
-          </View>
-          <View style= {style.item}>
-            <TouchableHighlight style = {style.touch}>
-              <Text>喜欢的文章</Text>
-            </TouchableHighlight>
-            <Text style = {style.number}>
-              155
-            </Text>
-            <Icon
-              name="angle-right"
-              size={20}
-              style={ style.arrow }
-            />
-          </View>
-        </View>
-
-        <View style= {style.itemWrapper}>
-          <View style= {style.item}>
-            <TouchableHighlight style = {style.touch}>
-              <Text>关注的标签</Text>
-            </TouchableHighlight>
-            <Text style = {style.number}>
-              15
-            </Text>
-            <Icon
-              name="angle-right"
-              size={20}
-              style={ style.arrow }
-            />
-          </View>
-        </View>
-
+            :
+            <Text style={{alignSelf: 'center'}}>loading...</Text>
+        }
       </View>
     )
   }

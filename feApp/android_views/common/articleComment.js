@@ -27,8 +27,6 @@ class ArticleComment extends Component {
       meta: '',
       commentList: [],
 
-      allCommentCount: 0,
-
 
       articleModalVisible: false,
       placeholder: '发表评论',
@@ -54,6 +52,10 @@ class ArticleComment extends Component {
 
    this._getComment();
 
+  }
+
+  componentDidMount() {
+    this.props['screenProps'].navigationEvents.addListener(`onFocus:ArticleComment`, this._getComment.bind(this))
   }
 
   _formateTime(timeStamp) {
@@ -130,6 +132,7 @@ class ArticleComment extends Component {
           navigation = {this.props.navigation}
           commentList = {this.state.commentList}
           articleId = {this.state.articleId}
+          // refresh = {this._getComment.bind(this)}
         />
         <View style={styles.commentView}>
           <TextInput

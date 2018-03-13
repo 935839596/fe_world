@@ -17,11 +17,9 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/me', function(req, res, next){
-  getUser(req,res).then(user=>{
+  getUser(req.session.loginUser).then(user=>{
     return res.send({
       ret: 0,
-      username: req.session.loginUser,
-      userId: req.session.loginUserId,
       user: user
     })
   })
@@ -64,7 +62,7 @@ router.get('/all_message', function(req, res, next) {
   var last_date = req.param('last_date') || '',
       size = req.param('size') || defaultSize;
 
-  getUser(req, res).then( user => {
+  getUser(req.session.loginUser).then( user => {
     if(!user){
 
     }
@@ -136,7 +134,13 @@ router.get('/like_articles', function(req, res, next){
  - response
  */
 router.get('/interest', function(req, res, next){
-  getUser(req, res).then( user => {
+  getUser(req.session.loginUser).then( user => {
+    if(!user){
+      return res.send({
+        ret: -1,
+        message: '请先登录'
+      })
+    }
     res.send({
       ret: 0,
       message: 'success',
@@ -152,17 +156,22 @@ router.get('/interest', function(req, res, next){
  - params
    - intro
    - company
+   - type 1-intro 2-company
  */
-router.get('/modify_description', function(req, res, next){
+router.post('/modify_description', function(req, res, next){
   var intro = req.body.intro,
-      company = req.body.company;
+      company = req.body.company,
+    type = req.body.type;
 
+  var condition;
+  if(type == 1){
+    condition = {'intro': intro}
+  }else if(type == 2){
+    condition = {'company': company}
+  }
   User.findOneAndUpdate(
       {'username': req.session.loginUser},
-      {
-        'intro': intro,
-        'company': company
-      }
+      condition
   ).exec(function(err, user){
     if(!user){
       return res.send({
@@ -185,15 +194,15 @@ router.get('/modify_description', function(req, res, next){
 })
 
 /*
- 关注标签
- - url: /common/add_interest
+ 添加关注的标签
+ - url: /my/add_interest
  - method: post
  - params:
  - tag: 'vue'
  */
 router.post('/add_interest', function(req, res, next){
   var tag = req.body.tag;
-  getUser(req, res).then( user => {
+  getUser(req.session.loginUser).then( user => {
     var newTag = user.interest.concat(tag);
     newTag = [...new Set(newTag)]
     user.set('interest', newTag)
@@ -212,6 +221,45 @@ router.post('/add_interest', function(req, res, next){
     })
   })
 })
+
+/*
+ 删除标签
+ - url: /my/remove_interest
+ - method: post
+ - params:
+ - tag: 'vue'
+ */
+router.post('/remove_interest', function(req, res, next){
+  var tag = req.body.tag;
+  getUser(req.session.loginUser).then( user => {
+    if(!user){
+      return res.send({
+        ret: -1,
+        message: '请先登录'
+      })
+    }
+
+    var index = user.interest.indexOf('tag')
+    user.interest.splice(index, 1);
+    var newTag = user.interest;
+    newTag = [...new Set(newTag)]
+    user.set('interest', newTag)
+
+    user.save(function (err, newUser) {
+      if(err){
+        return res.send({
+          ret: 1,
+          message: '关注失败'
+        })
+      }
+      return res.send({
+        ret: 0,
+        message: 'ok'
+      })
+    })
+  })
+})
+
 
 //辅助函数
 function _helpSendList(res, err ,list, size){
@@ -237,15 +285,9 @@ function _helpSendList(res, err ,list, size){
   }
 }
 
-function getUser(req, res){
+function getUser(name){
   return new Promise(function(resolve,reject){
-    User.findOne({'username': req.session.loginUser}, function(err, user){
-      if(!user){
-        return res.send({
-          ret: -1,
-          message: '请先登录'
-        })
-      }
+    User.findOne({'username': name}, function(err, user){
       resolve(user);
     })
   })

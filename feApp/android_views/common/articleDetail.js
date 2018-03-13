@@ -52,7 +52,7 @@ class ArticleDetail extends Component {
   handleMessage(a) {
     var user = JSON.parse(a.nativeEvent.data)
     console.log(this.props.navigation)
-    this.props.navigation.navigate('UserProfile')
+    this.props.navigation.navigate('UserProfile',{user: this.state.article.author})
   }
 
   _goToComment(){

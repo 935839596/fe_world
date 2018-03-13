@@ -10,7 +10,8 @@ import {
   View,
   Image,
   FlatList,
-  Alert
+  Alert,
+  TouchableOpacity
 }from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -21,8 +22,58 @@ class UserItem extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      user: this.props.user
+      user: this.props.user,
+      following: this.props.user.following
     }
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      user: nextProps.user,
+      following: nextProps.user.following
+    })
+    console.log('in item',this.state.user)
+  }
+
+  _follow(){
+    console.log('follow')
+
+    var url = ip + (this.state.following? '/common/move_follow_user' : '/common/add_follow_user') + '?id=' + this.state.user._id;
+
+    fetch(url)
+      .then( res => res.json())
+      .then( data => {
+        console.log(data)
+        if(data.ret===0){
+          this.setState({
+            following: !this.state.following,
+          })
+        }else{
+          Alert.alert(
+            '警告',
+            data.message,
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: '马上登录', onPress: ()=>{this.props.navigation.navigate('Login')}}
+            ],
+            { cancelable: false }
+          )
+        }
+      })
+
+  }
+
+  _getMeta(){
+    var company = this.state.user.company,
+      intro = this.state.user.intro;
+    var result = '' ;
+    if(intro){
+      result += intro;
+      result = company?result+' @ '+company : result
+    }else{
+      result = company?company: ''
+    }
+    return result?result+' - ' : '简介：无'
   }
 
   render() {
@@ -36,30 +87,38 @@ class UserItem extends React.PureComponent {
         </View>
         <View style = {styles.right}>
           <View style = {styles.text}>
-            <Text style= {styles.textItem1}>往下邀约熊</Text>
-            <Text style= {styles.textItem2}>写代码的 @ ad sad </Text>
+            <Text style= {styles.textItem1}>{this.state.user.username}</Text>
+            <Text style= {styles.textItem2}>{this._getMeta()}</Text>
           </View>
-          <View style = {styles.operation}>
-            {this.state.user.following ?
-              <Text style = {styles.following}>
-                <Icon
-                  name="check"
-                  color="white"
-                  size={12}
-                />
-                已关注
-              </Text>
+          {
+            !this.state.user.self?
+              <TouchableOpacity
+                style = {styles.operation}
+                onPress={this._follow.bind(this)}
+              >
+                {this.state.following ?
+                  <Text style = {styles.following}>
+                    <Icon
+                      name="check"
+                      color="white"
+                      size={12}
+                    />
+                    已关注
+                  </Text>
+                  :
+                  <Text style = {styles.notFollow}>
+                    <Icon
+                      name="plus"
+                      color="green"
+                      size={12}
+                    />
+                    关注
+                  </Text>
+                }
+              </TouchableOpacity>
               :
-              <Text style = {styles.notFollow}>
-                <Icon
-                  name="plus"
-                  color="green"
-                  size={12}
-                />
-                关注
-              </Text>
-            }
-          </View>
+              <Text></Text>
+          }
         </View>
       </View>
     )
@@ -67,11 +126,39 @@ class UserItem extends React.PureComponent {
 }
 
 class UserList extends React.PureComponent {
+  static navigationOptions = ({navigation}) => ({
+    title: navigation.state.params.title
+  });
+
+
   constructor (props) {
     super(props);
     this.state = {
-      userList: this.props.userList
+      userList: [],
+      userId: this.props.navigation.state.params.userId,
+      url: this.props.navigation.state.params.url
     }
+
+    this. _refresh()
+  }
+
+  componentDidMount() {
+    this.props['screenProps'].navigationEvents.addListener(`onFocus:UserList`, this._refresh.bind(this))
+  }
+
+  _refresh(){
+    console.log('in userList')
+
+    var url = this.state.url + '?id=' + this.state.userId;
+    fetch(url)
+      .then(res=> res.json())
+      .then(data => {
+        console.log('in userList', data)
+        this.setState({
+          userList: data.list
+        })
+
+      })
   }
 
   _renderItem = ({item}) => (
@@ -81,20 +168,55 @@ class UserList extends React.PureComponent {
     />
   )
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      userList: nextProps.userList
-    })
+
+  _follow(){
+    var url = ip + (this.state.following? '/common/move_follow_user' : '/common/add_follow_user') + '?id=' + this.state.discussion.author._id;
+
+    fetch(url)
+      .then( res => res.json())
+      .then( data => {
+        console.log(data)
+        if(data.ret===0){
+          this.setState({
+            following: !this.state.following,
+          })
+        }else{
+          Alert.alert(
+            '警告',
+            data.message,
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: '马上登录', onPress: ()=>{this.props.navigation.navigate('Login')}}
+            ],
+            { cancelable: false }
+          )
+        }
+      })
+
   }
 
   render() {
     return (
-      <FlatList
-        // data = {this.state.userList}
-        data = { [{a: 1}, {b: 2}, {c: 3}] }
-        renderItem = {this._renderItem}
-        style = {{backgroundColor: '#ffffff'}}
-      />
+      <View>
+        {
+          this.state.userList.length>0?
+            <FlatList
+              data = {this.state.userList}
+              renderItem = {this._renderItem}
+              style = {{backgroundColor: '#ffffff'}}
+            />
+            :
+            <View style={{
+              height: 30,
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+              <Text>暂无用户</Text>
+            </View>
+        }
+      </View>
+
+
     )
   }
 
@@ -102,19 +224,19 @@ class UserList extends React.PureComponent {
 
 const styles = StyleSheet.create({
   userWrapper: {
-    height: 40,
+    height: 50,
     flexDirection: 'row',
     marginTop: 10
   },
 
   left: {
-    width: 35,
+    width: 60,
     justifyContent: 'center',
     alignItems: 'center'
   },
   userProtrait: {
-    width: 25,
-    height: 25,
+    width: 30,
+    height: 30,
     overflow: 'hidden',
     borderWidth: 1,
     resizeMode:'cover',
@@ -129,17 +251,17 @@ const styles = StyleSheet.create({
     position: 'relative'
   },
   text: {
-    height: 40,
-    lineHeight: 20,
+    height: 50,
+    lineHeight: 25,
     textAlignVertical: 'bottom'
   },
   textItem1: {
-    fontSize: 13,
+    fontSize: 15,
     color: 'black',
     fontWeight: 'bold',
   },
   textItem2: {
-    fontSize: 12,
+    fontSize: 13,
     color: '#999999',
     lineHeight: 20
   },
@@ -148,7 +270,7 @@ const styles = StyleSheet.create({
     right: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 40,
+    height: 50,
 
   },
   following: {
@@ -156,8 +278,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
     borderWidth: 1,
     width: 60,
-    height: 23,
-    lineHeight: 23,
+    height: 26,
+    lineHeight: 26,
     color:'white',
     textAlign: 'center',
     fontSize: 12
@@ -166,8 +288,8 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     borderWidth: 1,
     width: 60,
-    height: 23,
-    lineHeight: 23,
+    height: 26,
+    lineHeight: 26,
     color:'green',
     textAlign: 'center',
     fontSize: 12

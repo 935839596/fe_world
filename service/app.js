@@ -68,7 +68,7 @@ app.post('/register', function(req, res, next){
     if(err && err.code == 11000 ){
       res.send({
         ret: 1,
-        message: 'the username has been used'
+        message: '用户名已经被注册'
       })
       return;
     }

@@ -38,10 +38,10 @@ var UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }],
-  article:{
-    type: Array,
-    default: []
-  },
+  article:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Article'
+  }],
   //我感兴趣的标签
   interest: {
     type:Array,

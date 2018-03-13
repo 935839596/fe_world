@@ -24,16 +24,23 @@ router.get('/get_user', function(req, res, next){
   var id = req.query.id;
   User.findOne({'_id': id})
       .exec(function(err, user){
-        var following = false;
-        if(user.followees.indexOf(req.session.loginUserId)>=0){
+        var following = false,
+          self = false;
+        if(user.followers.indexOf(req.session.loginUserId)>=0){
           following = true;
+        }
+        if(req.session.loginUserId){
+          if(user._id.toString() == req.session.loginUserId.toString()){
+            self = true
+          }
         }
         return res.send({
           ret: 0,
           message: 'ok',
           data: {
             user: user,
-            following: following
+            following: following,
+            self: self
           }
         })
       })
@@ -49,62 +56,113 @@ router.get('/get_user', function(req, res, next){
    - size: 10
  */
 router.get('/user_articles', function (req, res, next) {
-  var last_date = req.query.last_date || '',
-      size = req.query.size || defaultSize,
+  getUser(req.session.loginUser).then(self => {
+    var last_date = req.param('last_date') || '',
+      size = req.param('size') || defaultSize,
       uid = req.query.id;
 
-  var condition = {author: uid};
-  if(last_date){
-    Object.assign(condition, {
-      buildTime: {
-        $lt: last_date
-      }
-    })
-  }
-
-  Article.find(condition)
-      .sort( {buildTime: -1})
-      .limit(size)
-      .exec( (err, articles) => {
-        _helpSendList(res, err, articles, size)
+    var condition = {};
+    if (last_date) {
+      Object.assign(condition, {
+        buildTime: {
+          $lt: last_date
+        }
       })
+    }
+
+    var option = {
+      sort: {'buildTime': -1},
+      limit: size
+    }
+
+    User.findOne({'_id': uid})
+      .populate({
+        path: 'article',
+        match: condition,
+        options: option,
+        populate: {
+          path: 'author'
+        }
+      }).exec((err, user) => {
+      var articles;
+      if (self)
+        articles = user.article.map(article => {
+          if (self.loveArticle.indexOf(article._id) >= 0) {
+            return Object.assign(article._doc, {
+              like: true
+            })
+          } else {
+            return Object.assign(article._doc, {
+              like: false
+            })
+          }
+        })
+      else {
+        articles = user.article
+      }
+
+      _helpSendList(res, err, articles, size)
+    })
+  })
 })
 
 /*
  喜欢的文章
- - url: /common/like_articles
+ - url: /common/love_articles
  - method: get
  - params
    - id
    - last_date: date,
    - size: 10
  */
-router.get('/like_articles', function(req, res, next){
-  var last_date = req.param('last_date') || '',
+router.get('/love_articles', function(req, res, next){
+  getUser(req.session.loginUser).then(self => {
+    var last_date = req.param('last_date') || '',
       size = req.param('size') || defaultSize,
       uid = req.query.id;
 
-  var condition = {};
-  if(last_date){
-    Object.assign(condition, {
-      buildTime: {
-        $lt: last_date
-      }
-    })
-  }
+    var condition = {};
+    if(last_date){
+      Object.assign(condition, {
+        buildTime: {
+          $lt: last_date
+        }
+      })
+    }
 
-  var option = {
-    sort: {'buildTime': -1},
-    limit: size
-  }
+    var option = {
+      sort: {'buildTime': -1},
+      limit: size
+    }
 
-  User.findOne({'_id': uid})
+    User.findOne({'_id': uid})
       .populate({
         path: 'loveArticle',
         match: condition,
-        options: option
+        options: option,
+        populate:{
+          path: 'author'
+        }
       }).exec( (err, user) => {
-        _helpSendList(res, err, user.loveArticle, size)
+      var articles;
+      if(self)
+        articles = user.loveArticle.map(article => {
+        if(self.loveArticle.indexOf(article._id) >= 0){
+          return Object.assign(article._doc, {
+            like: true
+          })
+        }else{
+          return Object.assign(article._doc, {
+            like: false
+          })
+        }
+      })
+      else{
+        articles = user.loveArticle
+      }
+
+      _helpSendList(res, err, articles, size)
+    })
   })
 })
 
@@ -124,6 +182,7 @@ router.get('/interest', function (req, res, next) {
     })
   })
 })
+
 
 /*
  关注用户
@@ -145,12 +204,12 @@ router.get('/add_follow_user', function(req, res, next){
 
 /*
  取消关注用户
- - url: /common/cancel_follow_user
+ - url: /common/move_follow_user
  - method: get
  - params:
  - id
  */
-router.get('/cancel_follow_user', function(req, res, next){
+router.get('/move_follow_user', function(req, res, next){
   var id = req.query.id;
   if(!req.session.loginUser){
     return res.send({
@@ -170,7 +229,7 @@ router.get('/cancel_follow_user', function(req, res, next){
  */
 router.get('/followees', function(req, res, next) {
   var id = req.query.id;
-  getUser(req, res).then( loginUser => {
+  getUser(req.session.loginUser).then( loginUser => {
     User.findOne({'_id': id})
       .populate({
         path: 'followees'
@@ -184,16 +243,23 @@ router.get('/followees', function(req, res, next) {
 
       if(loginUser) {
         var userFollowees = user.followees.map( followee => {
+          var newU;
           if(loginUser.followees.indexOf(followee._id) >= 0) {
-            return Object.assign( followee._doc, {
+             newU = Object.assign( followee._doc, {
               following: true
             })
           }else {
-            var newUser = Object.assign( followee._doc, {
+            newU = Object.assign( followee._doc, {
               following: false
             })
-            return newUser
           }
+
+          if(loginUser._id === newU._id){
+            return Object.assign(newU,{
+              self: true
+            })
+          }
+          return newU
         })
       }else{
         var userFollowees = user.followees;
@@ -216,7 +282,7 @@ router.get('/followees', function(req, res, next) {
  */
 router.get('/followers', function(req, res, next) {
   var id = req.query.id
-  getUser(req, res).then( loginUser => {
+  getUser(req.session.loginUser).then( loginUser => {
     User.findOne({'_id': id})
       .populate({
         path: 'followers'
@@ -230,16 +296,24 @@ router.get('/followers', function(req, res, next) {
 
       if(loginUser) {
         var userFollowers = user.followers.map( follower => {
+          var newU
           if(loginUser.followees.indexOf(follower._id) >= 0) {
-            return Object.assign( follower._doc, {
+            newU = Object.assign( follower._doc, {
               following: true
             })
           }else {
-            var newUser = Object.assign( follower._doc, {
+            newU = Object.assign( follower._doc, {
               following: false
             })
-            return newUser
           }
+          var id1 = loginUser._id,
+            id2 = newU._id;
+          if(id1.toString() == id2.toString()){
+            return Object.assign(newU,{
+              self: true
+            })
+          }
+          return newU
         })
       }else{
         var userFollowers = user.followers;
@@ -273,6 +347,33 @@ router.get('/all_tags', function(req, res, next){
   })
 })
 
+/*
+  查看用户关注的标签
+  url: /common/user_tags
+  method: get
+  params
+    id
+ */
+router.get('/user_tags', function(req, res, next){
+  var id = req.query.id
+  User.findOne({_id: id})
+    .exec((err, user) => {
+      if(err){
+        res.send({
+          ret: 1,
+          message: 'wrong'
+        })
+      }
+      var list = user.tag.concat(user.interest)
+      list = [...new Set(list)]
+      res.send({
+        ret: 0,
+        message: 'ok',
+        list: list
+      })
+    })
+})
+
 
 //辅助函数
 function _helpSendList(res, err ,list, size){
@@ -300,15 +401,9 @@ function _helpSendList(res, err ,list, size){
 
 
 
-function getUser(req, res){
+function getUser(username){
   return new Promise(function(resolve,reject){
-    User.findOne({'username': req.session.loginUser}, function(err, user){
-      if(!user){
-        return res.send({
-          ret: -1,
-          message: '请先登录'
-        })
-      }
+    User.findOne({'username': username}, function(err, user){
       resolve(user);
     })
   })
@@ -379,5 +474,8 @@ function _helpFollowOrNot(req, res, type, id){
   })
 
 }
+
+
+
 
 module.exports = router;

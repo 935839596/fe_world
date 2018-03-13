@@ -1,6 +1,7 @@
 var mongoose = require('mongoose')
 
 var  User = require('../../mongodb/model/user.model');
+var Comment = require('./comment.model')
 
 var DiscussionSchema = new mongoose.Schema({
   //使用ObjectId
@@ -23,20 +24,9 @@ var DiscussionSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  //讨论的种类，0代表自己发布，1代表评论别人的
-  type: {
-    type: Number,
-    default: '0'
-  },
-  //如果是1，则不为空
-  toDiscussionId: {
-    type: String,
-    default: ''
-  },
-  //评论此发言的评论
-  replyComment: [{
+  comment: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Discussion'
+    ref: 'Comment'
   }],
   meta: {
     likeCount: {

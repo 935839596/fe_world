@@ -10,7 +10,8 @@ import {
   View,
   Image,
   Modal,
-  TextInput
+  TextInput,
+  Alert
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -65,6 +66,7 @@ class ModalComponent extends Component {
 
 
     console.log(this.state.sendInfo)
+    // return;
 
     fetch(this.state.sendInfo.url,{
       method: 'post',
@@ -90,11 +92,32 @@ class ModalComponent extends Component {
             content: ''
           })
           this._closeModal();
+        }else if(data.ret == -1){
+          this.setState({
+            sending: false,
+          })
+          Alert.alert(
+            '警告',
+            data.message,
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: '马上登录', onPress: ()=>{this._closeModal();this.props.navigation.navigate('Login')}}
+            ],
+            { cancelable: false }
+          )
         }else{
           this.setState({
             sending: false,
-            sendable: true,
           })
+          Alert.alert(
+            '警告',
+            data.message,
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: 'Ok', onPress: ()=>{}}
+            ],
+            { cancelable: false }
+          )
         }
       })
 

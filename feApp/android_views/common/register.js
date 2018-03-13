@@ -1,7 +1,3 @@
-/**
- * Created by linGo on 2018/3/6.
- */
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -16,28 +12,30 @@ const ip = require('../common/config').ip;
 
 
 
-class Login extends Component{
+class Register extends Component{
   constructor(props) {
     super(props)
     this.state = {
       username: '',
-      password: '',
+      password1: '',
+      password2: '',
       loginable: false,
       logining: false,
 
-      pwd1: false
+      pwd1: false,
+      pwd2: false
     }
   }
 
-  login() {
+  _register() {
     if(!this.state.loginable || this.state.logining){
       return;
     }
 
-    if(!this.state.password){
+    if(this.state.password1 != this.state.password2){
       Alert.alert(
         '警告',
-        '请输入密码',
+        '两次输入的密码不一致',
         [
           {text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         ],
@@ -47,11 +45,10 @@ class Login extends Component{
     }
 
 
-
     this.setState({
       logining: true
     })
-    var url = ip +'/login'
+    var url = ip +'/register'
     fetch(url,{
       method: 'POST',
       headers: {
@@ -60,7 +57,7 @@ class Login extends Component{
       },
       body: JSON.stringify({
         username: this.state.username,
-        password: this.state.password,
+        password: this.state.password1,
       })
     })
       .then(res => res.json())
@@ -114,17 +111,16 @@ class Login extends Component{
           <View style={styles.password}>
             <Text style={styles.label}>密码</Text>
             <TextInput
-              placeholder= '请填写用户密码'
+              placeholder= '请输入密码'
               multiline={false}
               underlineColorAndroid= 'transparent'
               style={styles.input}
               secureTextEntry={this.state.pwd1?false:true}
               onChangeText={ (text) => {
                 this.setState({
-                  password: text
+                  password1: text
                 })
-                console.log(this.state.password)
-                if(this.state.username && this.state.password){
+                if(this.state.username && this.state.password1.length>3 && this.state.password2.length>3){
                   this.setState({
                     loginable: true
                   })
@@ -147,12 +143,47 @@ class Login extends Component{
               }}
             />
           </View>
+          <View style={styles.password}>
+            <Text style={styles.label}>确认密码</Text>
+            <TextInput
+              placeholder= '请再次输入密码'
+              multiline={false}
+              underlineColorAndroid= 'transparent'
+              style={styles.input}
+              secureTextEntry={this.state.pwd2?false:true}
+              onChangeText={ (text) => {
+                this.setState({
+                  password2: text
+                })
+                if(this.state.username && this.state.password1 && this.state.password2){
+                  this.setState({
+                    loginable: true
+                  })
+                }else{
+                  this.setState({
+                    loginable: false
+                  })
+                }
+              }}
+            />
+            <Icon
+              color="#388bec"
+              name={this.state.pwd2?'eye':'eye-slash'}
+              style={styles.eye}
+              size={15}
+              onPress={ ()=>{
+                this.setState({
+                  pwd2: !this.state.pwd2
+                })
+              }}
+            />
+          </View>
         </View>
         <Text
           style={[styles.loginBtn, (this.state.loginable && !this.state.logining)?styles.loginable: styles.loginableNot]}
-          onPress={this.login.bind(this)}
+          onPress={this._register.bind(this)}
         >
-          {this.state.logining?'登录中...':'登录'}
+          {this.state.logining?'注册中...':'立即注册'}
         </Text>
       </View>
     )
@@ -219,4 +250,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Login
+export default Register

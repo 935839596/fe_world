@@ -21,6 +21,10 @@ var CommentSchema = new mongoose.Schema({
     type: Number,
     default: '0'
   },
+  toDiscussionId: {
+    type: String,
+    default: ''
+  },
   toArticleId: {
     type: String,
     default: ''

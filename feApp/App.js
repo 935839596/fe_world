@@ -10,7 +10,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  EventEmitter
 } from 'react-native';
 
 import TabNavigator from 'react-native-tab-navigator';
@@ -18,25 +19,43 @@ import Home from './android_views/home/home'
 import Discussion from './android_views/discussion/discussion'
 import My from './android_views/my/my'
 
+import EM from 'EventEmitter'
+
+const navigationEvents = new EM();
+
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'home',
+      selectedTab: 'my',
       tabBarHeight: 50
     };
   }
 
   //navigation路由变化监听函数
-  handleNavigationStateChange(prevState, newState){
+  handleNavigationStateChange(prevState, newState, action){
+
+    var index = newState.routes.length-1;
+    index = index<0?0:index;
     if(newState && newState.routes.length === 1){
       this._handleTabBar(true)
+      navigationEvents.emit(`onFocus:Home`)
+      navigationEvents.emit(`onFocus:Discussion`)
     }else{
       this._handleTabBar(false)
     }
+    console.log('routeName:', newState.routes[index].routeName)
+    console.log('actionType:', action['type'])
+    if('Navigation/BACK' == action['type'])
+      navigationEvents.emit(`onFocus:${newState.routes[index].routeName}`)
   }
 
+
+
   render() {
+
+
+
     return (
         <TabNavigator barTintColor="#fff"
                       tabBarStyle={{height: this.state.tabBarHeight, overflow: 'hidden'}}
@@ -83,11 +102,9 @@ export default class App extends Component {
     );
   }
 
-  _goToHome(){
-    console.log('go to home')
-    this.setState({
-      selectedTab: 'home'
-    })
+  _forceUpdate(){
+    console.log('update')
+    this.forceUpdate()
   }
 
   _handleTabBar(state) {
@@ -106,9 +123,11 @@ export default class App extends Component {
               hide: () => this._handleTabBar(false),
               show: () => this._handleTabBar(true)
             },
-            goToHome: () => {
-              this._goToHome.bind(this)
-            }
+            refreshApp: () => {
+              navigationEvents.emit(`onFocus:Home`)
+              navigationEvents.emit(`onFocus:Discussion`)
+            },
+            navigationEvents: navigationEvents
           }}
           onNavigationStateChange={this.handleNavigationStateChange.bind(this)}
         />;
@@ -120,9 +139,11 @@ export default class App extends Component {
               hide: () => this._handleTabBar(false),
               show: () => this._handleTabBar(true)
             },
-            goToHome: ()=>{
-              this._goToHome.bind(this)
-            }
+            refreshApp: ()=>{
+              navigationEvents.emit(`onFocus:Home`)
+              navigationEvents.emit(`onFocus:Discussion`)
+            },
+            navigationEvents: navigationEvents
           }}
           onNavigationStateChange={this.handleNavigationStateChange.bind(this)}
         />;
@@ -134,9 +155,11 @@ export default class App extends Component {
               hide: () => this._handleTabBar(false),
               show: () => this._handleTabBar(true)
             },
-            goToHome: () => {
-              this._goToHome()
-            }
+            refreshApp: () => {
+              navigationEvents.emit(`onFocus:Home`)
+              navigationEvents.emit(`onFocus:Discussion`)
+            },
+            navigationEvents: navigationEvents
           }}
           onNavigationStateChange={this.handleNavigationStateChange.bind(this)}
         />;
