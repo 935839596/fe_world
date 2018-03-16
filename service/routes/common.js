@@ -11,7 +11,8 @@ var defaultSize = require('./config').defaultSize
 
 var User = require('../mongodb/model/user.model'),
     Message = require('../mongodb/model/message.model'),
-    Article = require('../mongodb/model/article.model');
+    Article = require('../mongodb/model/article.model'),
+    Tag = require('../mongodb/model/tag.model')
 
 /*
  获取用户资料
@@ -333,18 +334,30 @@ router.get('/followers', function(req, res, next) {
  - method: get
  */
 router.get('/all_tags', function(req, res, next){
-  res.send({
-    ret: 0,
-    message: 'ok',
-    list: [
-        'vue',
-        'angular',
-        'html',
-        'node',
-        'less',
-        'css'
-    ]
+  getUser(req.session.loginUser).then( loginUser => {
+    Tag.find()
+      .exec((err, tags) => {
+        if(loginUser){
+          tags = tags.map( tag => {
+            if(tag.fans.indexOf(loginUser._id)>-1){
+              return Object.assign(tag._doc, {
+                following: true
+              })
+            }else{
+              return Object.assign(tag._doc, {
+                following: false
+              })
+            }
+          })
+        }
+        res.send({
+          ret: 0,
+          message: 'ok',
+          list: tags
+        })
+      })
   })
+
 })
 
 /*
@@ -355,23 +368,44 @@ router.get('/all_tags', function(req, res, next){
     id
  */
 router.get('/user_tags', function(req, res, next){
-  var id = req.query.id
-  User.findOne({_id: id})
-    .exec((err, user) => {
-      if(err){
-        res.send({
-          ret: 1,
-          message: 'wrong'
-        })
-      }
-      var list = user.tag.concat(user.interest)
-      list = [...new Set(list)]
-      res.send({
-        ret: 0,
-        message: 'ok',
-        list: list
+  getUser(req.session.loginUser).then( loginUser => {
+    var id = req.query.id
+    User.findOne({_id: id})
+      .exec((err, user) => {
+        if(err){
+          res.send({
+            ret: 1,
+            message: 'wrong'
+          })
+        }
+        var list = user.tag.concat(user.interest)
+        list = [...new Set(list)]
+        var result = []
+        Tag.find({tagName: {"$in": list}})
+          .exec( (err, tags) => {
+            result = tags.map( tag => {
+              if(loginUser){
+                if(tag.fans.indexOf(loginUser._id)>-1){
+                  return Object.assign(tag._doc, {
+                    following: true
+                  })
+                }else{
+                  return Object.assign(tag._doc, {
+                    following: false
+                  })
+                }
+              }
+              return tag;
+            })
+            res.send({
+              ret: 0,
+              message: 'ok',
+              list: result
+            })
+          })
+
       })
-    })
+  })
 })
 
 

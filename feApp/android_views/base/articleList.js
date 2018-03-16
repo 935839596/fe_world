@@ -50,6 +50,7 @@ class ArticleItem extends  React.PureComponent {
       like: nextProps.article.like,
       likeCount: nextProps.article.meta.likeCount,
     })
+    this._getAllCommentCount()
   }
 
   _getAllCommentCount(){
@@ -121,9 +122,13 @@ class ArticleItem extends  React.PureComponent {
                 }}
               >
               <Image style={styles.portrait}
-                      //source={require('../../resource/image/mying.png')}
                      onPress={this._showUser.bind(this)}
-                    source={{uri: this.state.article.author.avatarLarge}}
+                     source = {
+                       this.state.article.author.avatarLarge?
+                         {uri: this.state.article.author.avatarLarge}
+                         :
+                         require('../../resource/image/mying.png')
+                     }
               />
               </TouchableOpacity>
             </View>
@@ -137,11 +142,27 @@ class ArticleItem extends  React.PureComponent {
         </View>
         <View style={styles.main}>
           <Text style={styles.articleTitle}>{this.state.article.title}</Text>
-          <Text style={styles.articleContent}
-                onPress={this._readArticle.bind(this, this.state.article._id)}
-          >
-            {this.state.article.shortContent}
-          </Text>
+          <View style={styles.contentWrapper}>
+            <Text style={styles.articleContent}
+                  onPress={this._readArticle.bind(this, this.state.article._id)}
+            >
+              {this.state.article.shortContent}
+            </Text>
+            {/*<View style={styles.imgWrapper}>
+              {
+                this.state.article.imageCache?
+                  this.state.article.imageCache[0].imageUrlArray?
+                    <Image
+                      source={{uri: this.state.article.imageCache[0].imageUrlArray[0] }}
+                      style={styles.image}
+                    />
+                    :
+                    <Text></Text>
+                  :
+                  <Text></Text>
+              }
+            </View>*/}
+          </View>
         </View>
         <View style = {styles.footer}>
           <View style = {styles.handleBox}>
@@ -175,7 +196,8 @@ class ArticleList extends  React.PureComponent {
   constructor(props){
     super(props);
     this.state = {
-      articleList: this.props.articleList
+      articleList: this.props.articleList,
+      loading: this.props.loading
     }
   };
 
@@ -202,7 +224,8 @@ class ArticleList extends  React.PureComponent {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      articleList: nextProps.articleList
+      articleList: nextProps.articleList,
+      loading: nextProps.loading
     })
   }
 
@@ -226,6 +249,26 @@ class ArticleList extends  React.PureComponent {
               lineHeight: 30,
               alignSelf:'center'
             }}>暂无文章</Text>
+        }
+        {
+          this.state.loading?
+            <View style={{
+              flex: 1,
+              // backgroundColor: 'rgba(0,0,0, .8)',
+              justifyContent:'center',
+              alignItems: 'center',
+              position: 'absolute',
+              top: 0, bottom: 0, right: 0, left: 0,
+              zIndex: 100
+            }}>
+              {/*<Text style={{color:'white',fontSize: 20}}>正在加载中...</Text>*/}
+              <Image
+                source={require('../../resource/image/loading.gif')}
+                style={{width: 50, height: 50}}
+              />
+            </View>
+            :
+            <Text></Text>
         }
       </View>
 
@@ -285,11 +328,25 @@ const styles = StyleSheet.create({
   articleTitle: {
     fontWeight: 'bold',
     fontSize: 13,
-    color: '#000'
+    color: '#000',
+  },
+  contentWrapper: {
+    flexDirection: 'row'
   },
   articleContent: {
     fontSize: 12,
-    color: '#333'
+    color: '#333',
+    marginRight: 5,
+    flex: 1
+  },
+  imgWrapper:{
+    marginRight: 5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  image: {
+    width: 50,
+    resizeMode: 'cover'
   },
 
   footer: {

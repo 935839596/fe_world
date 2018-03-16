@@ -16,6 +16,8 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import PicModal from '../base/picModal'
+
 
 const ip = require('../common/config').ip
 
@@ -30,7 +32,10 @@ class UserProfile extends Component {
       following: false,
       flag: false,
       self: false,
-      fansCount: 0
+      fansCount: 0,
+
+      picModalVisible: false,
+      picModalUrl: ''
     }
     this._refresh()
   }
@@ -107,6 +112,23 @@ class UserProfile extends Component {
 
   }
 
+  closePicModal(){
+    console.log('close')
+    this.setState({
+      picModalVisible: false
+    })
+  }
+
+  showPicModal(url){
+    if(!url){
+      url =ip +  '/images/mying.png'
+    }
+    this.setState({
+      picModalVisible: true,
+      picModalUrl: url
+    })
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>
@@ -115,7 +137,9 @@ class UserProfile extends Component {
             <View style={style.wrapper}>
               <View style= {style.infoWrapper}>
                 <View style={style.userInfo}>
-                  <View style= {style.right}>
+                  <TouchableOpacity style= {style.right}
+                                    onPress={this.showPicModal.bind(this, this.state.user.avatarLarge)}
+                  >
                     <Image
                       source= {
                         this.state.user.avatarLarge?
@@ -124,7 +148,7 @@ class UserProfile extends Component {
                       }
                       style = {style.userProtrait}
                     />
-                  </View>
+                  </TouchableOpacity>
                   <View style = {style.left}>
                     <View style= {style.text}>
                       <Text style= {style.textItem1}>{this.state.user.username}</Text>
@@ -216,25 +240,34 @@ class UserProfile extends Component {
               </View>
 
               <View style= {style.itemWrapper}>
-                <View style= {style.item}>
-                  <TouchableHighlight style = {style.touch}>
-                    <Text>关注的标签</Text>
-                  </TouchableHighlight>
-                  <Text style = {style.number}>
-                    {this.state.user.tag.length + this.state.user.interest.length}
-                  </Text>
-                  <Icon
-                    name="angle-right"
-                    size={20}
-                    style={ style.arrow }
-                  />
-                </View>
+                <TouchableOpacity
+                  onPress={() => {this.props.navigation.navigate('UserTag',{userId: this.state.userId})}}
+                >
+                  <View style= {style.item}>
+                    <TouchableOpacity style = {style.touch}>
+                      <Text>关注的标签</Text>
+                    </TouchableOpacity>
+                    <Text style = {style.number}
+                    >
+                    </Text>
+                    <Icon
+                      name="angle-right"
+                      size={20}
+                      style={ style.arrow }
+                    />
+                  </View>
+                </TouchableOpacity>
               </View>
 
             </View>
             :
             <Text style={{alignSelf: 'center'}}>loading...</Text>
         }
+        <PicModal
+          modalVisible={this.state.picModalVisible}
+          url = {this.state.picModalUrl}
+          closePicModal={this.closePicModal.bind(this)}
+        />
       </View>
     )
   }

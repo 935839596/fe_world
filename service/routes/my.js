@@ -6,7 +6,8 @@ require('../mongodb/config/mongoose')
 
 var User = require('../mongodb/model/user.model'),
     Message = require('../mongodb/model/message.model'),
-    Article = require('../mongodb/model/article.model')
+    Article = require('../mongodb/model/article.model'),
+    Tag = require('../mongodb/model/tag.model')
 
 var defaultSize = require('./config').defaultSize
 
@@ -194,6 +195,40 @@ router.post('/modify_description', function(req, res, next){
 })
 
 /*
+* 修改头像
+* url: /my/modify_avatarLarge
+* method: post
+* params
+*   avatarLarge
+* */
+router.post('/modify_avatarLarge', function(req, res, next){
+  var avatarLarge = req.body.avatarLarge;
+
+  User.findOneAndUpdate(
+    {'username': req.session.loginUser},
+    {'avatarLarge': avatarLarge}
+  ).exec(function(err, user){
+    if(!user){
+      return res.send({
+        ret: -1,
+        message: '请先登录'
+      })
+    }
+    if(err){
+      return res.send({
+        ret: 1,
+        message: '修改失败，请重试'
+      })
+    }
+
+    return res.send({
+      ret: 0,
+      message: 'ok'
+    })
+  })
+})
+
+/*
  添加关注的标签
  - url: /my/add_interest
  - method: post
@@ -203,6 +238,13 @@ router.post('/modify_description', function(req, res, next){
 router.post('/add_interest', function(req, res, next){
   var tag = req.body.tag;
   getUser(req.session.loginUser).then( user => {
+    if(!user){
+      return res.send({
+        ret: -1,
+        message: '请先登录'
+      })
+    }
+
     var newTag = user.interest.concat(tag);
     newTag = [...new Set(newTag)]
     user.set('interest', newTag)
@@ -214,13 +256,76 @@ router.post('/add_interest', function(req, res, next){
           message: '关注失败'
         })
       }
-      return res.send({
-        ret: 0,
-        message: 'ok'
+      Tag.update({tagName: tag},{$push: {fans: user._id}}, function(err, af){
+        if(err){
+          return res.send({
+            ret: 1,
+            message: '关注失败'
+          })
+        }
+        return res.send({
+          ret: 0,
+          message: '关注成功'
+        })
       })
+
     })
   })
 })
+
+/*
+ 初始化感兴趣的标签
+ - url: /my/init_interest
+ - method: post
+ - params:
+ - tag: array
+ */
+router.post('/init_interest', function(req, res, next){
+  var tag = req.body.tag;
+  getUser(req.session.loginUser).then( user => {
+    if(!user){
+      return res.send({
+        ret: -1,
+        message: '请先登录'
+      })
+    }
+
+    var newTag = user.interest.concat(tag);
+    newTag = [...new Set(newTag)]
+    user.set('interest', newTag)
+
+    user.save(function (err, newUser) {
+      if(err){
+        return res.send({
+          ret: 1,
+          message: '关注失败'
+        })
+      }
+
+      saveTagAll(newTag, newUser._id).then( ret => {
+        return res.send({
+          ret: 0,
+          message: 'ok'
+        })
+      })
+
+    })
+  })
+})
+
+function saveTagOne(tag, userId){
+  return new Promise(function(resolve, reject) {
+    Tag.update({tagName: tag},{$push: {fans: userId}},function(err){
+      resolve(1)
+    })
+  })
+}
+
+function saveTagAll(tags,userId){
+  return Promise.all( tags.map(tag => {
+    return saveTagOne(tag,userId).then(ret=>ret)
+  }) )
+}
 
 /*
  删除标签

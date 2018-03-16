@@ -39,7 +39,7 @@ class Tag extends Component{
       <View style={[styles.tagWrapper, this.state.choose?{borderColor:'blue'}:{}]}>
         <Text style={[styles.tagText, this.state.choose?{color:'blue'}:{color: 'grey'}]}
               onPress={this._choose.bind(this)}
-        >{this.state.tag}</Text>
+        >{this.state.tag.tagName}</Text>
       </View>
     )
   }
@@ -50,23 +50,38 @@ class TagSelect extends Component{
   constructor(props){
     super(props)
     this.state = {
-      list: []
+      list: [],
+      flag: false,
+      chooseList: []
     }
+    this._refresh()
+  }
+
+  _refresh(){
+    var url = ip + '/common/all_tags';
+    fetch(url)
+      .then( res=>res.json())
+      .then( data => {
+        this.setState({
+          list: data.list,
+          flag: true
+        })
+      })
   }
 
   chooseTag(tag){
-    this.state.list.push(tag)
+    this.state.chooseList.push(tag.tagName)
     console.log('after choose', this.state.list)
   }
 
   cancelTag(tag){
-    var index = this.state.list.indexOf(tag)
-    this.state.list.splice(index, 1)
-    console.log('after cancel', this.state.list)
+    var index = this.state.chooseList.indexOf(tag.tagName)
+    this.state.chooseList.splice(index, 1)
+    console.log('after cancel', this.state.chooseList)
   }
 
   save(){
-    var url = ip + '/my/add_interest'
+    var url = ip + '/my/init_interest'
     console.log(url)
     fetch(url,{
       method: 'post',
@@ -75,12 +90,13 @@ class TagSelect extends Component{
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        tag: this.state.list
+        tag: this.state.chooseList
       })
     }).then( res=> res.json())
       .then(data => {
         console.log(data)
         if(data.ret === 0){
+          this.props['screenProps'].navigationEvents.emit(`onFocus:My`)
           this.props.navigation.popToTop();
         }else if(data.ret===-1){
           Alert.alert(
@@ -110,44 +126,60 @@ class TagSelect extends Component{
 
   render(){
     let list = [];
-    tagList.forEach((tag) => {
-      list.push(
-        <Tag
-          tag = {(tag)}
-          chooseTag={this.chooseTag.bind(this)}
-          cancelTag={this.cancelTag.bind(this)}
-        />
-      );
-    });
+    var tagList  = this.state.list
+    console.log(tagList)
+    if(tagList.length>0){
+      tagList = tagList.slice(0,18)
+      tagList.forEach((tag) => {
+        list.push(
+          <Tag
+            tag = {(tag)}
+            chooseTag={this.chooseTag.bind(this)}
+            cancelTag={this.cancelTag.bind(this)}
+          />
+        );
+      });
+    }
     return(
-      <View style={{flex: 1,backgroundColor: 'white',alignItems: 'center', paddingLeft:10, paddingRight: 10}}>
-        <View style={styles.header}>
-          <Text
-            style={styles.cancel}
-            onPress={()=>{this.props.navigation.popToTop()}}
-          >
-            跳过
-          </Text>
-          <Text
-            style={styles.title}
-          >
+      <View style={{flex: 1}}>
+        {
+          this.state.flag?
+            <View style={{flex: 1,backgroundColor: 'white',alignItems: 'center', paddingLeft:10, paddingRight: 10}}>
+              <View style={styles.header}>
+                <Text
+                  style={styles.cancel}
+                  onPress={()=>{this.props.navigation.popToTop()}}
+                >
+                  跳过
+                </Text>
+                <Text
+                  style={styles.title}
+                >
 
-          </Text>
-          <Text
-            style={styles.done}
-            onPress={this.save.bind(this)}
-          >
-            保存
-          </Text>
-        </View>
+                </Text>
+                <Text
+                  style={styles.done}
+                  onPress={this.save.bind(this)}
+                >
+                  保存
+                </Text>
+              </View>
 
-        <View style={styles.top}>
-          <Text style={{fontSize: 15}}>请选择感兴趣的标签</Text>
-        </View>
-        <View style={styles.tagList}>
-          {list}
-        </View>
+              <View style={styles.top}>
+                <Text style={{fontSize: 15}}>请选择感兴趣的标签</Text>
+              </View>
+              <View style={styles.tagList}>
+                {list}
+              </View>
+            </View>
+            :
+            <Image
+              source={require('../../resource/image/loading.gif')}
+              style={{width: 50, height: 50, alignSelf: 'center'}}
+            />
+        }
       </View>
+
     );
   }
 }

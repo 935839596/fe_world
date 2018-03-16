@@ -20,9 +20,6 @@ import { StackNavigator } from 'react-navigation';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import ArticleList from '../base/articleList'
-import ArticleDetail from '../common/articleDetail'
-import ArticleComment from '../common/articleComment'
 import UserProfile from '../common/userProfile'
 import LoveArticle from '../common/loveArticle'
 import OriginalArticle from '../common/originalArticle'
@@ -31,7 +28,8 @@ import DiscussionComment from '../discussion/discussionComment'
 import Login from '../common/login'
 import SecondCommentList from '../base/secondCommentList'
 import Post from './post'
-
+import TagSelect from '../common/tagSelect'
+import UserTag from '../common/userTag'
 import PicModal from '../base/picModal'
 
 
@@ -65,6 +63,7 @@ class DiscussionItem extends Component {
       following: this.props.discussion.following,
       self: this.props.discussion.self
     })
+    this._getAllCommentCount()
   }
 
   _formateTime() {
@@ -100,6 +99,7 @@ class DiscussionItem extends Component {
   _getAllCommentCount(){
     var discussionId = this.state.discussion._id;
     var url = ip + '/discussion/all_comment_count?id=' + discussionId
+
 
     fetch(url)
       .then(res => res.json())
@@ -325,6 +325,7 @@ class Discussion extends Component {
       picModalUrl: url
     })
   }
+
   refresh(){
     console.log('refresh in discussionList')
     var website = ip + '/discussion/all_discussion'
@@ -716,7 +717,23 @@ export default StackNavigator(
         headerStyle: headerStyle,
         headerTitleStyle: headerTitleStyle
       }
+    },
+    TagSelect: {
+    screen: TagSelect,
+    navigationOptions: {
+      headerStyle: headerStyle,
+      header: null,
+      headerTitleStyle: headerTitleStyle
     }
+  },
+    UserTag: {
+      screen: UserTag,
+      navigationOptions: {
+        headerTitle: '他关注的标签',
+        headerStyle: headerStyle,
+        headerTitleStyle: headerTitleStyle
+      }
+    },
   },
   {
     initialRouteName: 'Discussion'

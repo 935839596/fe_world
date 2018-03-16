@@ -11,7 +11,8 @@ var fs = require('fs')
 
 var Article = require('../mongodb/model/article.model'),
     Comment = require('../mongodb/model/comment.model'),
-    User = require('../mongodb/model/user.model');
+    User = require('../mongodb/model/user.model'),
+    Tag = require('../mongodb/model/tag.model');
 
 var defaultSize = require('./config').defaultSize
 
@@ -20,6 +21,83 @@ var defaultSize = require('./config').defaultSize
 // method: get
 // params: size, last_date
 router.get('/recommend_articles', function(req, res, next) {
+  getUser(req.session.loginUser).then( user => {
+    //查询数据库获取全部文章
+    var size = req.query.size || defaultSize,
+      last_date = req.query.last_date || '',
+      condition = {};
+
+    if(!last_date || last_date === 'undefined'){
+
+    }else{
+     condition = {
+       buildTime: { $lt: last_date}
+     }
+    }
+
+    if(user){
+      var interest = user.tag.concat(user.interest)
+      // var interest = ['Node.js', 'React.js', 'Vue.js']
+      Tag.find({tagName: {$in: interest}})
+        .exec( (err, tags) => {
+          var idArr = []
+          tags.forEach( tag => {
+           idArr =  idArr.concat(tag.articles)
+          })
+          condition = Object.assign(condition, {
+            _id: {$in: idArr}
+          })
+
+          Article.find(condition).sort( {buildTime: -1} )
+            .limit(size)
+            .populate({
+              path: 'author',
+            })
+            .exec( (err, articles) => {
+              if(user){
+                articles =  articles.map( article => {
+                  if(user.loveArticle.indexOf(article._id) >= 0){
+                    return Object.assign(article._doc, {
+                      like: true
+                    })
+                  }else{
+                    return Object.assign(article._doc, {
+                      like: false
+                    })
+                  }
+                })
+              }
+              _helpSendList(res, err, articles, size)
+            })
+        })
+
+    }else{
+//上拉加载刷新
+      Article.find(condition).sort( {buildTime: -1} )
+        .limit(size)
+        .populate({
+          path: 'author',
+        })
+        .exec( (err, articles) => {
+          if(user){
+            articles =  articles.map( article => {
+              if(user.loveArticle.indexOf(article._id) >= 0){
+                return Object.assign(article._doc, {
+                  like: true
+                })
+              }else{
+                return Object.assign(article._doc, {
+                  like: false
+                })
+              }
+            })
+          }
+          _helpSendList(res, err, articles, size)
+        })
+    }
+
+
+  })
 
 })
 

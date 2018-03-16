@@ -62,9 +62,8 @@ class Register extends Component{
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if(data.ret === 0){
-          this.props.navigation.goBack();
+          this.props.navigation.navigate('TagSelect')
         }else{
           Alert.alert(
             '提示',
@@ -74,6 +73,10 @@ class Register extends Component{
             ],
             { cancelable: false }
           )
+          this.setState({
+            username: '',
+            loginable: true
+          })
         }
 
       })
@@ -92,6 +95,7 @@ class Register extends Component{
               multiline={false}
               underlineColorAndroid= 'transparent'
               style={styles.input}
+              defaultValue = {this.state.username}
               onChangeText={ (text) => {
                 this.setState({
                   username: text

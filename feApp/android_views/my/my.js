@@ -25,7 +25,9 @@ import LoveArticle from '../common/loveArticle'
 import OriginalArticle from '../common/originalArticle'
 import UserList from '../common/userList'
 import UserProfile from '../common/userProfile'
-import tagSelect from '../common/tagSelect'
+import TagSelect from '../common/tagSelect'
+import PicModal from '../base/picModal'
+
 
 const ip = require('../common/config').ip
 
@@ -35,7 +37,10 @@ class My extends Component {
     // this.props.screenProps.tabBar.hide()
     this.state = {
       user: {},
-      flag:false
+      flag:false,
+
+      picModalVisible: false,
+      picModalUrl: ''
     }
 
     this._refresh()
@@ -43,6 +48,23 @@ class My extends Component {
 
   componentDidMount() {
     this.props['screenProps'].navigationEvents.addListener(`onFocus:My`, this._refresh.bind(this))
+  }
+
+  closePicModal(){
+    console.log('close')
+    this.setState({
+      picModalVisible: false
+    })
+  }
+
+  showPicModal(url){
+    if(!url){
+      url =ip +  '/images/mying.png'
+    }
+    this.setState({
+      picModalVisible: true,
+      picModalUrl: url
+    })
   }
 
   _showFollowees() {
@@ -104,7 +126,9 @@ class My extends Component {
               <View style={style.wrapper}>
                 <View style= {style.infoWrapper}>
                   <View style={style.userInfo}>
-                    <View style= {style.right}>
+                    <TouchableOpacity style= {style.right}
+                                      onPress={this.showPicModal.bind(this, this.state.user.avatarLarge)}
+                    >
                       <Image
                         source= {
                           this.state.user.avatarLarge?
@@ -114,7 +138,7 @@ class My extends Component {
                         }
                         style = {style.userProtrait}
                       />
-                    </View>
+                    </TouchableOpacity>
                     <View style = {style.left}>
                       <View style= {style.text}>
                         <Text
@@ -269,7 +293,7 @@ class My extends Component {
                   <View style= {style.item}>
                     <TouchableOpacity
                       style = {style.touch}
-                      onPress={()=>{this.props.navigation.navigate('MyTag')}}
+                      onPress={()=>{this.props.navigation.navigate('MyTag', {userId: this.state.user._id})}}
                     >
                       <Text
                         style = {style.itemText}
@@ -284,7 +308,6 @@ class My extends Component {
                       </Text>
                     </TouchableOpacity>
                     <Text style = {style.number}>
-                      15
                     </Text>
                     <Icon
                       name="angle-right"
@@ -360,6 +383,11 @@ class My extends Component {
             >loading...</Text>
 
         }
+        <PicModal
+          modalVisible={this.state.picModalVisible}
+          url = {this.state.picModalUrl}
+          closePicModal={this.closePicModal.bind(this)}
+        />
       </View>
     )
   }
@@ -589,8 +617,8 @@ export default StackNavigator(
         headerTitleStyle: headerTitleStyle
       }
     },
-    tagSelect: {
-      screen: tagSelect,
+    TagSelect: {
+      screen: TagSelect,
       navigationOptions: {
         header: null,
         headerStyle: headerStyle,

@@ -8,7 +8,8 @@ import {
   Text,
   View,
   WebView,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
@@ -23,20 +24,68 @@ class MyTag extends Component{
     super(props)
     this.state={
       tagList: [],
-      active: 'my'
+      active: 'my',
+      myUserId: this.props.navigation.state.params.userId,
+      loading: false
     }
+
+    this._refresh()
   }
 
   _refresh(){
-
+    this._showMy()
   }
 
   _showMy(){
-    this.setState({active: 'my'})
+    if(this.state.loading) return
+    this.setState({
+      loading: true
+    })
+    var url = ip + '/common/user_tags?id=' + this.state.myUserId;
+    fetch(url)
+      .then( res=>res.json())
+      .then( data => {
+        if(data.ret === 0) {
+          console.log('my', data)
+          this.setState({
+            tagList: data.list,
+            loading: false
+          })
+        }
+        else{
+          this.setState({
+            tagList: data.list,
+            loading: false
+          })
+        }
+      })
 
+    this.setState({active: 'my'})
   }
 
   _showAll(){
+    if(this.state.loading) return
+    this.setState({
+      loading: true
+    })
+    var url = ip + '/common/all_tags';
+    fetch(url)
+      .then( res=>res.json())
+      .then( data => {
+        if(data.ret === 0) {
+          console.log('showAll',data)
+          this.setState({
+            tagList: data.list,
+            loading: false
+          })
+        }
+        else{
+          this.setState({
+            tagList: data.list,
+            loading: false
+          })
+        }
+      })
     this.setState({active: 'all'})
   }
 
@@ -56,8 +105,29 @@ class MyTag extends Component{
         <View style={{flex: 1}}>
           <TagList
             tagList={this.state.tagList}
+            refresh={this.state.active=='all'?this._showAll.bind(this):this._showMy.bind(this)}
           />
         </View>
+        {
+          this.state.loading?
+            <View style={{
+              flex: 1,
+              // backgroundColor: 'rgba(0,0,0, .5)',
+              justifyContent:'center',
+              alignItems: 'center',
+              position: 'absolute',
+              top: 0, bottom: 0, right: 0, left: 0,
+              zIndex: 100
+            }}>
+              {/*<Text style={{color:'white',fontSize: 20}}>加载中...</Text>*/}
+              <Image
+                source={require('../../resource/image/loading.gif')}
+                style={{width: 50, height: 50}}
+              />
+            </View>
+            :
+            <Text></Text>
+        }
       </View>
     )
   }

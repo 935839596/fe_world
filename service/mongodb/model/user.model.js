@@ -8,7 +8,6 @@ var Article = require('./article.model'),
 var UserSchema = new mongoose.Schema({
   uid: {
     type: String,
-    unique: true,
     default: Date.now()+''+Math.floor(Math.random()*100000000000)
   },
   tag: {

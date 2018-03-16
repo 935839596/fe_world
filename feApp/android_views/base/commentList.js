@@ -139,7 +139,7 @@ class CommentItem extends Component {
           <TouchableOpacity
             style={styles.PortraitWrapper}
             onPress= {() => {
-              this.props.navigation.navigate('UserProfile',{user: this.state.comment.author})
+              this.props.navigation.navigate('UserProfile',{userId: this.state.comment.author._id})
             }}
           >
             <Image
@@ -157,7 +157,7 @@ class CommentItem extends Component {
           <View style = {styles.top}>
             <Text style = {styles.username}
                   onPress= {() => {
-                    this.props.navigation.navigate('UserProfile',{user: this.state.comment.author})
+                    this.props.navigation.navigate('UserProfile',{userId: this.state.comment.author._id})
                   }}
             >{this.state.comment.author.username}</Text>
             <Text style = {styles.commentContent}>

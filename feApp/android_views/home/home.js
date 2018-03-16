@@ -21,30 +21,33 @@ import Login from '../common/login'
 import SecondCommentList from '../base/secondCommentList'
 import LoveArticle from '../common/loveArticle'
 import OriginalArticle from '../common/originalArticle'
+import TagSelect from '../common/tagSelect'
+import UserTag from '../common/userTag'
 
 
 const ip = require('../common/config').ip
-console.log('gg', ip)
 
  class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       choose: 0,
-      url: ip + '/article/all_articles',
+      url: ip + '/article/recommend_articles',
       last_date: undefined,
       articleList: [],
-      more: true
+      more: true,
+      loading:  false,
+      type: 'recommend'
     }
     this.refresh()
   }
 
    onFocus(){
-    console.log('focus in home')
      this.refresh()
    }
 
    componentDidMount() {
+     console.log('focus...')
      this.props['screenProps'].navigationEvents.addListener(`onFocus:Home`, this.onFocus.bind(this))
    }
 
@@ -57,6 +60,7 @@ console.log('gg', ip)
       }
     }).then( res => res.json())
       .then( data => {
+        console.log(data)
         if(data.ret === 0){
           this.setState({
             articleList: data.data.list,
@@ -85,17 +89,19 @@ console.log('gg', ip)
   }
 
   _loadData(type){
-    if(type == 0){
-      //推荐文章
-      this.setState({
-        choose: 0
-      })
-    }else if(type == 1){
-      //全部文章
-      this.setState({
-        choose: 1
-      })
+    if(this.state.loading){
+      return;
     }
+
+    this.setState({
+        type: type,
+        url: ip + '/article/'+type+'_articles',
+        loading: false,
+        more: true,
+        last_date: undefined
+    })
+    console.log(this.state)
+    this.refresh()
   }
 
   _loadMoreData() {
@@ -131,32 +137,19 @@ console.log('gg', ip)
 
 
    render() {
-    var _this = this;
-
-    //点击修改样式
-    function choose(index){
-      if(_this.state.choose === index){
-        return {
-          color: 'blue',
-          borderBottomColor: 'blue',
-          borderBottomWidth: 1
-        }
-      }else{
-        return {}
-      }
-    }
 
     return (
         <View style={{flex: 1}}>
           <View style={styles.topBar}>
-            <Text style={[styles.itemBar, choose(0)]}
-                   onPress={this._loadData.bind(this, 0)}
+            <Text style={[styles.itemBar, this.state.type==='recommend'?styles.selected:'']}
+                  onPress={this._loadData.bind(this, 'recommend')}
             >
               推荐
             </Text>
-            <Text style={[styles.itemBar, choose(1)]}
-                  onPress={this._loadData.bind(this, 1)}
+            <Text style={[styles.itemBar, this.state.type==='all'?styles.selected:'']}
+                  onPress={this._loadData.bind(this, 'all')}
             >
+
               全部
             </Text>
           </View>
@@ -166,6 +159,7 @@ console.log('gg', ip)
               loadMoreData={this._loadMoreData.bind(this)}
               navigation = {this.props.navigation}
               refresh = {this.refresh.bind(this)}
+              loading = {this.state.loading}
             />
           </View>
         </View>
@@ -196,7 +190,15 @@ const styles = StyleSheet.create({
     color: 'blue',
     borderBottomColor: 'blue',
     borderBottomWidth: 1
+  },
+
+  selected: {
+    color: 'blue',
+    borderBottomColor: 'blue',
+    borderBottomWidth: 1
   }
+
+
 });
 
 var headerStyle = {
@@ -286,6 +288,22 @@ export default StackNavigator(
       screen: OriginalArticle,
       navigationOptions: {
         headerTitle: '个人资料',
+        headerStyle: headerStyle,
+        headerTitleStyle: headerTitleStyle
+      }
+    },
+    TagSelect: {
+      screen: TagSelect,
+      navigationOptions: {
+        headerTitle: '个人资料',
+        headerStyle: headerStyle,
+        headerTitleStyle: headerTitleStyle
+      }
+    },
+    UserTag: {
+      screen: UserTag,
+      navigationOptions: {
+        headerTitle: '他关注的标签',
         headerStyle: headerStyle,
         headerTitleStyle: headerTitleStyle
       }

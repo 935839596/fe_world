@@ -62,7 +62,7 @@ export default class App extends Component {
                       sceneStyle={{paddingBottom: this.state.tabBarHeight}}
         >
           <TabNavigator.Item
-              title="首页"
+              title="文章"
               selected={this.state.selectedTab === 'home'}
               renderIcon={() => <Image style={styles.tabImg} source={ require('./resource/image/home.png')} />}
               renderSelectedIcon={() => <Image style={styles.tabImg} source={ require('./resource/image/homeing.png')} />}
@@ -165,7 +165,7 @@ export default class App extends Component {
         />;
         break;
       default :
-        view = <View>首页</View>;
+        view = <View>文章</View>;
         break;
     }
     return view;

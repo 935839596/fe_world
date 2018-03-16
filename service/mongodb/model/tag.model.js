@@ -5,6 +5,9 @@
 var mongoose = require('mongoose');
 var Tag = require('./tag.model')
 
+var Article = require('./article.model'),
+  User = require('./user.model')
+
 var TagSchema = new mongoose.Schema({
   image: {
     type: String,
@@ -12,14 +15,17 @@ var TagSchema = new mongoose.Schema({
   },
   tagName: {
     type: String,
-    default: ''
+    default: '',
+    unique: true
   },
-  fans: {
-    type: Number,
-    default: 0
-  },
-  articles: {
-    type: Number,
-    default: 0
-  }
+  fans: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  articles: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Article'
+  }]
 })
+
+module.exports = mongoose.model( 'Tag', TagSchema)

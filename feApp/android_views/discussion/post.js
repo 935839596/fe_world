@@ -53,6 +53,9 @@ class Post extends Component{
       .then(data => {
         console.log(data)
         if(data.ret === 0){
+          this.setState({
+            sending: false
+          })
           this.props.navigation.goBack();
         }else{
           Alert.alert(
@@ -80,7 +83,8 @@ class Post extends Component{
       storageOptions: {
         skipBackup: true,
         path: 'images'
-      }
+      },
+      quality: 0.4
     };
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
@@ -100,7 +104,7 @@ class Post extends Component{
         // You can also display the image using data:
          let source ='data:image/jpeg;base64,' + response.data;
 
-        console.log('image:',source)
+          console.log(response)
 
         this.setState({
           image: source
@@ -131,7 +135,7 @@ class Post extends Component{
             完成
           </Text>
         </View>
-        <View style={{flex: 1,backgroundColor: '#fff'}}>
+        <View style={{flex: 1,backgroundColor: '#fff', position: 'relative'}}>
           <TextInput
             placeholder = '说点什么...'
             multiline = {true}
@@ -176,6 +180,22 @@ class Post extends Component{
               </TouchableOpacity>
             </View>
           </View>
+          {
+            this.state.sending?
+              <View style={{
+                flex: 1,
+                backgroundColor: 'rgba(0,0,0, .5)',
+                justifyContent:'center',
+                alignItems: 'center',
+                position: 'absolute',
+                top: 0, bottom: 0, right: 0, left: 0,
+                zIndex: 100
+              }}>
+                <Text style={{color:'white',fontSize: 20}}>发送中...</Text>
+              </View>
+              :
+              <Text></Text>
+          }
         </View>
         <View style={{height: 60, justifyContent: 'center'}}>
           <Icon
