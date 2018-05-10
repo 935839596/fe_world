@@ -2,32 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9fc6096f-0e57-4ac1-b583-79e1e9b869ec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feApp/resource/image/loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feApp/android_views/common/userTag.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feApp/android/app/src/main/res/mipmap-ldpi/ic_launcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/feApp/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/feApp/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/feApp/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/feApp/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/feApp/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/resource/image/loading.gif" afterPath="$PROJECT_DIR$/feApp/resource/image/loading.gif" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/App.js" afterPath="$PROJECT_DIR$/feApp/App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android/app/build.gradle" afterPath="$PROJECT_DIR$/feApp/android/app/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/base/articleList.js" afterPath="$PROJECT_DIR$/feApp/android_views/base/articleList.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/base/commentList.js" afterPath="$PROJECT_DIR$/feApp/android_views/base/commentList.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/base/secondCommentList.js" afterPath="$PROJECT_DIR$/feApp/android_views/base/secondCommentList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/base/tagList.js" afterPath="$PROJECT_DIR$/feApp/android_views/base/tagList.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/common/articleComment.js" afterPath="$PROJECT_DIR$/feApp/android_views/common/articleComment.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/common/articleDetail.js" afterPath="$PROJECT_DIR$/feApp/android_views/common/articleDetail.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/common/config.js" afterPath="$PROJECT_DIR$/feApp/android_views/common/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/common/register.js" afterPath="$PROJECT_DIR$/feApp/android_views/common/register.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/common/tagSelect.js" afterPath="$PROJECT_DIR$/feApp/android_views/common/tagSelect.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/common/userList.js" afterPath="$PROJECT_DIR$/feApp/android_views/common/userList.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/common/userProfile.js" afterPath="$PROJECT_DIR$/feApp/android_views/common/userProfile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/discussion/discussion.js" afterPath="$PROJECT_DIR$/feApp/android_views/discussion/discussion.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/discussion/discussionComment.js" afterPath="$PROJECT_DIR$/feApp/android_views/discussion/discussionComment.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/discussion/post.js" afterPath="$PROJECT_DIR$/feApp/android_views/discussion/post.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/home/home.js" afterPath="$PROJECT_DIR$/feApp/android_views/home/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/my/edit.js" afterPath="$PROJECT_DIR$/feApp/android_views/my/edit.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/my/my.js" afterPath="$PROJECT_DIR$/feApp/android_views/my/my.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feApp/android_views/my/myTag.js" afterPath="$PROJECT_DIR$/feApp/android_views/my/myTag.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/app.js" afterPath="$PROJECT_DIR$/service/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/cal/tag.js" afterPath="$PROJECT_DIR$/service/cal/tag.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/mongodb/model/tag.model.js" afterPath="$PROJECT_DIR$/service/mongodb/model/tag.model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/mongodb/model/user.model.js" afterPath="$PROJECT_DIR$/service/mongodb/model/user.model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/routes/article.js" afterPath="$PROJECT_DIR$/service/routes/article.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/package.json" afterPath="$PROJECT_DIR$/service/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/routes/common.js" afterPath="$PROJECT_DIR$/service/routes/common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/routes/discussion.js" afterPath="$PROJECT_DIR$/service/routes/discussion.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/routes/my.js" afterPath="$PROJECT_DIR$/service/routes/my.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/views/article/articleTem.ejs" afterPath="$PROJECT_DIR$/service/views/article/articleTem.ejs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -42,287 +44,16 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.35331634">
+    <splitter split-orientation="horizontal" split-proportion="0.35895577">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="articleList.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/base/articleList.js">
+          <file leaf-file-name="articleComment.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/articleComment.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="629">
-                  <caret line="363" column="3" lean-forward="true" selection-start-line="363" selection-start-column="3" selection-end-line="363" selection-end-column="3" />
+                <state relative-caret-position="2475">
+                  <caret line="87" column="36" lean-forward="false" selection-start-line="87" selection-start-column="36" selection-end-line="87" selection-end-column="36" />
                   <folding>
-                    <element signature="n#!!block;n#_getAllCommentCount#0;n#ArticleItem#0" expanded="false" />
-                    <element signature="n#!!block;n#_like#0;n#ArticleItem#0" expanded="false" />
-                    <element signature="e#2717#3898#0" expanded="false" />
-                    <element signature="e#3907#4809#0" expanded="false" />
-                    <element signature="e#4071#4269#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="userProfile.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/userProfile.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-4088">
-                  <caret line="246" column="26" lean-forward="false" selection-start-line="246" selection-start-column="26" selection-end-line="246" selection-end-column="26" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                    <element signature="e#53#94#0" expanded="true" />
-                    <element signature="n#!!block;n#_getMeta#0;n#UserProfile#0" expanded="false" />
-                    <element signature="n#!!block;n#_follow#0;n#UserProfile#0" expanded="false" />
-                    <element signature="e#7676#7821#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/config.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="231">
-                  <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="tagList.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/base/tagList.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1285">
-                  <caret line="156" column="11" lean-forward="false" selection-start-line="156" selection-start-column="11" selection-end-line="156" selection-end-column="11" />
-                  <folding>
-                    <element signature="e#42#83#0" expanded="true" />
-                    <element signature="e#1119#1214#0" expanded="false" />
-                    <element signature="e#4082#4344#0" expanded="false" />
-                    <element signature="e#4359#4591#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="commentList.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/base/commentList.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-5905">
-                  <caret line="141" column="20" lean-forward="false" selection-start-line="141" selection-start-column="20" selection-end-line="141" selection-end-column="20" />
-                  <folding>
-                    <element signature="n#!!block;n#_showModal#0;n#CommentItem#0" expanded="false" />
-                    <element signature="n#!!block;n#_formateTime#0;n#CommentItem#0" expanded="false" />
-                    <element signature="n#!!block;n#_formateTwo#0;n#CommentItem#0" expanded="false" />
-                    <element signature="n#!!block;n#showModal#0;n#CommentList#0" expanded="false" />
-                    <element signature="n#!!block;n#_setModalVisible#0;n#CommentList#0" expanded="false" />
-                    <element signature="n#!!block;n#closeModal#0;n#CommentList#0" expanded="false" />
-                    <element signature="n#!!block;n#_getAllCommentCount#0;n#CommentList#0" expanded="false" />
-                    <element signature="e#7573#7840#0" expanded="false" />
-                    <element signature="n#!!block;n#render#0;n#CommentList#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="commentModal.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/base/commentModal.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-4717">
-                  <caret line="76" column="28" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="76" selection-end-column="28" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="picModal.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/base/picModal.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-427">
-                  <caret line="86" column="29" lean-forward="false" selection-start-line="86" selection-start-column="29" selection-end-line="86" selection-end-column="29" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="secondCommentList.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/base/secondCommentList.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-12175">
-                  <caret line="127" column="61" lean-forward="false" selection-start-line="127" selection-start-column="50" selection-end-line="127" selection-end-column="61" />
-                  <folding>
-                    <element signature="n#!!block;n#_getCommentDetail#0;n#SecondCommentItem#0" expanded="false" />
-                    <element signature="n#!!block;n#_like#0;n#SecondCommentItem#0" expanded="false" />
-                    <element signature="n#!!block;n#_send#0;n#SecondCommentList#0" expanded="false" />
-                    <element signature="n#!!block;n#_like#0;n#SecondCommentList#0" expanded="false" />
-                    <element signature="n#!!block;n#_formateTwo#0;n#SecondCommentList#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="userTag.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/userTag.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-229">
-                  <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
-                  <folding>
-                    <element signature="e#42#83#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="article.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/service/routes/article.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="260">
-                  <caret line="51" column="24" lean-forward="true" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
-                  <folding>
-                    <element signature="e#2224#2685#0" expanded="false" />
-                    <element signature="e#2844#4437#0" expanded="false" />
-                    <element signature="e#4561#4882#0" expanded="false" />
-                    <element signature="e#4936#5273#0" expanded="false" />
-                    <element signature="e#7685#8751#0" expanded="false" />
-                    <element signature="e#10105#10330#0" expanded="false" />
-                    <element signature="e#10471#10680#0" expanded="false" />
-                    <element signature="n#!!block;n#_helpLikeOrNot#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="edit.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/my/edit.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="266">
-                  <caret line="220" column="17" lean-forward="true" selection-start-line="220" selection-start-column="17" selection-end-line="220" selection-end-column="17" />
-                  <folding>
-                    <element signature="n#!!block;n#_selectImg#0;n#Edit#0" expanded="false" />
-                    <element signature="n#!!block;n#_refresh#0;n#Edit#0" expanded="false" />
-                    <element signature="e#2968#3224#0" expanded="false" />
-                    <element signature="e#3240#4025#0" expanded="false" />
-                    <element signature="e#4041#4839#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="loveArticle.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/loveArticle.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2011">
-                  <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-                  <folding>
-                    <element signature="n#!!block;n#componentDidMount#0;n#LoveArticle#0" expanded="false" />
-                    <element signature="n#!!block;n#refresh#0;n#LoveArticle#0" expanded="false" />
-                    <element signature="e#3218#3771#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="tagSelect.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/tagSelect.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-3595">
-                  <caret line="101" column="22" lean-forward="true" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
-                  <folding>
-                    <element signature="e#43#84#0" expanded="true" />
-                    <element signature="e#3526#4044#0" expanded="false" />
-                    <element signature="e#4060#4169#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="userList.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/userList.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-5080">
-                  <caret line="81" column="31" lean-forward="true" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="31" />
-                  <folding>
-                    <element signature="e#2727#2960#0" expanded="false" />
-                    <element signature="n#!!block;n#_refresh#0;n#UserList#0" expanded="false" />
-                    <element signature="n#!!block;n#_follow#0;n#UserList#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="originalArticle.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/originalArticle.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2968">
-                  <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#3230#3783#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/home/home.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-8446">
-                  <caret line="30" column="7" lean-forward="false" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
-                  <folding>
-                    <element signature="e#48#89#0" expanded="true" />
-                    <element signature="e#4658#4837#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="register.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/register.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-5410">
-                  <caret line="73" column="33" lean-forward="true" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="post.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/discussion/post.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1912">
-                  <caret line="175" column="20" lean-forward="true" selection-start-line="175" selection-start-column="20" selection-end-line="175" selection-end-column="20" />
-                  <folding>
-                    <element signature="n#!!block;n#_selectImg#0;n#Post#0" expanded="false" />
-                    <element signature="e#2565#2996#0" expanded="false" />
-                    <element signature="e#3086#3442#0" expanded="false" />
-                    <element signature="e#5053#5312#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="discussion.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/feApp/android_views/discussion/discussion.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1036">
-                  <caret line="484" column="10" lean-forward="true" selection-start-line="484" selection-start-column="10" selection-end-line="484" selection-end-column="10" />
-                  <folding>
-                    <element signature="e#49#90#0" expanded="true" />
-                    <element signature="n#!!block;n#_formateTime#0;n#DiscussionItem#0" expanded="false" />
-                    <element signature="n#!!block;n#_getMeta#0;n#DiscussionItem#0" expanded="false" />
-                    <element signature="n#!!block;n#_getAllCommentCount#0;n#DiscussionItem#0" expanded="false" />
-                    <element signature="n#!!block;n#_like#0;n#DiscussionItem#0" expanded="false" />
-                    <element signature="n#!!block;n#_follow#0;n#DiscussionItem#0" expanded="false" />
-                    <element signature="e#7448#8494#0" expanded="false" />
-                    <element signature="n#!!block;n#refresh#0;n#Discussion#0" expanded="false" />
-                    <element signature="e#10476#10572#0" expanded="false" />
-                    <element signature="n#!!block;n#xixi#0;n#Discussion#0" expanded="false" />
-                    <element signature="n#!!block;n#_showPost#0;n#Discussion#0" expanded="false" />
-                    <element signature="e#12007#12282#0" expanded="false" />
-                    <element signature="e#12291#13318#0" expanded="false" />
-                    <element signature="e#16028#16225#0" expanded="false" />
-                    <element signature="e#16247#16319#0" expanded="false" />
-                    <element signature="e#18095#18247#0" expanded="false" />
+                    <element signature="n#!!block;n#_getComment#0;n#ArticleComment#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -331,14 +62,249 @@
           <file leaf-file-name="discussionComment.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/feApp/android_views/discussion/discussionComment.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="407" column="25" lean-forward="true" selection-start-line="407" selection-start-column="25" selection-end-line="407" selection-end-column="25" />
+                <state relative-caret-position="13167">
+                  <caret line="413" column="22" lean-forward="false" selection-start-line="413" selection-start-column="22" selection-end-line="413" selection-end-column="22" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="originalArticle.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/originalArticle.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="3927">
+                  <caret line="129" column="7" lean-forward="false" selection-start-line="129" selection-start-column="7" selection-end-line="129" selection-end-column="7" />
                   <folding>
-                    <element signature="n#!!block;n#_follow#0;n#DiscussionComment#0" expanded="false" />
-                    <element signature="n#!!block;n#_getMeta#0;n#DiscussionComment#0" expanded="false" />
-                    <element signature="n#!!block;n#_formateTime#0;n#DiscussionComment#0" expanded="false" />
-                    <element signature="n#!!block;n#_formateTwo#0;n#DiscussionComment#0" expanded="false" />
-                    <element signature="n#!!block;n#_send#0;n#DiscussionComment#0" expanded="false" />
+                    <element signature="e#3230#3783#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="my.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/my/my.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="3630">
+                  <caret line="136" column="69" lean-forward="false" selection-start-line="133" selection-start-column="26" selection-end-line="136" selection-end-column="69" />
+                  <folding>
+                    <element signature="e#53#94#0" expanded="true" />
+                    <element signature="n#!!block;n#_logout#0;n#My#0" expanded="false" />
+                    <element signature="e#10645#10794#0" expanded="false" />
+                    <element signature="e#11758#13763#0" expanded="false" />
+                    <element signature="e#15600#15771#0" expanded="false" />
+                    <element signature="e#15790#15958#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="secondCommentList.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/base/secondCommentList.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2046">
+                  <caret line="243" column="8" lean-forward="false" selection-start-line="243" selection-start-column="8" selection-end-line="243" selection-end-column="8" />
+                  <folding>
+                    <element signature="n#SecondCommentItem#0" expanded="false" />
+                    <element signature="n#!!block;n#_getCommentDetail#0;n#SecondCommentItem#0" expanded="false" />
+                    <element signature="n#!!block;n#_like#0;n#SecondCommentItem#0" expanded="false" />
+                    <element signature="n#!!block;n#_like#0;n#SecondCommentList#0" expanded="false" />
+                    <element signature="n#!!block;n#_formateTwo#0;n#SecondCommentList#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="article.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/service/routes/article.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="792">
+                  <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="common.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/service/routes/common.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="297">
+                  <caret line="328" column="6" lean-forward="false" selection-start-line="328" selection-start-column="6" selection-end-line="328" selection-end-column="6" />
+                  <folding>
+                    <element signature="e#6074#6168#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="userList.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/userList.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2673">
+                  <caret line="128" column="5" lean-forward="false" selection-start-line="128" selection-start-column="5" selection-end-line="128" selection-end-column="5" />
+                  <folding>
+                    <element signature="n#!!block;n#_follow#0;n#UserItem#0" expanded="false" />
+                    <element signature="e#2869#3102#0" expanded="false" />
+                    <element signature="n#!!block;n#_refresh#0;n#UserList#0" expanded="false" />
+                    <element signature="n#!!block;n#_follow#0;n#UserList#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="userProfile.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/userProfile.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1914">
+                  <caret line="72" column="42" lean-forward="false" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/App.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2310">
+                  <caret line="89" column="25" lean-forward="false" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="25" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+          <file leaf-file-name="post.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/discussion/post.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2145">
+                  <caret line="78" column="12" lean-forward="false" selection-start-line="78" selection-start-column="12" selection-end-line="78" selection-end-column="12" />
+                  <folding>
+                    <element signature="e#43#84#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="commentList.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/base/commentList.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="8151">
+                  <caret line="264" column="9" lean-forward="false" selection-start-line="264" selection-start-column="9" selection-end-line="264" selection-end-column="9" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="articleDetail.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/articleDetail.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2739">
+                  <caret line="85" column="25" lean-forward="false" selection-start-line="85" selection-start-column="25" selection-end-line="85" selection-end-column="25" />
+                  <folding>
+                    <element signature="e#53#94#0" expanded="true" />
+                    <element signature="e#2050#2468#0" expanded="false" />
+                    <element signature="e#2063#2311#0" expanded="false" />
+                    <element signature="e#2324#2452#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="discussion.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/service/routes/discussion.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1947">
+                  <caret line="59" column="14" lean-forward="false" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/service/routes/common.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="8382">
+                  <caret line="254" column="14" lean-forward="false" selection-start-line="254" selection-start-column="14" selection-end-line="254" selection-end-column="14" />
+                  <folding>
+                    <element signature="e#6074#6168#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="discussion.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/discussion/discussion.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="15015">
+                  <caret line="673" column="7" lean-forward="false" selection-start-line="673" selection-start-column="7" selection-end-line="673" selection-end-column="7" />
+                  <folding>
+                    <element signature="e#49#90#0" expanded="true" />
+                    <element signature="n#!!block;n#_formateTime#0;n#DiscussionItem#0" expanded="false" />
+                    <element signature="n#!!block;n#_getMeta#0;n#DiscussionItem#0" expanded="false" />
+                    <element signature="n#!!block;n#_getAllCommentCount#0;n#DiscussionItem#0" expanded="false" />
+                    <element signature="n#!!block;n#_follow#0;n#DiscussionItem#0" expanded="false" />
+                    <element signature="e#6654#7700#0" expanded="false" />
+                    <element signature="e#9221#9679#0" expanded="false" />
+                    <element signature="e#9746#9842#0" expanded="false" />
+                    <element signature="n#!!block;n#xixi#0;n#Discussion#0" expanded="false" />
+                    <element signature="n#!!block;n#_showPost#0;n#Discussion#0" expanded="false" />
+                    <element signature="e#11291#12828#0" expanded="false" />
+                    <element signature="e#11324#11599#0" expanded="false" />
+                    <element signature="e#12645#12814#0" expanded="false" />
+                    <element signature="e#12843#13235#0" expanded="false" />
+                    <element signature="e#12856#13088#0" expanded="false" />
+                    <element signature="e#13099#13221#0" expanded="false" />
+                    <element signature="e#15753#15950#0" expanded="false" />
+                    <element signature="e#15972#16044#0" expanded="false" />
+                    <element signature="e#17820#17972#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="config.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/common/config.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="132">
+                  <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="articleTem.ejs" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/service/views/article/articleTem.ejs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="363">
+                  <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="myTag.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/my/myTag.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="825">
+                  <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+                  <folding>
+                    <element signature="n#!!block;n#_showAll#0;n#MyTag#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="tagList.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/feApp/android_views/base/tagList.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="792">
+                  <caret line="39" column="28" lean-forward="false" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="28" />
+                  <folding>
+                    <element signature="e#1119#1214#0" expanded="false" />
+                    <element signature="e#4082#4344#0" expanded="false" />
+                    <element signature="e#4359#4591#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -358,36 +324,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>left</find>
-      <find>right</find>
-      <find>_loadMoreData</find>
-      <find>TouchableOpacity</find>
-      <find>bind</find>
-      <find>show</find>
-      <find>taglist</find>
-      <find>showPicModal</find>
-      <find>关注的标签</find>
-      <find>number</find>
-      <find>tagLi</find>
-      <find>top</find>
-      <find>componentdid</find>
+      <find>all_comment</find>
+      <find>all_co</find>
+      <find>like</find>
+      <find>标签</find>
+      <find>remove_interest</find>
+      <find>icon</find>
+      <find>120.79.245.206</find>
+      <find>refresh</find>
+      <find>gei</find>
+      <find>发表评论</find>
+      <find>textInput</find>
+      <find>_getAllCommentCount</find>
+      <find>guanzh</find>
       <find>关注</find>
-      <find>MyTag</find>
-      <find>_showAll</find>
-      <find>add_interest</find>
-      <find>selected</find>
-      <find>_loadData</find>
-      <find>c</find>
-      <find>regi</find>
-      <find>TagSelect</find>
-      <find>add</find>
-      <find>tagS</find>
-      <find>console</find>
-      <find>tag</find>
-      <find>conso</find>
-      <find>idArr</find>
-      <find>UserTag</find>
-      <find>input</find>
+      <find>评价</find>
+      <find>评</find>
+      <find>Image</find>
+      <find>take</find>
+      <find>userPro</find>
+      <find>articleId</find>
+      <find>send</find>
+      <find>write_comment</find>
+      <find>discussionId</find>
+      <find>image</find>
+      <find>userPr</find>
+      <find>userprofile</find>
+      <find>他关注的</find>
+      <find>followers</find>
+      <find>/followers</find>
+      <find>UserList</find>
     </findStrings>
     <replaceStrings>
       <replace>buildTime</replace>
@@ -400,6 +366,9 @@
       <replace>imageHeight</replace>
       <replace>100</replace>
       <replace>150</replace>
+      <replace>172.27.11.227</replace>
+      <replace>120.79.245.206</replace>
+      <replace>172.29.108.134</replace>
     </replaceStrings>
     <dirStrings>
       <dir>react-native-tab-navigator</dir>
@@ -413,21 +382,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/feApp/android_views/base/modal.js" />
         <option value="$PROJECT_DIR$/feApp/页面.md" />
         <option value="$PROJECT_DIR$/service/mongodb/model/article.model.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/views/article/articleTem.ejs" />
-        <option value="$PROJECT_DIR$/service/views/article/articleTem.ejs" />
         <option value="$PROJECT_DIR$/service/mongodb/model/message.model.js" />
         <option value="$PROJECT_DIR$/service/接口文档.md" />
         <option value="$PROJECT_DIR$/service/mongodb/model/discussion.model.js" />
         <option value="$PROJECT_DIR$/service/mongodb/model/comment.model.js" />
-        <option value="$PROJECT_DIR$/feApp/android_views/common/articleComment.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/base/commentModal.js" />
         <option value="$PROJECT_DIR$/service/routes/createDiscussion.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/common/loveArticle.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/common/originalArticle.js" />
-        <option value="$PROJECT_DIR$/feApp/android_views/discussion/discussionComment.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/common/login.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/common/inputScreen.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/my/inputScreen.js" />
@@ -435,35 +400,39 @@
         <option value="$PROJECT_DIR$/feApp/android/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/feApp/package.json" />
         <option value="$PROJECT_DIR$/feApp/android_views/base/picModal.js" />
-        <option value="$PROJECT_DIR$/service/routes/discussion.js" />
-        <option value="$PROJECT_DIR$/feApp/android_views/common/userList.js" />
         <option value="$PROJECT_DIR$/service/cal/promise.js" />
-        <option value="$PROJECT_DIR$/feApp/android_views/base/secondCommentList.js" />
-        <option value="$PROJECT_DIR$/feApp/android_views/base/commentList.js" />
         <option value="$PROJECT_DIR$/service/cal/user.js" />
-        <option value="$PROJECT_DIR$/feApp/android_views/discussion/post.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/my/edit.js" />
         <option value="$PROJECT_DIR$/service/mongodb/model/tag.model.js" />
         <option value="$PROJECT_DIR$/service/cal/tag.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/base/userTag.js" />
-        <option value="$PROJECT_DIR$/feApp/android_views/common/config.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/base/tagList.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/common/userTag.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/my/myTag.js" />
-        <option value="$PROJECT_DIR$/feApp/android_views/common/userProfile.js" />
-        <option value="$PROJECT_DIR$/feApp/android_views/base/articleList.js" />
-        <option value="$PROJECT_DIR$/feApp/android_views/common/articleDetail.js" />
-        <option value="$PROJECT_DIR$/feApp/android_views/home/home.js" />
-        <option value="$PROJECT_DIR$/service/routes/my.js" />
         <option value="$PROJECT_DIR$/service/mongodb/model/user.model.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/common/register.js" />
         <option value="$PROJECT_DIR$/service/app.js" />
-        <option value="$PROJECT_DIR$/feApp/App.js" />
-        <option value="$PROJECT_DIR$/feApp/android_views/my/my.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/common/tagSelect.js" />
-        <option value="$PROJECT_DIR$/service/routes/common.js" />
         <option value="$PROJECT_DIR$/service/routes/article.js" />
+        <option value="$PROJECT_DIR$/service/routes/discussion.js" />
+        <option value="$PROJECT_DIR$/feApp/android_views/common/userProfile.js" />
+        <option value="$PROJECT_DIR$/feApp/android_views/base/commentList.js" />
+        <option value="$PROJECT_DIR$/service/routes/my.js" />
+        <option value="$PROJECT_DIR$/feApp/App.js" />
+        <option value="$PROJECT_DIR$/feApp/android_views/home/home.js" />
+        <option value="$PROJECT_DIR$/feApp/android_views/base/articleList.js" />
+        <option value="$PROJECT_DIR$/feApp/android_views/common/articleComment.js" />
+        <option value="$PROJECT_DIR$/feApp/android/app/build.gradle" />
+        <option value="$PROJECT_DIR$/feApp/android_views/common/articleDetail.js" />
+        <option value="$PROJECT_DIR$/feApp/android_views/discussion/post.js" />
+        <option value="$PROJECT_DIR$/feApp/android_views/discussion/discussionComment.js" />
+        <option value="$PROJECT_DIR$/feApp/android_views/my/my.js" />
+        <option value="$PROJECT_DIR$/feApp/android_views/base/secondCommentList.js" />
+        <option value="$PROJECT_DIR$/feApp/android_views/common/userList.js" />
         <option value="$PROJECT_DIR$/feApp/android_views/discussion/discussion.js" />
+        <option value="$PROJECT_DIR$/service/routes/common.js" />
+        <option value="$PROJECT_DIR$/feApp/android_views/common/config.js" />
+        <option value="$PROJECT_DIR$/service/views/article/articleTem.ejs" />
       </list>
     </option>
   </component>
@@ -542,7 +511,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -554,108 +523,6 @@
               <option name="myItemId" value="fe_world" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mongodb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mongodb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -668,28 +535,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="feApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="image" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -708,252 +553,12 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="android_views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android_views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="my" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android_views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="home" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android_views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="discussion" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android_views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android_views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="base" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="build" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="build" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="outputs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fe_world" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="feApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="build" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="outputs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apk" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -962,7 +567,7 @@
     <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="config&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/config.js&#10;discussion&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/discussion/discussion.js&#10;ejs&#9;FILE&#9;file://E:/SZU/fe_world/service/views/article/articleTem.ejs&#10;userprofi&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/userProfile.js&#10;common&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/common.js&#10;my&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/my.js&#10;app&#9;FILE&#9;file://E:/SZU/fe_world/feApp/App.js&#10;tagLi&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/tagList.js&#10;tag&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/tagSelect.js&#10;user&#9;FILE&#9;file://E:/SZU/fe_world/service/mongodb/model/user.model.js&#10;login.js&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/login.js&#10;user.mod&#9;FILE&#9;file://E:/SZU/fe_world/service/mongodb/model/user.model.js&#10;articlecom&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/articleComment.js&#10;app.js&#9;FILE&#9;file://E:/SZU/fe_world/service/app.js&#10;regi&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/register.js&#10;tagsele&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/tagSelect.js&#10;App&#9;FILE&#9;file://E:/SZU/fe_world/feApp/App.js&#10;home&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/home/home.js&#10;common.js&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/common.js&#10;article.js&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/article.js&#10;arti&#9;FILE&#9;file://E:/SZU/fe_world/service/views/article/articleTem.ejs&#10;ar&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/articleDetail.js&#10;discussion.js&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/createDiscussion.js&#10;userpro&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/userProfile.js&#10;tagSele&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/tagSelect.js&#10;my.js&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/my/my.js&#10;article&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/articleList.js&#10;tagSe&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/tagSelect.js&#10;AP&#9;FILE&#9;file://E:/SZU/fe_world/feApp/App.js&#10;post&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/discussion/post.js&#10;discu&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/discussion/discussion.js&#10;user.mo&#9;FILE&#9;file://E:/SZU/fe_world/service/mongodb/model/user.model.js&#10;tag.mo&#9;FILE&#9;file://E:/SZU/fe_world/service/mongodb/model/tag.model.js&#10;picmo&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/picModal.js&#10;userpo&#9;null&#9;null&#10;edit.js&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/my/edit.js&#10;articleDe&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/articleDetail.js&#10;articleList&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/articleList.js&#10;dis&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/discussion/discussion.js&#10;sec&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/secondCommentList.js&#10;comm&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/commentList.js&#10;origi&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/originalArticle.js&#10;inpuSc&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/my/inputScreen.js&#10;modal&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/commentModal.js&#10;discussion.mod&#9;FILE&#9;file://E:/SZU/fe_world/service/mongodb/model/discussion.model.js&#10;disc&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/createDiscussion.js&#10;App.js&#9;FILE&#9;file://E:/SZU/fe_world/feApp/App.js&#10;discussionCo&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/discussion/discussionComment.js&#10;AndroidM&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android/app/src/main/AndroidManifest.xml" />
+    <property name="SearchEverywhereHistoryKey" value="ejs&#9;FILE&#9;file://E:/SZU/fe_world/service/views/article/articleTem.ejs&#10;config&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/config.js&#10;common&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/common.js&#10;user&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/userList.js&#10;discussion&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/discussion/discussion.js&#10;discu&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/discussion.js&#10;userpro&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/userProfile.js&#10;my&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/my/my.js&#10;tem&#9;FILE&#9;file://E:/SZU/fe_world/service/views/article/articleTem.ejs&#10;articleDe&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/articleDetail.js&#10;articleCo&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/articleComment.js&#10;commentLi&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/commentList.js&#10;article.js&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/article.js&#10;seco&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/secondCommentList.js&#10;origi&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/originalArticle.js&#10;post&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/discussion/post.js&#10;discussionj&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/discussion/discussion.js&#10;.gif&#9;FILE&#9;file://E:/SZU/fe_world/feApp/resource/image/loading.gif&#10;discussionC&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/discussion/discussionComment.js&#10;article&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/articleComment.js&#10;home&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/home/home.js&#10;confi&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/config.js&#10;articl&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/articleList.js&#10;tag&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/tagList.js&#10;myTa&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/my/myTag.js&#10;common.&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/common.js&#10;discussion.js&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/discussion.js&#10;secc&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/secondCommentList.js&#10;app&#9;FILE&#9;file://E:/SZU/fe_world/feApp/App.js&#10;login&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/login.js&#10;di&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/discussion.js&#10;art&#9;FILE&#9;file://E:/SZU/fe_world/service/views/article/articleTem.ejs&#10;articlLi&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/articleList.js&#10;app.&#9;FILE&#9;file://E:/SZU/fe_world/feApp/App.js&#10;arti&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/article.js&#10;articltem&#9;FILE&#9;file://E:/SZU/fe_world/service/views/article/articleTem.ejs&#10;userprofi&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/userProfile.js&#10;tagLi&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/base/tagList.js&#10;login.js&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/login.js&#10;user.mod&#9;FILE&#9;file://E:/SZU/fe_world/service/mongodb/model/user.model.js&#10;articlecom&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/articleComment.js&#10;app.js&#9;FILE&#9;file://E:/SZU/fe_world/service/app.js&#10;regi&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/register.js&#10;tagsele&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/tagSelect.js&#10;App&#9;FILE&#9;file://E:/SZU/fe_world/feApp/App.js&#10;common.js&#9;FILE&#9;file://E:/SZU/fe_world/service/routes/common.js&#10;ar&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/articleDetail.js&#10;tagSele&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/tagSelect.js&#10;my.js&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/my/my.js&#10;tagSe&#9;FILE&#9;file://E:/SZU/fe_world/feApp/android_views/common/tagSelect.js" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Li" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -978,11 +583,11 @@
       <recent name="E:\SZU\fe_world\service" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\SZU\fe_world\feApp\android\app\src\main\res" />
       <recent name="E:\SZU\fe_world\feApp\resource\image" />
       <recent name="E:\SZU\fe_world\feApp\android_views\my" />
       <recent name="E:\SZU\fe_world\feApp\android_views\common" />
       <recent name="E:\SZU\fe_world\service\public\stylesheets" />
-      <recent name="E:\SZU\fe_world\service\public\javascripts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1208,6 +813,18 @@
       <workItem from="1521004087907" duration="17597000" />
       <workItem from="1521033854776" duration="5384000" />
       <workItem from="1521077173034" duration="12276000" />
+      <workItem from="1521595849480" duration="3640000" />
+      <workItem from="1521611742556" duration="10760000" />
+      <workItem from="1521625746630" duration="2747000" />
+      <workItem from="1523723407832" duration="1482000" />
+      <workItem from="1523776415790" duration="3753000" />
+      <workItem from="1523866155384" duration="5837000" />
+      <workItem from="1524568032024" duration="788000" />
+      <workItem from="1524641086499" duration="3452000" />
+      <workItem from="1525242116666" duration="3916000" />
+      <workItem from="1525660505961" duration="5278000" />
+      <workItem from="1525672166333" duration="1455000" />
+      <workItem from="1525735571363" duration="1412000" />
     </task>
     <task id="LOCAL-00001" summary="修改一些接口数据">
       <created>1515941599171</created>
@@ -1255,7 +872,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="491541000" />
+    <option name="totallyTimeSpent" value="536061000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1272,13 +889,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3272311" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32837528" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3699095" sideWeight="0.5021209" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.709276" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.708238" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42677346" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32961783" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280543" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40846682" sideWeight="0.49787912" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16462441" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40732265" sideWeight="0.49787912" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.265317" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5091533" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1289,31 +905,9 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280543" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32837528" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3699095" sideWeight="0.5021209" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.709276" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4276018" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32961783" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280543" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45588234" sideWeight="0.49787912" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22695792" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.510181" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951945" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -1367,7 +961,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/feApp/android_views/home/home.js</url>
-          <line>208</line>
+          <line>212</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -1375,107 +969,17 @@
           <line>20</line>
           <option name="timeStamp" value="114" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/feApp/android_views/common/articleDetail.js</url>
+          <line>6</line>
+          <option name="timeStamp" value="183" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="183" />
+      <option name="time" value="186" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/service/mongodb/model/comment.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/mongodb/model/article.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_github.com_DefinitelyTyped_DefinitelyTyped_raw_master_types_react_index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="376" column="8" lean-forward="false" selection-start-line="376" selection-start-column="8" selection-end-line="376" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/inputScreen.js" />
-    <entry file="file://$PROJECT_DIR$/feApp/android/app/build/intermediates/assets/release/index.android.bundle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="551" column="1368" lean-forward="false" selection-start-line="551" selection-start-column="1368" selection-end-line="551" selection-end-column="1368" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_github.com_DefinitelyTyped_DefinitelyTyped_raw_master_types_react-native_index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="4751" column="65" lean-forward="false" selection-start-line="4751" selection-start-column="65" selection-end-line="4751" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="7" column="55" lean-forward="false" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/mongodb/model/discussion.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="26" column="8" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/my/inputScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1287">
-          <caret line="51" column="15" lean-forward="false" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
-          <folding>
-            <element signature="e#1901#2335#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/node_modules/mongoose/lib/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13464">
-          <caret line="408" column="3" lean-forward="false" selection-start-line="408" selection-start-column="3" selection-end-line="408" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/routes/discussion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3333">
-          <caret line="109" column="34" lean-forward="false" selection-start-line="109" selection-start-column="34" selection-end-line="109" selection-end-column="34" />
-          <folding>
-            <element signature="e#1291#1413#0" expanded="false" />
-            <element signature="e#1417#1540#0" expanded="false" />
-            <element signature="e#5048#6117#0" expanded="false" />
-            <element signature="e#7450#8423#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/service/node_modules/mongoose/lib/model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129591">
@@ -1494,7 +998,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="267">
           <caret line="0" column="26325" lean-forward="false" selection-start-line="0" selection-start-column="26325" selection-end-line="0" selection-end-column="26325" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1502,15 +1005,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/routes/createDiscussion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1518,9 +1012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
           <caret line="55" column="28" lean-forward="false" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1528,19 +1019,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-          <folding>
-            <element signature="e#460#1128#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/my/myTag.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="72" selection-end-column="29" />
-          <folding>
-            <element signature="e#43#84#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1548,188 +1026,203 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1019">
           <caret line="10" column="34" lean-forward="false" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="68" column="22" lean-forward="false" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="44" column="21" lean-forward="false" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
-          <folding>
-            <element signature="e#3247#3301#0" expanded="false" />
-            <element signature="e#3326#3394#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/routes/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="389" column="27" lean-forward="false" selection-start-line="389" selection-start-column="27" selection-end-line="389" selection-end-column="27" />
-          <folding>
-            <element signature="e#1318#2407#0" expanded="false" />
-            <element signature="e#1535#1640#0" expanded="false" />
-            <element signature="e#2011#2292#0" expanded="false" />
-            <element signature="e#2576#3649#0" expanded="false" />
-            <element signature="e#2624#3646#0" expanded="false" />
-            <element signature="e#3274#3531#0" expanded="false" />
-            <element signature="e#3772#3922#0" expanded="false" />
-            <element signature="e#4059#4223#0" expanded="false" />
-            <element signature="e#4362#4527#0" expanded="false" />
-            <element signature="e#4655#5681#0" expanded="false" />
-            <element signature="e#5806#6897#0" expanded="false" />
-            <element signature="e#6379#6489#0" expanded="false" />
-            <element signature="e#7003#7573#0" expanded="false" />
-            <element signature="n#!!block;n#_helpFollowOrNot#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/my/my.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="50" column="3" lean-forward="true" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
-          <folding>
-            <element signature="e#53#94#0" expanded="true" />
-            <element signature="n#!!block;n#_logout#0;n#My#0" expanded="false" />
-            <element signature="e#10501#12136#0" expanded="false" />
-            <element signature="e#11461#11610#0" expanded="false" />
-            <element signature="e#12574#14579#0" expanded="false" />
-            <element signature="e#15808#15987#0" expanded="false" />
-            <element signature="e#16414#16585#0" expanded="false" />
-            <element signature="e#16604#16772#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/routes/article.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="51" column="24" lean-forward="true" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
-          <folding>
-            <element signature="e#2224#2685#0" expanded="false" />
-            <element signature="e#2844#4437#0" expanded="false" />
-            <element signature="e#4561#4882#0" expanded="false" />
-            <element signature="e#4936#5273#0" expanded="false" />
-            <element signature="e#7685#8751#0" expanded="false" />
-            <element signature="e#10105#10330#0" expanded="false" />
-            <element signature="e#10471#10680#0" expanded="false" />
-            <element signature="n#!!block;n#_helpLikeOrNot#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/routes/my.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="306" column="17" lean-forward="true" selection-start-line="306" selection-start-column="17" selection-end-line="306" selection-end-column="17" />
-          <folding>
-            <element signature="e#2611#2851#0" expanded="false" />
-            <element signature="e#3035#3634#0" expanded="false" />
-            <element signature="e#3781#4216#0" expanded="false" />
-            <element signature="n#!!block;n#_helpSendList#0" expanded="false" />
-            <element signature="n#!!block;n#getUser#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/views/article/articleTem.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/base/articleList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="363" column="3" lean-forward="true" selection-start-line="363" selection-start-column="3" selection-end-line="363" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!block;n#_getAllCommentCount#0;n#ArticleItem#0" expanded="false" />
-            <element signature="n#!!block;n#_like#0;n#ArticleItem#0" expanded="false" />
-            <element signature="e#2717#3898#0" expanded="false" />
-            <element signature="e#3907#4809#0" expanded="false" />
-            <element signature="e#4071#4269#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/base/commentList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5905">
-          <caret line="141" column="20" lean-forward="false" selection-start-line="141" selection-start-column="20" selection-end-line="141" selection-end-column="20" />
-          <folding>
-            <element signature="n#!!block;n#_showModal#0;n#CommentItem#0" expanded="false" />
-            <element signature="n#!!block;n#_formateTime#0;n#CommentItem#0" expanded="false" />
-            <element signature="n#!!block;n#_formateTwo#0;n#CommentItem#0" expanded="false" />
-            <element signature="n#!!block;n#showModal#0;n#CommentList#0" expanded="false" />
-            <element signature="n#!!block;n#_setModalVisible#0;n#CommentList#0" expanded="false" />
-            <element signature="n#!!block;n#closeModal#0;n#CommentList#0" expanded="false" />
-            <element signature="n#!!block;n#_getAllCommentCount#0;n#CommentList#0" expanded="false" />
-            <element signature="e#7573#7840#0" expanded="false" />
-            <element signature="n#!!block;n#render#0;n#CommentList#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/base/commentModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4717">
-          <caret line="76" column="28" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="76" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/feApp/android_views/base/picModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-427">
+        <state relative-caret-position="2343">
           <caret line="86" column="29" lean-forward="false" selection-start-line="86" selection-start-column="29" selection-end-line="86" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2145">
+          <caret line="73" column="33" lean-forward="false" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/userTag.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="46" column="23" lean-forward="false" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/mongodb/config/mongoose.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/node_modules/mongoose/lib/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="416" column="18" lean-forward="false" selection-start-line="416" selection-start-column="18" selection-end-line="416" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/routes/createDiscussion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="23" column="26" lean-forward="false" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3333">
+          <caret line="111" column="14" lean-forward="false" selection-start-line="111" selection-start-column="14" selection-end-line="111" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/loveArticle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/tagSelect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2079">
+          <caret line="82" column="8" lean-forward="false" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/my/edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3399">
+          <caret line="221" column="4" lean-forward="false" selection-start-line="221" selection-start-column="4" selection-end-line="221" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/my/inputScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="39" column="9" lean-forward="false" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/base/commentModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="41" column="27" lean-forward="false" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/routes/my.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11682">
+          <caret line="354" column="25" lean-forward="false" selection-start-line="354" selection-start-column="25" selection-end-line="354" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/mongodb/config/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/routes/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/home/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3696">
+          <caret line="160" column="24" lean-forward="false" selection-start-line="160" selection-start-column="24" selection-end-line="160" selection-end-column="24" />
+          <folding>
+            <element signature="n#!!block;n#_loadMoreData#0;n#Home#0" expanded="false" />
+            <element signature="e#4724#4903#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/base/articleList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="39" column="35" lean-forward="false" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_github.com_DefinitelyTyped_DefinitelyTyped_raw_master_types_react-native_index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="4751" column="65" lean-forward="false" selection-start-line="4751" selection-start-column="65" selection-end-line="4751" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/resource/image/loading.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/discussion/discussionComment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13167">
+          <caret line="413" column="22" lean-forward="false" selection-start-line="413" selection-start-column="22" selection-end-line="413" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/base/secondCommentList.js">
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/originalArticle.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12175">
-          <caret line="127" column="61" lean-forward="false" selection-start-line="127" selection-start-column="50" selection-end-line="127" selection-end-column="61" />
+        <state relative-caret-position="3927">
+          <caret line="129" column="7" lean-forward="false" selection-start-line="129" selection-start-column="7" selection-end-line="129" selection-end-column="7" />
           <folding>
-            <element signature="n#!!block;n#_getCommentDetail#0;n#SecondCommentItem#0" expanded="false" />
-            <element signature="n#!!block;n#_like#0;n#SecondCommentItem#0" expanded="false" />
-            <element signature="n#!!block;n#_send#0;n#SecondCommentList#0" expanded="false" />
-            <element signature="n#!!block;n#_like#0;n#SecondCommentList#0" expanded="false" />
-            <element signature="n#!!block;n#_formateTwo#0;n#SecondCommentList#0" expanded="false" />
+            <element signature="e#3230#3783#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/articleComment.js">
+    <entry file="file://$PROJECT_DIR$/feApp/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1921">
-          <caret line="143" column="6" lean-forward="true" selection-start-line="143" selection-start-column="6" selection-end-line="143" selection-end-column="6" />
-          <folding>
-            <element signature="n#!!block;n#_formateTime#0;n#ArticleComment#0" expanded="false" />
-            <element signature="n#!!block;n#_send#0;n#ArticleComment#0" expanded="false" />
-            <element signature="n#!!block;n#_getComment#0;n#ArticleComment#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="2310">
+          <caret line="89" column="25" lean-forward="false" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/node_modules/mongoose/lib/query.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97581">
+          <caret line="2957" column="7" lean-forward="false" selection-start-line="2957" selection-start-column="7" selection-end-line="2957" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/feApp/android_views/base/tagList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1285">
-          <caret line="156" column="11" lean-forward="false" selection-start-line="156" selection-start-column="11" selection-end-line="156" selection-end-column="11" />
+        <state relative-caret-position="792">
+          <caret line="39" column="28" lean-forward="false" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="28" />
           <folding>
-            <element signature="e#42#83#0" expanded="true" />
             <element signature="e#1119#1214#0" expanded="false" />
             <element signature="e#4082#4344#0" expanded="false" />
             <element signature="e#4359#4591#0" expanded="false" />
@@ -1737,182 +1230,184 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/articleDetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/feApp/android/app/src/main/res/mipmap-mdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3034">
-          <caret line="111" column="14" lean-forward="true" selection-start-line="111" selection-start-column="14" selection-end-line="111" selection-end-column="14" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/feApp/android/app/src/main/res/mipmap-hdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/loveArticle.js">
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/discussion/post.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2011">
-          <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!block;n#componentDidMount#0;n#LoveArticle#0" expanded="false" />
-            <element signature="n#!!block;n#refresh#0;n#LoveArticle#0" expanded="false" />
-            <element signature="e#3218#3771#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/originalArticle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2968">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#3230#3783#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5410">
-          <caret line="73" column="33" lean-forward="true" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/tagSelect.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3595">
-          <caret line="101" column="22" lean-forward="true" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
+        <state relative-caret-position="2145">
+          <caret line="78" column="12" lean-forward="false" selection-start-line="78" selection-start-column="12" selection-end-line="78" selection-end-column="12" />
           <folding>
             <element signature="e#43#84#0" expanded="true" />
-            <element signature="e#3526#4044#0" expanded="false" />
-            <element signature="e#4060#4169#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/config.js">
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/articleComment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        <state relative-caret-position="2475">
+          <caret line="87" column="36" lean-forward="false" selection-start-line="87" selection-start-column="36" selection-end-line="87" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!block;n#_getComment#0;n#ArticleComment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/base/commentList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8151">
+          <caret line="264" column="9" lean-forward="false" selection-start-line="264" selection-start-column="9" selection-end-line="264" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/userProfile.js">
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/articleDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4088">
-          <caret line="246" column="26" lean-forward="false" selection-start-line="246" selection-start-column="26" selection-end-line="246" selection-end-column="26" />
+        <state relative-caret-position="2739">
+          <caret line="85" column="25" lean-forward="false" selection-start-line="85" selection-start-column="25" selection-end-line="85" selection-end-column="25" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="e#53#94#0" expanded="true" />
-            <element signature="n#!!block;n#_getMeta#0;n#UserProfile#0" expanded="false" />
-            <element signature="n#!!block;n#_follow#0;n#UserProfile#0" expanded="false" />
-            <element signature="e#7676#7821#0" expanded="false" />
+            <element signature="e#2050#2468#0" expanded="false" />
+            <element signature="e#2063#2311#0" expanded="false" />
+            <element signature="e#2324#2452#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/userTag.js">
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/base/secondCommentList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-229">
-          <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+        <state relative-caret-position="2046">
+          <caret line="243" column="8" lean-forward="false" selection-start-line="243" selection-start-column="8" selection-end-line="243" selection-end-column="8" />
           <folding>
-            <element signature="e#42#83#0" expanded="true" />
+            <element signature="n#SecondCommentItem#0" expanded="false" />
+            <element signature="n#!!block;n#_getCommentDetail#0;n#SecondCommentItem#0" expanded="false" />
+            <element signature="n#!!block;n#_like#0;n#SecondCommentItem#0" expanded="false" />
+            <element signature="n#!!block;n#_like#0;n#SecondCommentList#0" expanded="false" />
+            <element signature="n#!!block;n#_formateTwo#0;n#SecondCommentList#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/userList.js">
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/my/my.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5080">
-          <caret line="81" column="31" lean-forward="true" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="31" />
+        <state relative-caret-position="3630">
+          <caret line="136" column="69" lean-forward="false" selection-start-line="133" selection-start-column="26" selection-end-line="136" selection-end-column="69" />
           <folding>
-            <element signature="e#2727#2960#0" expanded="false" />
-            <element signature="n#!!block;n#_refresh#0;n#UserList#0" expanded="false" />
-            <element signature="n#!!block;n#_follow#0;n#UserList#0" expanded="false" />
+            <element signature="e#53#94#0" expanded="true" />
+            <element signature="n#!!block;n#_logout#0;n#My#0" expanded="false" />
+            <element signature="e#10645#10794#0" expanded="false" />
+            <element signature="e#11758#13763#0" expanded="false" />
+            <element signature="e#15600#15771#0" expanded="false" />
+            <element signature="e#15790#15958#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/feApp/android_views/discussion/discussion.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1036">
-          <caret line="484" column="10" lean-forward="true" selection-start-line="484" selection-start-column="10" selection-end-line="484" selection-end-column="10" />
+        <state relative-caret-position="15015">
+          <caret line="673" column="7" lean-forward="false" selection-start-line="673" selection-start-column="7" selection-end-line="673" selection-end-column="7" />
           <folding>
             <element signature="e#49#90#0" expanded="true" />
             <element signature="n#!!block;n#_formateTime#0;n#DiscussionItem#0" expanded="false" />
             <element signature="n#!!block;n#_getMeta#0;n#DiscussionItem#0" expanded="false" />
             <element signature="n#!!block;n#_getAllCommentCount#0;n#DiscussionItem#0" expanded="false" />
-            <element signature="n#!!block;n#_like#0;n#DiscussionItem#0" expanded="false" />
             <element signature="n#!!block;n#_follow#0;n#DiscussionItem#0" expanded="false" />
-            <element signature="e#7448#8494#0" expanded="false" />
-            <element signature="n#!!block;n#refresh#0;n#Discussion#0" expanded="false" />
-            <element signature="e#10476#10572#0" expanded="false" />
+            <element signature="e#6654#7700#0" expanded="false" />
+            <element signature="e#9221#9679#0" expanded="false" />
+            <element signature="e#9746#9842#0" expanded="false" />
             <element signature="n#!!block;n#xixi#0;n#Discussion#0" expanded="false" />
             <element signature="n#!!block;n#_showPost#0;n#Discussion#0" expanded="false" />
-            <element signature="e#12007#12282#0" expanded="false" />
-            <element signature="e#12291#13318#0" expanded="false" />
-            <element signature="e#16028#16225#0" expanded="false" />
-            <element signature="e#16247#16319#0" expanded="false" />
-            <element signature="e#18095#18247#0" expanded="false" />
+            <element signature="e#11291#12828#0" expanded="false" />
+            <element signature="e#11324#11599#0" expanded="false" />
+            <element signature="e#12645#12814#0" expanded="false" />
+            <element signature="e#12843#13235#0" expanded="false" />
+            <element signature="e#12856#13088#0" expanded="false" />
+            <element signature="e#13099#13221#0" expanded="false" />
+            <element signature="e#15753#15950#0" expanded="false" />
+            <element signature="e#15972#16044#0" expanded="false" />
+            <element signature="e#17820#17972#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/discussion/discussionComment.js">
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/userList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="407" column="25" lean-forward="true" selection-start-line="407" selection-start-column="25" selection-end-line="407" selection-end-column="25" />
+        <state relative-caret-position="2673">
+          <caret line="128" column="5" lean-forward="false" selection-start-line="128" selection-start-column="5" selection-end-line="128" selection-end-column="5" />
           <folding>
-            <element signature="n#!!block;n#_follow#0;n#DiscussionComment#0" expanded="false" />
-            <element signature="n#!!block;n#_getMeta#0;n#DiscussionComment#0" expanded="false" />
-            <element signature="n#!!block;n#_formateTime#0;n#DiscussionComment#0" expanded="false" />
-            <element signature="n#!!block;n#_formateTwo#0;n#DiscussionComment#0" expanded="false" />
-            <element signature="n#!!block;n#_send#0;n#DiscussionComment#0" expanded="false" />
+            <element signature="n#!!block;n#_follow#0;n#UserItem#0" expanded="false" />
+            <element signature="e#2869#3102#0" expanded="false" />
+            <element signature="n#!!block;n#_refresh#0;n#UserList#0" expanded="false" />
+            <element signature="n#!!block;n#_follow#0;n#UserList#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/discussion/post.js">
+    <entry file="file://$PROJECT_DIR$/service/routes/article.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1912">
-          <caret line="175" column="20" lean-forward="true" selection-start-line="175" selection-start-column="20" selection-end-line="175" selection-end-column="20" />
+        <state relative-caret-position="792">
+          <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/userProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1914">
+          <caret line="72" column="42" lean-forward="false" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/routes/discussion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1947">
+          <caret line="59" column="14" lean-forward="false" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/my/myTag.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
           <folding>
-            <element signature="n#!!block;n#_selectImg#0;n#Post#0" expanded="false" />
-            <element signature="e#2565#2996#0" expanded="false" />
-            <element signature="e#3086#3442#0" expanded="false" />
-            <element signature="e#5053#5312#0" expanded="false" />
+            <element signature="n#!!block;n#_showAll#0;n#MyTag#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/home/home.js">
+    <entry file="file://$PROJECT_DIR$/service/views/article/articleTem.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8446">
-          <caret line="30" column="7" lean-forward="false" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+        <state relative-caret-position="363">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/routes/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8382">
+          <caret line="254" column="14" lean-forward="false" selection-start-line="254" selection-start-column="14" selection-end-line="254" selection-end-column="14" />
           <folding>
-            <element signature="e#48#89#0" expanded="true" />
-            <element signature="e#4658#4837#0" expanded="false" />
+            <element signature="e#6074#6168#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feApp/android_views/my/edit.js">
+    <entry file="file://$PROJECT_DIR$/feApp/android_views/common/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="220" column="17" lean-forward="true" selection-start-line="220" selection-start-column="17" selection-end-line="220" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!block;n#_selectImg#0;n#Edit#0" expanded="false" />
-            <element signature="n#!!block;n#_refresh#0;n#Edit#0" expanded="false" />
-            <element signature="e#2968#3224#0" expanded="false" />
-            <element signature="e#3240#4025#0" expanded="false" />
-            <element signature="e#4041#4839#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="132">
+          <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>

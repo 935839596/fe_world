@@ -22,6 +22,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import UserProfile from '../common/userProfile'
 import LoveArticle from '../common/loveArticle'
+import ArticleDetail from '../common/articleDetail'
 import OriginalArticle from '../common/originalArticle'
 import UserList from '../common/userList'
 import DiscussionComment from '../discussion/discussionComment'
@@ -62,8 +63,8 @@ class DiscussionItem extends Component {
       likeCount: nextProps.discussion.meta.likeCount,
       following: this.props.discussion.following,
       self: this.props.discussion.self
-    })
-    this._getAllCommentCount()
+    }, ()=> { this._getAllCommentCount() })
+
   }
 
   _formateTime() {
@@ -209,33 +210,7 @@ class DiscussionItem extends Component {
                   {this._getMeta() + this._formateTime()}
                 </Text>
               </View>
-              {
-                !this.state.self?
-                  this.state.following ?
-                    <Text style = {styles.following}
-                          onPress={this._follow.bind(this)}
-                    >
-                      <Icon
-                        name="check"
-                        color="#4f91d0"
-                        size={12}
-                      />
-                      已关注
-                    </Text>
-                    :
-                    <Text style = {styles.notFollow}
-                          onPress={this._follow.bind(this)}
-                    >
-                      <Icon
-                        name="plus"
-                        color="#4f91d0"
-                        size={12}
-                      />
-                      关注
-                    </Text>
-                  :
                   <Text></Text>
-              }
             </View>
             <View style = {styles.contentWrapper}>
               <Text style = {styles.discussionContent}>
@@ -303,7 +278,9 @@ class Discussion extends Component {
       fadeAnim: new Animated.Value(1),          // 透明度初始值设为0
 
       picModalVisible: false,
-      picModalUrl: ''
+      picModalUrl: '',
+
+      flag: false
     }
     this.refresh()
   }
@@ -338,7 +315,8 @@ class Discussion extends Component {
             discussionList: data.data.list,
             last_date: data.data.last_date,
             more: data.data.more,
-            loading: false
+            loading: false,
+            flag: true
           })
         }else{
 
@@ -348,7 +326,7 @@ class Discussion extends Component {
 
   _loadMoreData(){
     console.log('loading more')
-    if(this.state.loading){
+    if(this.state.loading || !this.state.flag){
       return;
     }
 
@@ -437,6 +415,7 @@ class Discussion extends Component {
 
   render() {
     return(
+      (this.state.flag || this.state.loading)?
       <View style={{flex: 1}}>
         <View style={styles.topBar}>
           <Text style={styles.title}>讨论区</Text>
@@ -484,6 +463,22 @@ class Discussion extends Component {
           closePicModal={this.closePicModal.bind(this)}
         />
       </View>
+      :
+      <View style={{
+        flex: 1,
+        // backgroundColor: 'rgba(0,0,0, .8)',
+        justifyContent:'center',
+        alignItems: 'center',
+        position: 'absolute',
+        top: 0, bottom: 0, right: 0, left: 0,
+        zIndex: 100
+      }}>
+        <Image
+          source={require('../../resource/image/loading.gif')}
+          style={{width: 50, height: 50}}
+        />
+      </View>
+
     )
   }
 }
@@ -673,7 +668,7 @@ export default StackNavigator(
     OriginalArticle: {
       screen: OriginalArticle,
       navigationOptions: {
-        headerTitle: '个人资料',
+        headerTitle: '原创文章',
         headerStyle: headerStyle,
         headerTitleStyle: headerTitleStyle
       }
@@ -732,6 +727,16 @@ export default StackNavigator(
         headerTitle: '他关注的标签',
         headerStyle: headerStyle,
         headerTitleStyle: headerTitleStyle
+      }
+    },
+    Detail: {
+      screen: ArticleDetail,
+      navigationOptions: {
+        // header: {},
+        headerTitle: '文章详情',
+        headerStyle: headerStyle,
+        headerTitleStyle: headerTitleStyle
+        // headerTintColor: '#cccccc'
       }
     },
   },

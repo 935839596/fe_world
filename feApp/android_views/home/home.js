@@ -89,19 +89,23 @@ const ip = require('../common/config').ip
   }
 
   _loadData(type){
+    var url = ip + '/article/'+type+'_articles';
+    console.log('类别：'+ url)
     if(this.state.loading){
       return;
     }
 
     this.setState({
         type: type,
-        url: ip + '/article/'+type+'_articles',
+        url: url,
         loading: false,
         more: true,
         last_date: undefined
+    },() => {
+      console.log(this.state)
+      this.refresh()
     })
-    console.log(this.state)
-    this.refresh()
+
   }
 
   _loadMoreData() {

@@ -11,7 +11,8 @@ import {
   WebView,
   TouchableHighlight,
   Image,
-  TextInput
+  TextInput,
+  Alert
 } from 'react-native';
 
 const ip = require('./config').ip
@@ -99,6 +100,22 @@ class ArticleComment extends Component {
             content: ''
           })
           this._getComment()
+        }else if(data.ret == -1){
+          this.setState({
+            sending: false,
+            sendable: true,
+          })
+          Alert.alert(
+            '警告',
+            data.message,
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: '马上登录', onPress: ()=>{
+                this.props.navigation.navigate('Login');
+              }}
+            ],
+            { cancelable: false }
+          )
         }
       })
   }
@@ -203,7 +220,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 35,
+    height: 40,
     position: 'absolute',
     bottom: 5,
     backgroundColor: 'white'

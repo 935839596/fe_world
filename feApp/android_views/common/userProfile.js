@@ -165,7 +165,7 @@ class UserProfile extends Component {
                   <Text style= {style.operation}
                         onPress = {this._showFollowers.bind(this)}
                   >
-                    粉丝:{this.state.user.followers.length}
+                    粉丝:{this.state.fansCount}
                   </Text>
                   {
                     !this.state.self ?
@@ -239,26 +239,23 @@ class UserProfile extends Component {
                 </View>
               </View>
 
-              <View style= {style.itemWrapper}>
-                <TouchableOpacity
-                  onPress={() => {this.props.navigation.navigate('UserTag',{userId: this.state.userId})}}
-                >
-                  <View style= {style.item}>
-                    <TouchableOpacity style = {style.touch}>
-                      <Text>关注的标签</Text>
-                    </TouchableOpacity>
-                    <Text style = {style.number}
-                    >
-                    </Text>
-                    <Icon
-                      name="angle-right"
-                      size={20}
-                      style={ style.arrow }
-                    />
-                  </View>
-                </TouchableOpacity>
+              <View style = {style.itemWrapper}>
+                <View style= {style.item}>
+                  <TouchableOpacity
+                    style = {style.touch}
+                    onPress={()=>{
+                      this.props.navigation.navigate('UserTag',{userId: this.state.user._id, title: '他原创的文章'})
+                    }}
+                  >
+                    <Text>关注的标签</Text>
+                  </TouchableOpacity>
+                  <Icon
+                    name="angle-right"
+                    size={20}
+                    style={ style.arrow }
+                  />
+                </View>
               </View>
-
             </View>
             :
             <Text style={{alignSelf: 'center'}}>loading...</Text>

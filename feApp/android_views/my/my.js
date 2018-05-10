@@ -27,7 +27,7 @@ import UserList from '../common/userList'
 import UserProfile from '../common/userProfile'
 import TagSelect from '../common/tagSelect'
 import PicModal from '../base/picModal'
-
+import ArticleDetail from '../common/articleDetail'
 
 const ip = require('../common/config').ip
 
@@ -208,30 +208,7 @@ class My extends Component {
                   </View>
                 </View>
 
-                <View style= {style.itemWrapper}>
-                  <View style= {style.item}>
-                    <TouchableOpacity style = {style.touch}>
-                      <Text
-                        style = {style.itemText}
-                      >
-                        <Icon
-                          name = 'bell'
-                          color = 'red'
-                          iconStyle = {{marginRight: 15}}
-                        />
-                        动态
-                      </Text>
-                    </TouchableOpacity>
-                    <Text style = {style.number}>
-                      15
-                    </Text>
-                    <Icon
-                      name="angle-right"
-                      size={20}
-                      style={ style.arrow }
-                    />
-                  </View>
-                </View>
+
 
                 <View style = {style.itemWrapper}>
                   <View style= {style.item}>
@@ -570,7 +547,7 @@ export default StackNavigator(
     OriginalArticle: {
       screen: OriginalArticle,
       navigationOptions: {
-        headerTitle: '个人资料',
+        headerTitle: '我的原创文章',
         headerStyle: headerStyle,
         headerTitleStyle: headerTitleStyle
       }
@@ -624,7 +601,18 @@ export default StackNavigator(
         headerStyle: headerStyle,
         headerTitleStyle: headerTitleStyle
       }
-    }
+    },
+    Detail: {
+      screen: ArticleDetail,
+      navigationOptions: {
+        // header: {},
+        headerTitle: '文章详情',
+        headerStyle: headerStyle,
+        headerTitleStyle: headerTitleStyle
+        // headerTintColor: '#cccccc'
+      }
+    },
+
 
   },
   {

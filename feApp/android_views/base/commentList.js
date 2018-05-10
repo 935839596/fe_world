@@ -182,21 +182,23 @@ class CommentItem extends Component {
               <Text style = {styles.time}>{this._formateTime()}</Text>
             </View>
             <View style = {styles.operation}>
-              <Text style = {styles.iconWrapper}>
+              <Text style = {styles.iconWrapper}
+                    onPress = {this._showModal.bind(this,this.state.comment.author.username, this.state.comment.author._id )}
+              >
                 <Icon
                   name="comments-o"
                   color="#388bec"
                   size={15}
                   style={ styles.icon }
-                  onPress = {this._showModal.bind(this,this.state.comment.author.username, this.state.comment.author._id )}
                 />
               </Text>
-              <Text style = {styles.iconWrapper}>
+              <Text style = {styles.iconWrapper}
+                    onPress={this._like.bind(this)}
+              >
                 <Icon
                   size={15}
                   name={this.state.like?'thumbs-up':'thumbs-o-up'}
                   color='#388bec'
-                  onPress={this._like.bind(this)}
                   style={ styles.icon }
                 /> {this.state.likeCount}
               </Text>
@@ -257,6 +259,7 @@ class CommentList extends Component {
     this.setState({
       commentList: this.props.commentList,
     })
+    this._getAllCommentCount()
   }
 
   _getAllCommentCount(){
@@ -402,7 +405,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   iconWrapper: {
-    width: 35
+    width: 40
   },
   icon: {
 

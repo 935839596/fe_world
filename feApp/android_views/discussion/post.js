@@ -78,7 +78,7 @@ class Post extends Component{
     var options = {
       title: '',
       customButtons: [
-        {name: 'fb', title: 'Choose Photo from Facebook'},
+
       ],
       storageOptions: {
         skipBackup: true,

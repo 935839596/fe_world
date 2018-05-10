@@ -255,7 +255,9 @@ router.get('/followees', function(req, res, next) {
             })
           }
 
-          if(loginUser._id === newU._id){
+          var id1 = loginUser._id,
+            id2 = newU._id;
+          if(id1.toString() == id2.toString()){
             return Object.assign(newU,{
               self: true
             })

@@ -81,7 +81,12 @@ class UserItem extends React.PureComponent {
       <View style = {styles.userWrapper}>
         <View style={styles.left}>
           <Image
-            source = {require('../../resource/image/mying.png')}
+            source = {
+              this.state.user.avatarLarge?
+                {uri: this.state.user.avatarLarge}
+                :
+                require('../../resource/image/mying.png')
+            }
             style = { styles.userProtrait}
           />
         </View>

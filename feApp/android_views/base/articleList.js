@@ -37,10 +37,12 @@ class ArticleItem extends  React.PureComponent {
             username: '佚名'
           }
         })
-      })
+      },()=>{ this._getAllCommentCount() })
+    }else{
+      this._getAllCommentCount()
     }
 
-    this._getAllCommentCount()
+
   }
 
 
@@ -49,8 +51,8 @@ class ArticleItem extends  React.PureComponent {
       article: nextProps.article,
       like: nextProps.article.like,
       likeCount: nextProps.article.meta.likeCount,
-    })
-    this._getAllCommentCount()
+    },()=>{ this._getAllCommentCount() })
+
   }
 
   _getAllCommentCount(){

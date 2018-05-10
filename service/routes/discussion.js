@@ -503,15 +503,24 @@ function _helpLikeOrNot(req, res, type, id){
   }
   option = Object.assign(option,{$inc: {"meta.likeCount": inc}})
 
-  Discussion.update( {_id: id }, option , function(err, raw){
-    if(err) {
 
-    }else{
-      res.send({
-        ret: 0,
-        message: message
+  getUser(req.session.loginUser).then(user => {
+    if(!user){
+      return res.send({
+        ret: -1,
+        message: '请先登录'
       })
     }
+    Discussion.update( {_id: id }, option , function(err, raw){
+      if(err) {
+
+      }else{
+        res.send({
+          ret: 0,
+          message: message
+        })
+      }
+    })
   })
 }
 

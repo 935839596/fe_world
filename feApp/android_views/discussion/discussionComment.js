@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 35,
+    height: 40,
     position: 'absolute',
     bottom: 5,
     backgroundColor: 'white'

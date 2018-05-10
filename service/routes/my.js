@@ -344,7 +344,7 @@ router.post('/remove_interest', function(req, res, next){
       })
     }
 
-    var index = user.interest.indexOf('tag')
+    var index = user.interest.indexOf(tag)
     user.interest.splice(index, 1);
     var newTag = user.interest;
     newTag = [...new Set(newTag)]
@@ -357,9 +357,11 @@ router.post('/remove_interest', function(req, res, next){
           message: '关注失败'
         })
       }
-      return res.send({
-        ret: 0,
-        message: 'ok'
+      Tag.update({tagName: tag},{$pull: {fans: newUser._id}},function(err){
+        return res.send({
+          ret: 0,
+          message: 'ok'
+        })
       })
     })
   })

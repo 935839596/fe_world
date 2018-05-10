@@ -10,7 +10,8 @@ import {
   Text,
   View,
   WebView,
-  TouchableHighlight
+  TouchableHighlight,
+  Image
 } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
@@ -23,13 +24,17 @@ class ArticleDetail extends Component {
     super(props);
     this.state = {
       articleId: this.props.navigation.state.params.articleId,
-      url: null
+      url: null,
+      flag: false
     }
     // this.props.screenProps.tabBar.hide()
+    var time1 = Date.now();
     fetch(ip + '/article/articleHTML?id=' + this.state.articleId)
       .then(res => res.text())
       .then( html => {
-        this.setState({url: html})
+        this.setState({url: html, flag: true})
+        var time2 = Date.now();
+        console.log('请求html花费的时间为:'+ (time2-time1))
       })
   }
 
@@ -45,8 +50,7 @@ class ArticleDetail extends Component {
 
 
   componentDidMount() {
-    console.log(this.webview)
-    this.webview.postMessage(152)
+
   }
 
   handleMessage(a) {
@@ -61,25 +65,41 @@ class ArticleDetail extends Component {
 
   render() {
     return (
-      <View style={{flex: 1, position: 'relative'}}>
-        <WebView
-          ref={webview => { this.webview = webview; }}
-          // source = {require('../views/article/articleTem.html')}
-          source ={{html: this.state.url,baseUrl: ''}}
-          onMessage = {this.handleMessage.bind(this)}
-          style={{
-            flex: 1
-          }}
-        />
-        <TouchableHighlight
-          style={styles.commentBtn}
-          onPress={this._goToComment.bind(this)}
-        >
-          <Text style={{color: 'white'}}>
-            评价
-          </Text>
-        </TouchableHighlight>
-      </View>
+        this.state.flag?
+        <View style={{flex: 1, position: 'relative'}}>
+          <WebView
+            ref={webview => { this.webview = webview; }}
+            // source = {require('../views/article/articleTem.html')}
+            source ={{html: this.state.url,baseUrl: ''}}
+            onMessage = {this.handleMessage.bind(this)}
+            style={{
+              flex: 1
+            }}
+          />
+          <TouchableHighlight
+            style={styles.commentBtn}
+            onPress={this._goToComment.bind(this)}
+          >
+            <Text style={{color: 'white'}}>
+              评论
+            </Text>
+          </TouchableHighlight>
+        </View>
+        :
+        <View style={{
+          flex: 1,
+          // backgroundColor: 'rgba(0,0,0, .8)',
+          justifyContent:'center',
+          alignItems: 'center',
+          position: 'absolute',
+          top: 0, bottom: 0, right: 0, left: 0,
+          zIndex: 100
+        }}>
+          <Image
+            source={require('../../resource/image/loading.gif')}
+            style={{width: 50, height: 50}}
+          />
+        </View>
     )
   }
 }

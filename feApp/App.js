@@ -27,7 +27,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'my',
+      selectedTab: 'home',
       tabBarHeight: 50
     };
   }
@@ -87,7 +87,7 @@ export default class App extends Component {
             {this._renderView()}
           </TabNavigator.Item>
           <TabNavigator.Item
-              title="我的"
+              title="个人中心"
               selected={this.state.selectedTab === 'my'}
               renderIcon={() => <Image style={styles.tabImg} source={require('./resource/image/my.png')} />}
               renderSelectedIcon={() => <Image style={styles.tabImg} source={require('./resource/image/mying.png')} />}
@@ -126,6 +126,7 @@ export default class App extends Component {
             refreshApp: () => {
               navigationEvents.emit(`onFocus:Home`)
               navigationEvents.emit(`onFocus:Discussion`)
+              navigationEvents.emit(`onFocus:My`)
             },
             navigationEvents: navigationEvents
           }}
@@ -142,6 +143,7 @@ export default class App extends Component {
             refreshApp: ()=>{
               navigationEvents.emit(`onFocus:Home`)
               navigationEvents.emit(`onFocus:Discussion`)
+              navigationEvents.emit(`onFocus:My`)
             },
             navigationEvents: navigationEvents
           }}
@@ -158,6 +160,7 @@ export default class App extends Component {
             refreshApp: () => {
               navigationEvents.emit(`onFocus:Home`)
               navigationEvents.emit(`onFocus:Discussion`)
+              navigationEvents.emit(`onFocus:My`)
             },
             navigationEvents: navigationEvents
           }}

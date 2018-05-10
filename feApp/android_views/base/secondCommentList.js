@@ -146,21 +146,23 @@ class SecondCommentItem extends Component {
                       }}
                 >{this.state.secComment.author.username}</Text>
                 <View style = {styles.operation}>
-                  <Text style = {styles.iconWrapper}>
+                  <Text style = {styles.iconWrapper}
+                        onPress = {this._showModal.bind(this, this.state.secComment.author.username, this.state.secComment.author._id)}
+                  >
                     <Icon
                       name="comments-o"
                       color="#388bec"
                       size={15}
                       style={ styles.icon }
-                      onPress = {this._showModal.bind(this, this.state.secComment.author.username, this.state.secComment.author._id)}
                     />
                   </Text>
-                  <Text style = {styles.iconWrapper}>
+                  <Text style = {styles.iconWrapper}
+                        onPress={this._like.bind(this)}
+                  >
                     <Icon
                       name={this.state.like?'thumbs-up':'thumbs-o-up'}
                       size={15}
                       color='#388bec'
-                      onPress={this._like.bind(this)}
                       style={ styles.icon }
                     /> {this.state.likeCount}
                   </Text>
@@ -219,7 +221,15 @@ class SecondCommentList extends Component {
       sending: true
     })
 
-    fetch(ip + '/article/write_comment', {
+    var url = '';
+    var articleId = this.props.navigation.state.params.articleId;
+    if(articleId){
+      url = ip + '/article/write_comment'
+    }else{
+      url = ip + '/discussion/write_comment'
+    }
+
+    fetch(url, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -229,6 +239,7 @@ class SecondCommentList extends Component {
         type: 1,
         content: this.state.content,
         articleId: this.props.navigation.state.params.articleId,
+        discussionId: this.props.navigation.state.params.discussionId,
         toCommentId: this.state.comment._id,
       })
     }).then(res => res.json())
